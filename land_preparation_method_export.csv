@@ -1,0 +1,5 @@
+value_code,display,status,sort_order,parent_code
+LPM_OXEN,Oxen plough,ACTIVE,1,
+LPM_TRACTOR,Tractor,ACTIVE,2,
+LPM_MANUAL,Manual (hoe),ACTIVE,3,
+LPM_ZERO_TILLAGE,Zero tillage,ACTIVE,4,

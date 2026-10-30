@@ -165,6 +165,34 @@ services:
       - "${MASTER_DATA_UI_PORT:-3005}:3000"
     restart: unless-stopped
 
+  mds-db-seed:
+    image: openg2p/master-data-api:develop
+    container_name: mds-standalone-db-seed
+    networks:
+      - mds_net
+    depends_on:
+      postgres:
+        condition: service_healthy
+      master-data-api:
+        condition: service_healthy
+    volumes:
+      - ./import_all_catalogs.py:/seed/import_all_catalogs.py:ro
+      - ./add_geography_to_catalogs.py:/seed/add_geography_to_catalogs.py:ro
+    environment:
+      MASTER_DATA_API_DB_HOSTNAME: mds-standalone-postgres
+      MASTER_DATA_API_DB_PORT: 5432
+      MASTER_DATA_API_DB_USERNAME: ${POSTGRES_USER:-postgres}
+      MASTER_DATA_API_DB_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      MASTER_DATA_API_DB_DBNAME: ${POSTGRES_DB:-master_data}
+    command: >
+      /bin/sh -c "
+      echo 'Seeding core catalogs and geography into Master Data Service...';
+      python3 /seed/import_all_catalogs.py;
+      python3 /seed/add_geography_to_catalogs.py;
+      echo 'MDS data seeding completed successfully.';
+      "
+    restart: "no"
+
 volumes:
   mds_pgdata:
   mds_miniodata:

@@ -1,0 +1,903 @@
+value_code,display,status,sort_order,parent_code,category,certified_seed,classification,crop,crop_name,details_url,maintainer,release_date,release_year
+VARIETY_2,Maize-MH141,ACTIVE,2,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/2/,Melkassa ARC/EIAR/,2020-01-01,2020
+VARIETY_3,Maize-BH520 W1 (Nada),ACTIVE,3,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/3/,Bako NMRC/EIAR,2020-01-01,2020
+VARIETY_4,Tef - Bishoftu (ቢሾፍቱ ) …,ACTIVE,4,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/4/,Debre Zeit ARC/EIAR/,2020-01-01,2020
+VARIETY_5,Bread Wheat - Dursa,ACTIVE,5,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/5/,Kulumsa ARC/EIAR/,2020-01-01,2020
+VARIETY_6,Bread Wheat - Boru,ACTIVE,6,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/6/,Kulumsa ARC/EIAR/,2020-01-01,2020
+VARIETY_9,Tef-Axumawit (Dz-cr-494(RIL.7),ACTIVE,9,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/9/,Axum ARC/TRARI/,2020-01-01,2020
+VARIETY_10,Tef-Takusa (DZ-01-974 X GA-10-3(RILL-104),ACTIVE,10,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/10/,Adet ARC/ARARI/,2021-01-01,2021
+VARIETY_11,Tef-Jarso (RIL No.76B),ACTIVE,11,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/11/,Bako ARC/ORARI/,2021-01-01,2021
+VARIETY_12,Tef - (Boni (ቦኒ),ACTIVE,12,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/12/,Debere ziet ARC/EIAR,2021-01-01,2021
+VARIETY_13,Bread Wheat-ABAY (ETBW 9396),ACTIVE,13,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/13/,Kulumsa ARC/EIAR/,2021-01-01,2021
+VARIETY_14,Bread Wheat-SHAKI (ETBW 9089),ACTIVE,14,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/14/,Kulumsa ARC/EIAR/,2021-01-01,2021
+VARIETY_15,Bread Wheat-Laku (ETBW8572),ACTIVE,15,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/15/,Bako ARC/ORARI /,2021-01-01,2021
+VARIETY_16,Durem Wheat - ETCROSS-21 (DW171226),ACTIVE,16,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/16/,Debere Ziet ARC/EIAR/,2021-01-01,2021
+VARIETY_17,Sorghum - AYINAGE (Acc.5012),ACTIVE,17,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/17/,Mechara ARC/ORARI/,2021-01-01,2021
+VARIETY_18,Sorghum - Erer (#2005MI5081),ACTIVE,18,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/18/,Fadis ARC/ORARI/,2021-01-01,2021
+VARIETY_19,Finger Millet - Ikhulule,ACTIVE,19,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/19/,Mechara ARC/ORARI,2021-01-01,2021
+VARIETY_20,Food Barley - Walashe,ACTIVE,20,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/20/,Sinana ARC/ORARI,2021-01-01,2021
+VARIETY_21,Food Barley - Jalqabne (BARC/JED/003/14) …,ACTIVE,21,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/21/,Bako ARC/ORARI,2021-01-01,2021
+VARIETY_23,Malt Barley - Suba (Pedigree: …,ACTIVE,23,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/23/,Holetta ARC/EIAR,2021-01-01,2021
+VARIETY_24,Malt Barley - MBF5P#26 (ራስ),ACTIVE,24,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/24/,Gonder ARC/ARARI/,2021-01-01,2021
+VARIETY_25,Faba bean - Shoa/ሸዋ (EH01078-4-3),ACTIVE,25,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/25/,Debre Birhan ARC/ARARI,2021-01-01,2021
+VARIETY_26,Fiel pea - Kuullee (EH08027-2) …,ACTIVE,26,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/26/,Bako ARC/ORARI/,2021-01-01,2021
+VARIETY_27,Field pea - Jirraafi (EH05011-2) …,ACTIVE,27,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/27/,Bako ARC/ORARI/,2021-01-01,2021
+VARIETY_28,Field pea - Hasset (ሀሴት) …,ACTIVE,28,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/28/,Adet ARC/ARARI/,2021-01-01,2021
+VARIETY_29,Field pea - Mieso (ሜኤሶ) …,ACTIVE,29,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/29/,Sinana ARC/ORARI/,2021-01-01,2021
+VARIETY_30,Fiel pea - Etetu (እቴቱ) …,ACTIVE,30,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/30/,Holetta ARC/EIAR,2021-01-01,2021
+VARIETY_31,Chickpea - (Girar) ግራር ICCMABCA …,ACTIVE,31,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/31/,Gonder ARC (ARARI),2021-01-01,2021
+VARIETY_32,Chickpea - Asnake (DZ-2012-CK-0272/ FLIP09-156C),ACTIVE,32,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/32/,Deber Zeit ARC/EIAR,2021-01-01,2021
+VARIETY_33,Lentil - Debine (ዴቢኔ) ((DZ-2012Ln-0051,ACTIVE,33,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/33/,Sinana ARC/ORARI/,2021-01-01,2021
+VARIETY_34,Lentil - Furi (DZ-2012-Ln-0218/08S-41102-013),ACTIVE,34,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/34/,Debere Ziet ARC/ EIAR,2021-01-01,2021
+VARIETY_35,Common bean /Haricot bean - …,ACTIVE,35,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/35/,Haro Sabu ARC/ORARI,2021-01-01,2021
+VARIETY_36,Common bean /Haricot bean - …,ACTIVE,36,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/36/,Sinana ARC/ORARI,2021-01-01,2021
+VARIETY_37,Common bean /Haricot bean - …,ACTIVE,37,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/37/,Sinana ARC/ORARI,2021-01-01,2021
+VARIETY_38,Common bean /Haricot bean - …,ACTIVE,38,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/38/,,2021-01-01,2021
+VARIETY_39,Common bean /Haricot bean - …,ACTIVE,39,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/39/,Melkassa ARC/EIAR,2021-01-01,2021
+VARIETY_40,Soyabean - Guda (PR142-15-SB),ACTIVE,40,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/40/,Jimma ARC/EIAR,2021-01-01,2021
+VARIETY_41,Soyabean - SCS-1,ACTIVE,41,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/41/,Jimma ARC/EIAR,2021-01-01,2021
+VARIETY_42,Adzuki - bean Japan (Keyo),ACTIVE,42,,Pulse Crops,SEED_114,Domestic,CROP_114,Adzuki bean,https://ethioseed.moa.gov.et/seed-variety-details/42/,Melkassa ARC/ EIAR,2021-01-01,2021
+VARIETY_43,Fenugreek - Chafe (Acc#FG202120),ACTIVE,43,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/43/,Tepi National spices RC …,2021-01-01,2021
+VARIETY_44,Fenugreek - Turu (Acc#FG53063),ACTIVE,44,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/44/,Tepi National spices RC …,2021-01-01,2021
+VARIETY_45,Fenugreek - Arganne (Acc. 202209sno3-5),ACTIVE,45,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/45/,Sinana ARC/ORARI/,2021-01-01,2021
+VARIETY_46,Lima bean - LWK B45 …,ACTIVE,46,,,SEED_115,Domestic,CROP_115,Lima bean,https://ethioseed.moa.gov.et/seed-variety-details/46/,Melkassa ARC/ EIAR,2021-01-01,2021
+VARIETY_47,Lima bean - Wako (B45CH01214EH),ACTIVE,47,,,SEED_115,Domestic,CROP_115,Lima bean,https://ethioseed.moa.gov.et/seed-variety-details/47/,Melkassa ARC/EIAR,2021-01-01,2021
+VARIETY_48,Pigeon pea - ICEAP 00554 …,ACTIVE,48,,,SEED_96,Domestic,CROP_96,Pigeon pea,https://ethioseed.moa.gov.et/seed-variety-details/48/,ArbaMinch ARC/SARI/,2021-01-01,2021
+VARIETY_49,Sesame - Hachalu (EW006 x …,ACTIVE,49,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/49/,Bako ARC/ORARI,2021-01-01,2021
+VARIETY_50,Cassava - Chemere (IITA 1050127),ACTIVE,50,,,SEED_43,Domestic,CROP_43,Cassava,https://ethioseed.moa.gov.et/seed-variety-details/50/,Jimma ARC/EIAR/,2021-01-01,2021
+VARIETY_51,Yam - Koffe (AW/56/76),ACTIVE,51,,,SEED_45,Domestic,CROP_45,Yam,https://ethioseed.moa.gov.et/seed-variety-details/51/,Jmma ARC/EIAR/,2021-01-01,2021
+VARIETY_52,Tomato - GABBI,ACTIVE,52,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/52/,Green life PLC (Hazera …,2021-01-01,2021
+VARIETY_53,Tomato - GALILEA 86,ACTIVE,53,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/53/,Green life PLC (Hazera …,2021-01-01,2021
+VARIETY_54,Tomato - Abale RZ,ACTIVE,54,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/54/,Rijk Zwaan Zaadteelt en …,2021-01-01,2021
+VARIETY_55,Garlic - Kundi (NG-0048/04),ACTIVE,55,,,SEED_47,Domestic,CROP_47,Garlic,https://ethioseed.moa.gov.et/seed-variety-details/55/,Debrebirhan ARC/EIAR,2021-01-01,2021
+VARIETY_56,Onion - Red Ball F1,ACTIVE,56,,,SEED_48,Domestic,CROP_48,Onion,https://ethioseed.moa.gov.et/seed-variety-details/56/,MALAV SEEDS PVT LTD …,2021-01-01,2021
+VARIETY_57,Onion - Red Nice,ACTIVE,57,,,SEED_48,Domestic,CROP_48,Onion,https://ethioseed.moa.gov.et/seed-variety-details/57/,Bejo Zaden B.V EthioVegFru …,2021-01-01,2021
+VARIETY_58,Sweet/Hot pepper - Demon F1,ACTIVE,58,,,SEED_50,Domestic,CROP_50,Sweet/Hot Pepper,https://ethioseed.moa.gov.et/seed-variety-details/58/,East West Seeds International/ …,2021-01-01,2021
+VARIETY_59,Sweet/Hot pepper - Tongla F1,ACTIVE,59,,,SEED_50,Domestic,CROP_50,Sweet/Hot Pepper,https://ethioseed.moa.gov.et/seed-variety-details/59/,East West Seeds International/ …,2021-01-01,2021
+VARIETY_60,Sweet/Hot Pepper - Oda Gibe …,ACTIVE,60,,,SEED_50,Domestic,CROP_50,Sweet/Hot Pepper,https://ethioseed.moa.gov.et/seed-variety-details/60/,Bako ARC/ORARI,2021-01-01,2021
+VARIETY_62,Sweet/Hot pepper - Jajo Acc#28,ACTIVE,62,,,SEED_50,Domestic,CROP_50,Sweet/Hot Pepper,https://ethioseed.moa.gov.et/seed-variety-details/62/,Haro Sabu ARC/ORARI,2021-01-01,2021
+VARIETY_63,Sweet/Hot pepper - SERENADE EXPLORER,ACTIVE,63,,,SEED_50,Domestic,CROP_50,Sweet/Hot Pepper,https://ethioseed.moa.gov.et/seed-variety-details/63/,Hazera Seeds Ltd/ Greenlife …,2021-01-01,2021
+VARIETY_64,Cabbage - Cheers F1,ACTIVE,64,,,SEED_51,Domestic,CROP_51,Cabbage,https://ethioseed.moa.gov.et/seed-variety-details/64/,Takii Europe B.V./ Harvest …,2021-01-01,2021
+VARIETY_65,Cabbage - CHAKA,ACTIVE,65,,,SEED_51,Domestic,CROP_51,Cabbage,https://ethioseed.moa.gov.et/seed-variety-details/65/,Hazera Seeds Ltd/ Greenlife …,2021-01-01,2021
+VARIETY_66,Cabbage - CABBICE,ACTIVE,66,,,SEED_51,Domestic,CROP_51,Cabbage,https://ethioseed.moa.gov.et/seed-variety-details/66/,Hazera Seeds Ltd/ Greenlife …,2021-01-01,2021
+VARIETY_67,Lettuce - Dornas RZ,ACTIVE,67,,,SEED_116,Domestic,CROP_116,Lettuce,https://ethioseed.moa.gov.et/seed-variety-details/67/,Rijk Zwaan Zaadteelt en …,2021-01-01,2021
+VARIETY_68,Water melon - Carmen F1,ACTIVE,68,,,SEED_117,Domestic,CROP_117,Water melon,https://ethioseed.moa.gov.et/seed-variety-details/68/,Takii Europ B.V. Harvest …,2021-01-01,2021
+VARIETY_69,Water melon - Menuetto F1,ACTIVE,69,,,SEED_117,Domestic,CROP_117,Water melon,https://ethioseed.moa.gov.et/seed-variety-details/69/,Takii Europ B.V. Harvest …,2021-01-01,2021
+VARIETY_70,Musk melon - Caribbean king …,ACTIVE,70,,,SEED_118,Domestic,CROP_118,Musk melon,https://ethioseed.moa.gov.et/seed-variety-details/70/,Rijk Zwaan Zaadteelt en …,2021-01-01,2021
+VARIETY_71,Broccoli - Vicario RZ,ACTIVE,71,,,SEED_119,Domestic,CROP_119,Broccoli,https://ethioseed.moa.gov.et/seed-variety-details/71/,Rijk Zwaan Zaadteelt en …,2021-01-01,2021
+VARIETY_72,Cauliflower - Chambord RZ,ACTIVE,72,,,SEED_120,Domestic,CROP_120,Cauliflower,https://ethioseed.moa.gov.et/seed-variety-details/72/,Rijk Zwaan Zaadteelt en …,2021-01-01,2021
+VARIETY_73,Okra - Belese (M-27C),ACTIVE,73,,,SEED_53,Domestic,CROP_53,Okra,https://ethioseed.moa.gov.et/seed-variety-details/73/,Melkasa ARC/EIAR,2021-01-01,2021
+VARIETY_74,Coriander - Derara (Acc. 240574-1),ACTIVE,74,,,SEED_57,Domestic,CROP_57,Coriander,https://ethioseed.moa.gov.et/seed-variety-details/74/,Sinana ARC/ORARI,2021-01-01,2021
+VARIETY_75,Cumin - Urgesa (Acc. 205167-2),ACTIVE,75,,,SEED_65,Domestic,CROP_65,Cumin,https://ethioseed.moa.gov.et/seed-variety-details/75/,Sinana ARC/ORARI,2021-01-01,2021
+VARIETY_76,Cumin - Likie (242840),ACTIVE,76,,,SEED_65,Domestic,CROP_65,Cumin,https://ethioseed.moa.gov.et/seed-variety-details/76/,Kulumsa ARC/EIAR,2021-01-01,2021
+VARIETY_77,Bread Wheat -Hachalu (ETB 8260),ACTIVE,77,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/77/,Sinana ARC/OARI,2020-05-01,2020
+VARIETY_78,Korerima - Kefa-1 (Acc#010/00),ACTIVE,78,,,SEED_124,Domestic,CROP_124,Kororima,https://ethioseed.moa.gov.et/seed-variety-details/78/,Tepi and Jimma ARC/EIAR,2021-01-01,2021
+VARIETY_79,Korerima - Benchi maji-1 (Acc#0211/00),ACTIVE,79,,,SEED_124,Domestic,CROP_124,Kororima,https://ethioseed.moa.gov.et/seed-variety-details/79/,Tepi and Jimma ARC/EIAR,2021-01-01,2021
+VARIETY_80,Rose - WG-Tsigereda,ACTIVE,80,,,SEED_125,Domestic,CROP_125,Rose,https://ethioseed.moa.gov.et/seed-variety-details/80/,Wondo genet ARC/EIAR,2021-01-01,2021
+VARIETY_81,Bread wheat - Adola 1 …,ACTIVE,81,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/81/,Bore ARC/ORARI/,2020-05-01,2020
+VARIETY_82,Pegion pea - Afrassa (ICEAP0117/9),ACTIVE,82,,,SEED_96,Domestic,CROP_96,Pigeon pea,https://ethioseed.moa.gov.et/seed-variety-details/82/,Melkassa ARC/EIAR/,2021-01-01,2021
+VARIETY_83,Bread Wheat - Netsanet (ነፃነት) …,ACTIVE,83,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/83/,Srinka ARC/ARARI/,2020-05-01,2020
+VARIETY_84,Oats - DUMANT 2007 Portage …,ACTIVE,84,,,SEED_97,Domestic,CROP_97,Oats,https://ethioseed.moa.gov.et/seed-variety-details/84/,D/Ziet ARC/EIAR/,2021-01-01,2021
+VARIETY_85,Alfalfa - Supersonic,ACTIVE,85,,,SEED_102,Domestic,CROP_102,Alfalfa,https://ethioseed.moa.gov.et/seed-variety-details/85/,S & W Seed …,2021-01-01,2021
+VARIETY_86,Bread Wheat - Adet-1 (BAJ …,ACTIVE,86,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/86/,Adet ARC/ARARI,2020-05-01,2020
+VARIETY_87,Brachiaria brizantha cv.Xaraes - Xaraes …,ACTIVE,87,,,SEED_126,Domestic,CROP_126,Brachiaria brizantha cv. Xaraes …,https://ethioseed.moa.gov.et/seed-variety-details/87/,Melkassa ARC/EIAR/,2021-01-01,2021
+VARIETY_88,Sorghum forage - Guta (IS38331),ACTIVE,88,,,SEED_127,Domestic,CROP_127,Sorghum forage,https://ethioseed.moa.gov.et/seed-variety-details/88/,Melkassa ARC/EIAR/,2021-01-01,2021
+VARIETY_89,Rice -Pawe-2 (PARC DAT-V-3-2013,ACTIVE,89,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/89/,Pawe ARC/EIAR,2020-05-01,2020
+VARIETY_90,Forage Soyabean - (Milkii) TGX1990-114FN,ACTIVE,90,,,SEED_128,Domestic,CROP_128,Forage Soyabean,https://ethioseed.moa.gov.et/seed-variety-details/90/,Jimma ARC/EIAR/,2021-01-01,2021
+VARIETY_91,Tobaco - KRK26R,ACTIVE,91,,,SEED_113,Domestic,CROP_113,Tobaco,https://ethioseed.moa.gov.et/seed-variety-details/91/,National Tobaco Enterprise,2021-01-01,2021
+VARIETY_92,Cacao - Cacao (Theobroma cacao),ACTIVE,92,,,SEED_129,Domestic,CROP_129,Cacao,https://ethioseed.moa.gov.et/seed-variety-details/92/,Tepi NSRC/EIAR,2021-01-01,2021
+VARIETY_93,Tef - Washera (353*Key muri) …,ACTIVE,93,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/93/,Adet ARC/ARARI/,2019-01-01,2019
+VARIETY_94,Tef - Jitu (Acc. DZ-01-256),ACTIVE,94,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/94/,Bako ARC/ORARI/,2019-01-01,2019
+VARIETY_95,Tef - Mena (DZ-01-354 X …,ACTIVE,95,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/95/,Debre Zeit ARC/EIAR/,2019-01-01,2019
+VARIETY_96,Tef - Ebba (Kay muri …,ACTIVE,96,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/96/,Debre Zeit ARC/EIAR,2019-01-01,2019
+VARIETY_97,Bread Wheat - Korem 1 …,ACTIVE,97,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/97/,Alamata ARC (TRARI),2019-01-01,2019
+VARIETY_98,Bread Wheat - Ardi (GLADIUS/2*BAVIS) …,ACTIVE,98,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/98/,Werer ARC/EIAR,2019-01-01,2019
+VARIETY_99,Bread Wheat - Ga’ambo-2 (HEILO/MILAN/MUNIA/3/KIRITATI/2*TRCH) …,ACTIVE,99,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/99/,Werer ARC/EIAR,2019-01-01,2019
+VARIETY_100,Rice-Selam (Yungeng 31),ACTIVE,100,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/100/,Fogera NRR & TC/EIAR/,2020-05-01,2020
+VARIETY_101,Bread Wheat - Balcha (ETB …,ACTIVE,101,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/101/,Kulumsa ARC/EIAR/,2019-01-01,2019
+VARIETY_102,Bread Wheat - Galan (ETBW8003 …,ACTIVE,102,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/102/,Sinana ARC/ORARI/,2019-01-01,2019
+VARIETY_103,Triticale - Kombolcha (Acc. 2012 …,ACTIVE,103,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/103/,Bako ARC/ORARI/,2019-01-01,2019
+VARIETY_105,Rice - Azmera (ART16-5-9-22-2-1-1-B-1-2),ACTIVE,105,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/105/,Fogera National Rice Research …,2019-01-01,2019
+VARIETY_106,Maize - DK7500,ACTIVE,106,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/106/,Monsanto International /MakoBu Enterprises …,2019-01-01,2019
+VARIETY_107,Maize- BH520 W1 (Nada),ACTIVE,107,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/107/,Bako NMRC/EIAR,2020-05-01,2020
+VARIETY_108,Maize - CP.201 (IQT5024 X …,ACTIVE,108,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/108/,CPP.Seeds PLC,2019-01-01,2019
+VARIETY_109,Maize - CP.838 (SKQPP422 X …,ACTIVE,109,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/109/,CPP.Seeds PLC,2019-01-01,2019
+VARIETY_110,Sorghum - ጥላሁን (Tilahun) 14MWLSDT7114 …,ACTIVE,110,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/110/,Melkassa ARC/EIAR,2019-01-01,2019
+VARIETY_111,Maize- BOS20W1 Sweet corn (White),ACTIVE,111,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/111/,Bako NMRC/EIAR,2020-05-01,2020
+VARIETY_112,Sorghum - SIMA (Kalu),ACTIVE,112,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/112/,Sirinka ARC/ARARI/,2019-01-01,2019
+VARIETY_113,Maize- BOS20Y1 Sweet corn (Yellow),ACTIVE,113,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/113/,,2020-05-01,2020
+VARIETY_114,Sorghum - Elemo (Acc.237261),ACTIVE,114,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/114/,Mechara ARC/ORARI,2019-01-01,2019
+VARIETY_116,Sorghum - Fadis 01 (M-36121 …,ACTIVE,116,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/116/,Fedis ARC/ORARI,2019-01-01,2019
+VARIETY_117,Finger Millet - : Kumsa …,ACTIVE,117,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/117/,Bako ARC/ORARI/,2019-01-01,2019
+VARIETY_118,Finger Millet - Jabi (ጃቢ) …,ACTIVE,118,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/118/,Adet ARC/ARARI,2019-01-01,2019
+VARIETY_119,Malt Barley - RGT Planet …,ACTIVE,119,,,SEED_5,Imported,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/119/,Soufflet malt Ethiopia PLC …,2019-01-01,2019
+VARIETY_120,Malt Barley - Henrike (Pedigree: …,ACTIVE,120,,,SEED_5,Imported,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/120/,Boort malt PLC /Holetta …,2019-01-01,2019
+VARIETY_121,Malt Barley - Waro (LIBRA …,ACTIVE,121,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/121/,Sirinka ARC /ARARI/,2019-01-01,2019
+VARIETY_122,Food Oats - 'Hulegeb' (Goslin),ACTIVE,122,,,SEED_97,Domestic,CROP_97,Oats,https://ethioseed.moa.gov.et/seed-variety-details/122/,Adet ARC/ARARI,2019-01-01,2019
+VARIETY_123,Food Oats - Tena' (Souris: …,ACTIVE,123,,,SEED_97,Domestic,CROP_97,Oats,https://ethioseed.moa.gov.et/seed-variety-details/123/,Adet ARC/ARARI,2019-01-01,2019
+VARIETY_124,Faba bean - Moybon (ሞይቦን) …,ACTIVE,124,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/124/,Sinana ARC/ORARI,2019-01-01,2019
+VARIETY_125,Faba bean - Tosha (ቶሻ) …,ACTIVE,125,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/125/,Sinana ARC/ORARI,2019-01-01,2019
+VARIETY_126,Field pea - Jeldu (ጀልዱ) …,ACTIVE,126,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/126/,Holetta ARC/EIAR,2019-01-01,2019
+VARIETY_127,Chickpea - ICCV-93954 (Mitik),ACTIVE,127,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/127/,Sirinka ARC (ARARI),2019-01-01,2019
+VARIETY_128,Chickpea - ICCV-07108 (Melba) (ሜልባ),ACTIVE,128,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/128/,Sinana ARC (ORARI),2019-01-01,2019
+VARIETY_129,Chickpea - Geletu (ICCX-090013-F2-P276-BP),ACTIVE,129,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/129/,D/zeit ARC (EIAR),2019-01-01,2019
+VARIETY_130,Chickpea - KOKA (ICCV-04305),ACTIVE,130,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/130/,Deber Zeit ARC/EIAR,2019-01-01,2019
+VARIETY_131,Lentil - Baredu (FLIP-2011-17L),ACTIVE,131,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/131/,Debere Ziet ARC/ EIAR,2019-01-01,2019
+VARIETY_132,Common bean /Haricot bean - …,ACTIVE,132,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/132/,Haro Sabu ARC/ORARI,2019-01-01,2019
+VARIETY_133,Common bean /Haricot bean - …,ACTIVE,133,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/133/,Sinana ARC/ORARI,2019-01-01,2019
+VARIETY_134,Common bean /Haricot bean - …,ACTIVE,134,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/134/,Sinana ARC/ORARI,2019-01-01,2019
+VARIETY_135,Sorghum - Marara [ETSL 101371 …,ACTIVE,135,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/135/,Bako ARC/ORARI,2020-05-01,2020
+VARIETY_136,Common bean /Haricot bean - …,ACTIVE,136,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/136/,Melkassa ARC/EIAR/,2019-01-01,2019
+VARIETY_137,Common bean /Haricot bean - …,ACTIVE,137,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/137/,Melkassa ARC/EIAR/,2019-01-01,2019
+VARIETY_138,Common bean /Haricot bean - …,ACTIVE,138,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/138/,Melkassa ARC/EIAR/,2019-01-01,2019
+VARIETY_139,Common bean /Haricot bean - …,ACTIVE,139,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/139/,Melkassa ARC/EIAR/,2019-01-01,2019
+VARIETY_140,Soyabean - Andinet (Pedigree: TGX-1989-75F),ACTIVE,140,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/140/,Pawe ARC/EIAR,2019-01-01,2019
+VARIETY_141,Linseed - Welin (ወሊን),ACTIVE,141,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/141/,Kulumssa ARC/EIAR,2019-01-01,2019
+VARIETY_142,Linseed - Horesoba (ሆረሶባ),ACTIVE,142,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/142/,Sinana ARC/ORARI,2019-01-01,2019
+VARIETY_143,Sesame - Yale ( EW002 …,ACTIVE,143,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/143/,Bako ARC/ORARI,2019-01-01,2019
+VARIETY_144,Sorghum -Beletew (ICSR24005),ACTIVE,144,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/144/,Debrebrehan ARC/ARARI/,2020-05-01,2020
+VARIETY_145,Sesame - Hagalo ( EW002 …,ACTIVE,145,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/145/,Bako ARC/ORARI,2019-01-01,2019
+VARIETY_146,Sorghum - Sadii (SLRC-046),ACTIVE,146,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/146/,Haro sebu ARC/ORARI,2020-05-01,2020
+VARIETY_147,"Groundnut - ""ICGV-95469""",ACTIVE,147,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/147/,"Haramaya University, Pawe and …",2019-01-01,2019
+VARIETY_148,Groundnut - ICG67 X BIGSEED,ACTIVE,148,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/148/,"Haramaya University, Pawe and …",2019-01-01,2019
+VARIETY_149,Finger Millet - Metekili (Acc. …,ACTIVE,149,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/149/,Pawe ARC/EIAR/,2020-05-01,2020
+VARIETY_150,Groundnut - ድርብ /Direb (ICGV-97164 …,ACTIVE,150,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/150/,Asosa and Pawe ARC/EIAR,2019-01-01,2019
+VARIETY_151,Groundnut - Milkaye (PI-158850,ACTIVE,151,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/151/,Mechara ARC/ORARI,2019-01-01,2019
+VARIETY_152,Food barley - Negele (LMON …,ACTIVE,152,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/152/,Kulumsa ARC/EIAR,2020-05-01,2020
+VARIETY_153,Malt barley - Iftuu (Mn …,ACTIVE,153,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/153/,Kulumsa ARC/EIAR,2020-05-01,2020
+VARIETY_154,Faba bean - Chalew (EH060088-1),ACTIVE,154,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/154/,Holetta ARC/EIAR,2020-05-01,2020
+VARIETY_155,Chickpea - Eshete (DZ-2012 CK-0254/ICCV-10515/),ACTIVE,155,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/155/,D/ziet ARC (EIAR),2020-05-05,2020
+VARIETY_157,Cowpea - Jergade (NLLP_CPC-145-21),ACTIVE,157,,,SEED_23,Domestic,CROP_23,Cowpea,https://ethioseed.moa.gov.et/seed-variety-details/157/,Melkassa ARC (EIAR),2020-05-01,2020
+VARIETY_158,Cowpea - Kechene (NLLP_CPC-103B),ACTIVE,158,,,SEED_23,Domestic,CROP_23,Cowpea,https://ethioseed.moa.gov.et/seed-variety-details/158/,Melkassa ARC (EIAR),2020-05-01,2020
+VARIETY_159,Common bean /Haricot bean - …,ACTIVE,159,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/159/,Haramaya University,2020-05-01,2020
+VARIETY_160,Soybean - Pawe-78 (Tgx-1990-21F),ACTIVE,160,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/160/,Pawe ARC/EIAR,2020-05-01,2020
+VARIETY_161,Soybean - Tana Beles (Tgx-1990-59F),ACTIVE,161,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/161/,Pawe ARC/EIAR,2020-05-01,2020
+VARIETY_165,Soybean -Gute (PM-12-3),ACTIVE,165,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/165/,Bako ARC/ ORARI,2020-05-01,2020
+VARIETY_166,Soybean - Billo (PM-12-37),ACTIVE,166,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/166/,Bako ARC/ ORARI,2020-05-01,2020
+VARIETY_167,Soybean- Melko Bonsa -1 (JM-CLK/CRFD-15-SD),ACTIVE,167,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/167/,Jimma ARC/EIAR,2020-05-01,2020
+VARIETY_168,Tef - Hiber-1 (DZ-01-974* P1222988),ACTIVE,168,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/168/,Adet ARC/ARARI/,2017-01-01,2017
+VARIETY_169,Tef - Areka-1 (Dz-01-974 X …,ACTIVE,169,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/169/,Areka ARC/SRARI/,2017-01-01,2017
+VARIETY_170,Tef - Felagot (DZ-Cr-442 (RILNo.77C)),ACTIVE,170,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/170/,Debre Ziet ARC/EIAR/,2017-01-01,2017
+VARIETY_171,Tef - Tesfa (DZ-Cr-457 (RIL.181)),ACTIVE,171,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/171/,Debre Ziet ARC/EIAR/,2017-01-01,2017
+VARIETY_172,Tef - Negus (DZ-Cr-429 (RIL.125)),ACTIVE,172,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/172/,D/Ziet ARC/EIAR/,2017-01-01,2017
+VARIETY_173,Bread Wheat - JAALANNE (ETBW …,ACTIVE,173,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/173/,Haramaya University,2017-01-01,2017
+VARIETY_174,Bread Wheat - JAJABO (ETB …,ACTIVE,174,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/174/,Holetta ARC/EIAR/,,
+VARIETY_175,Bread Wheat - Fentale – …,ACTIVE,175,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/175/,Werer ARC/EIAR/,2017-01-01,2017
+VARIETY_176,Bread Wheat - Amibara – …,ACTIVE,176,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/176/,Werer ARC/EIAR/,2017-01-01,2017
+VARIETY_177,Durem Wheat - Bullaallaa (Durum …,ACTIVE,177,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/177/,Sinana ARC/ORARI/,2017-01-01,2017
+VARIETY_178,Durem Wheat - Alemtena (43IDSNMeh …,ACTIVE,178,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/178/,Debere Ziet ARC/ EIAR,2017-01-01,2017
+VARIETY_179,Durem Wheat - Tesfaye (43IDSNMeh …,ACTIVE,179,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/179/,Debere Ziet ARC/ EIAR,2017-01-01,2017
+VARIETY_180,Durem Wheat - Wehabit (Acc≠8208),ACTIVE,180,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/180/,Mekelle University,2017-01-01,2017
+VARIETY_181,Durem Wheat - Rigeat (Acc≠208304),ACTIVE,181,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/181/,Mekelle University,2017-01-01,2017
+VARIETY_182,Triticale - ETCL-161 (CHIMA),ACTIVE,182,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/182/,Holetta ARC/EIAR/,2017-01-01,2017
+VARIETY_183,Sunflower - Uke - PAN7057,ACTIVE,183,,,SEED_35,Imported,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/183/,Corteva/Pioneer Hi -Bred Seeds …,2020-05-01,2020
+VARIETY_184,Emmer wheat/Aja - Haydaroo (Sintrial1/DZ2212/Sinana-01),ACTIVE,184,,,SEED_13,Domestic,CROP_13,Emmer wheat (Aja),https://ethioseed.moa.gov.et/seed-variety-details/184/,Sinana ARC/OARI,2017-01-01,2017
+VARIETY_185,Tef - Abay (Acc#225931),ACTIVE,185,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/185/,Adet ARC/ARARI/,2018-05-01,2018
+VARIETY_186,Tef - DURSI (Acc.236952),ACTIVE,186,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/186/,Bako ARC/ORARI/,2018-05-01,2018
+VARIETY_187,Bread wheat - Hadis (ETBW …,ACTIVE,187,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/187/,Alamata ARC (TRARI),2018-05-01,2018
+VARIETY_188,Rice - Abay (ARCC16Bar-21-5-12-3-1-2-1),ACTIVE,188,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/188/,Fogera NRR&TC/EIAR/,2017-01-01,2017
+VARIETY_189,Rice - Erib (WAB880-1-32-1-2-P1-HB),ACTIVE,189,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/189/,Fogera National Rice Research …,2017-01-01,2017
+VARIETY_190,Rice - Shaga (Scrid017-1-4-4-4-1),ACTIVE,190,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/190/,Fogera National Rice Research …,2017-01-01,2017
+VARIETY_191,Rice - Wanzaye (Scrid006-3-2-3-2),ACTIVE,191,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/191/,Fogera NRR&TC/EIAR,2017-01-01,2017
+VARIETY_192,Bread Wheat - Bondena (ETBW …,ACTIVE,192,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/192/,Areka ARC/SRARI/,2018-05-01,2018
+VARIETY_193,Maize - Kortu (P2809W),ACTIVE,193,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/193/,Dupont Pioneer Hi-Bred Seeds …,2017-01-01,2017
+VARIETY_194,Maize - BH549 (BKL4/ BKL003),ACTIVE,194,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/194/,Bako National Maize Research …,2017-01-01,2017
+VARIETY_195,Bread Wheat - Deka (ETBW …,ACTIVE,195,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/195/,Kulumsa ARC/EIAR/,2018-05-01,2018
+VARIETY_196,Maize - Afran Qalloo (HrU …,ACTIVE,196,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/196/,Haramaya University,2017-01-01,2017
+VARIETY_197,Maize - Baate (HrU 22),ACTIVE,197,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/197/,Haramaya University,2017-01-01,2017
+VARIETY_198,Bread Wheat - Deka (ETBW …,ACTIVE,198,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/198/,Kulumsa ARC/EIAR/,2018-05-01,2018
+VARIETY_199,Maize - DK008,ACTIVE,199,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/199/,MakoBu Enterprises PLC trialanto …,2017-01-01,2017
+VARIETY_200,Bread Wheat - Hibist (ETBW …,ACTIVE,200,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/200/,Sirinka ARC/ARARI/,,
+VARIETY_201,Maize - DK777 / Leku,ACTIVE,201,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/201/,MakoBu Enterprises PLC /Monsanto …,2017-01-01,2017
+VARIETY_202,Maize - CPS 6,ACTIVE,202,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/202/,CPP SEEDS PLC,2017-01-01,2017
+VARIETY_203,Bread Wheat- Sinja (Dure/Madda Walabu …,ACTIVE,203,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/203/,Sinana ARC/ORARI/,2018-05-01,2018
+VARIETY_204,Maize - CPS 10,ACTIVE,204,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/204/,CPP SEEDS PLC,2017-01-01,2017
+VARIETY_205,Sorghum - ቦንሳ (07MW6085) (97BK6129/85MW4138),ACTIVE,205,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/205/,Melkassa ARC/EIAR,2017-01-01,2017
+VARIETY_206,Sorghum - አርጊቲ (2005M15064) (WSV387 …,ACTIVE,206,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/206/,Melkassa ARC/EIAR,2017-01-01,2017
+VARIETY_207,Sorghum - Alene (WSV-387 x …,ACTIVE,207,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/207/,Sirinka ARC/ARARI,2017-01-01,2017
+VARIETY_208,Figer Millet - Bako-09 (Acc.214995),ACTIVE,208,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/208/,Bako ARC/ORARI,2017-01-01,2017
+VARIETY_209,Food Barley - DEBARK-1 (Acc …,ACTIVE,209,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/209/,Gonder ARC/ARARI,2017-01-01,2017
+VARIETY_210,Food Barley - HB1965,ACTIVE,210,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/210/,Holetta ARC/EIAR,2017-01-01,2017
+VARIETY_211,Food Barley - HB1966,ACTIVE,211,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/211/,Holetta ARC/EIAR,2017-01-01,2017
+VARIETY_212,Malt Barley - Explorer,ACTIVE,212,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/212/,General Malting Service (GMS) …,2017-01-01,2017
+VARIETY_213,Faba Bean - Mugulat (Sell.98Lat.11135),ACTIVE,213,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/213/,Mekelle ARC/TRARI,2017-01-01,2017
+VARIETY_214,Durum wheat -Fetan,ACTIVE,214,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/214/,Debere Ziet ARC/EIAR/,2018-05-01,2018
+VARIETY_215,Faba Bean - Alloshe (አሎሼ) …,ACTIVE,215,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/215/,Sinana ARC/ORARI,2017-01-01,2017
+VARIETY_216,Field Pea - Lammiif (EH08010-3),ACTIVE,216,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/216/,Bako ARC/ORARI/,2017-01-01,2017
+VARIETY_217,Durum Wheat - Don Matteo,ACTIVE,217,,,SEED_3,Imported,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/217/,CGS Italian,,
+VARIETY_218,Field Pea - Jiidhaa (EH08033-2),ACTIVE,218,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/218/,Bako ARC/ORARI,2017-01-01,2017
+VARIETY_219,Field Pea - Yewaginesh (የዋግነሽ) …,ACTIVE,219,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/219/,Sekota ARC/ARARI/,2017-01-01,2017
+VARIETY_220,Field Pea - Hortu (ሆርቱ) …,ACTIVE,220,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/220/,Sinana ARC/ORARI/,2017-01-01,2017
+VARIETY_221,Field Pea - Weyib (ዌይብ) …,ACTIVE,221,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/221/,Sinana ARC/ORARI,2017-01-01,2017
+VARIETY_222,Common Bean /Haricot bean - …,ACTIVE,222,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/222/,Hawassa ARC/SRARI,2017-01-01,2017
+VARIETY_223,Common Bean /Haricot bean - …,ACTIVE,223,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/223/,Hawassa ARC/SRARI,2017-01-01,2017
+VARIETY_224,Common Bean /Haricot bean - …,ACTIVE,224,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/224/,Srinka ARC/ARARI,2017-01-01,2017
+VARIETY_225,Common Bean /Haricot bean - …,ACTIVE,225,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/225/,Melkassa ARC/EIRA,2017-01-01,2017
+VARIETY_226,Common Bean /Haricot bean - …,ACTIVE,226,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/226/,Melkassa ARC/EIRA,2017-01-01,2017
+VARIETY_227,Common Bean/Haricot bean - Awash …,ACTIVE,227,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/227/,Melkassa ARC/EIRA,2017-01-01,2017
+VARIETY_228,Common Bean /Haricot bean - …,ACTIVE,228,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/228/,Melkassa ARC/EIRA,2017-01-01,2017
+VARIETY_229,Common Bean /Haricot bean - …,ACTIVE,229,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/229/,Melkassa ARC/EIAR/,2017-01-01,2017
+VARIETY_230,Fenugreek - Bishoftu (FG-10),ACTIVE,230,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/230/,Tepi National Spieces RC,2017-01-01,2017
+VARIETY_231,Sesame - Waliin (BG-004-1),ACTIVE,231,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/231/,Bako ARC/ORARI,2017-01-01,2017
+VARIETY_232,Sesame - Setit-3 (HuARC-4),ACTIVE,232,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/232/,Humera ARC/TRARI,2017-01-01,2017
+VARIETY_233,Sesame - Acc.051-02-sel-1-(2)),ACTIVE,233,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/233/,ARC/EIAR,2017-01-01,2017
+VARIETY_234,Rice -Maitsebri-3 (ARCCU16Bar-9-9-24-4-B-1),ACTIVE,234,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/234/,Shire-Maitsebri ARC (TRARI),2018-05-01,2018
+VARIETY_235,Sorghum - 9058 (ESH-5),ACTIVE,235,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/235/,Melkassa ARC/EIAR,2018-05-01,2018
+VARIETY_236,Sorghum - Mentebteb (Debir),ACTIVE,236,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/236/,Melkassa ARC/EIAR,2018-05-01,2018
+VARIETY_237,Finger millet - Tekeze-1(SMARC collL.60),ACTIVE,237,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/237/,Shire-MaitsebribARC (TRARI),2018-05-01,2018
+VARIETY_238,Finger Millet - Diga-2 (Acc.BKFM0010),ACTIVE,238,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/238/,Bako ARC/ORARI,2018-05-01,2018
+VARIETY_239,Food barley - Hagere (Feres …,ACTIVE,239,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/239/,Debere Birhan ARC/ARARI,,
+VARIETY_240,Food Barley - Adoshe (QUINA/MJA/SCARRLETT),ACTIVE,240,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/240/,Sinana ARC/ORARI,2018-05-01,2018
+VARIETY_241,Tef - Abola (7 (Quncho …,ACTIVE,241,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/241/,Adet ARC (AARC),2015-01-01,2015
+VARIETY_242,Malt barley -Fatima,ACTIVE,242,,,SEED_5,Imported,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/242/,Soufflet malt Ethiopia PLC,2018-05-01,2018
+VARIETY_243,Bread Wheat - Kingbird,ACTIVE,243,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/243/,KARC/ EIAR,2015-01-01,2015
+VARIETY_244,Malt Barley - Raya 1,ACTIVE,244,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/244/,Mekelle University,,
+VARIETY_245,Bread wheat - Obora (UTIQUE96/FLAG-1),ACTIVE,245,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/245/,Sinana ARC/ORARI/,2015-01-01,2015
+VARIETY_246,Bread Wheat - Dambal (AGUILAL/3/PYN/BAU/MILAN),ACTIVE,246,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/246/,Sinana ARC (ORARI),2015-01-01,2015
+VARIETY_247,Malt Barley - MOATA,ACTIVE,247,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/247/,Sinana ARC / ORARI,2018-05-01,2018
+VARIETY_248,Bread Wheat - Amibera (DOUKKALA-4 …,ACTIVE,248,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/248/,Werer ARC/EIAR,2015-01-01,2015
+VARIETY_249,Bread Wheat - Fentale (MOONTIJ-3 …,ACTIVE,249,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/249/,Werer ARC/EIAR,2015-01-01,2015
+VARIETY_251,Bread Wheat - Bulluq (ETBW …,ACTIVE,251,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/251/,Bako ARC/OARI/,2015-01-01,2015
+VARIETY_252,Bread Wheat - Liben (ETBW …,ACTIVE,252,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/252/,Bako ARC / OARI/,2015-01-01,2015
+VARIETY_254,Durem Wheat - Utuba (IDON-MD-2009-off/53/2009),ACTIVE,254,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/254/,DZARC/EIAR,2015-01-01,2015
+VARIETY_255,Maize - Damote (P3506W),ACTIVE,255,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/255/,DuPont Pioneer Hi- Bred …,2015-01-01,2015
+VARIETY_256,Maize - SPRH1 Hybrid (CUBA/GUADC1 …,ACTIVE,256,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/256/,EIAR-National Maize RC Bako,2015-01-01,2015
+VARIETY_257,Maize - SBRH1 Hybrid (CML-334/MBRC5BCF108-2-3-1-B-5-2-B-B/CML312),ACTIVE,257,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/257/,EIAR-National MaizeRC Bako,2015-01-01,2015
+VARIETY_258,Maize - BHQP548 (CML144/CML159/CML176 X …,ACTIVE,258,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/258/,EIAR-National Maize RC Bako,2015-01-01,2015
+VARIETY_259,Maize - Gibe3 Open Pollinated …,ACTIVE,259,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/259/,EIAR-National Maize RC Bako,2015-01-01,2015
+VARIETY_260,Chickpea - (Maritu) ማሪቱ Acc.41053,ACTIVE,260,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/260/,Wollo University,2018-05-01,2018
+VARIETY_261,Sorghum - ዲባባ (ETS 639/SRN-39),ACTIVE,261,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/261/,MARC/EIAR,2015-01-01,2015
+VARIETY_262,Sorghum - Adukara,ACTIVE,262,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/262/,Assosa ARC/EIAR,2015-01-01,2015
+VARIETY_263,Common bean/Haricot bean - Wabero …,ACTIVE,263,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/263/,Sinana ARC/ORARI,,
+VARIETY_264,Sorghum - Assosa-1 (Bambasi no-9),ACTIVE,264,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/264/,Assosa AR/EIAR,2015-01-01,2015
+VARIETY_265,Common bean/Haricot bean - Gobu …,ACTIVE,265,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/265/,Sinana ARC/ORARI,2018-05-01,2018
+VARIETY_266,Sorghum - Fendisha-1,ACTIVE,266,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/266/,Haramaya University,2015-01-01,2015
+VARIETY_267,Finger Millet - Kako-1(LR005),ACTIVE,267,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/267/,Jinka ARC/SARI,2015-01-01,2015
+VARIETY_268,Common bean/Haricot bean - DOYO …,ACTIVE,268,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/268/,Sinana ARC/ORARI,2018-05-01,2018
+VARIETY_269,Finger Millet - Addis-01 (Acc.203544),ACTIVE,269,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/269/,Addis Ababa University (AAU) …,2015-01-01,2015
+VARIETY_271,Ethiopian mustard - Tesfa,ACTIVE,271,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/271/,Holetta ARC/EIAR,2018-05-01,2018
+VARIETY_272,Faba Bean - ASHEBEKA (አሸበቃ) …,ACTIVE,272,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/272/,KARC/EIAR,,
+VARIETY_273,Faba Bean - HASHENGE (ILB …,ACTIVE,273,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/273/,Alamata ARC/TARI,2015-01-01,2015
+VARIETY_274,Ethiopian mustard - Derash,ACTIVE,274,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/274/,Holetta ARC/EIAR,2018-05-01,2018
+VARIETY_275,Field pea - BURSA (ቡርሣ) …,ACTIVE,275,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/275/,KARC/EIAR,2015-01-01,2015
+VARIETY_276,Dekoko - RAYA-1 (TK-006/08 Al),ACTIVE,276,,,SEED_21,Domestic,CROP_21,Dekoko,https://ethioseed.moa.gov.et/seed-variety-details/276/,Alamata ARC/TARI,2015-01-01,2015
+VARIETY_277,Sesame -Gida Ayana (Ass-acc-29),ACTIVE,277,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/277/,Humera ARC/TARI and Asossa …,2018-05-01,2018
+VARIETY_278,Dekoko - RAYA-2 (TA-015/08 Sr),ACTIVE,278,,,SEED_21,Domestic,CROP_21,Dekoko,https://ethioseed.moa.gov.et/seed-variety-details/278/,Alamata ARC/TARI,2015-01-01,2015
+VARIETY_279,Lentil - Jiru (R-186 X …,ACTIVE,279,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/279/,Debre Birhan ARC/ARARI,2015-01-01,2015
+VARIETY_280,Groundnut - Seenaaf (ICG-9097),ACTIVE,280,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/280/,Bako ARC/ORARI,,
+VARIETY_281,Common bean /Haricot bean - …,ACTIVE,281,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/281/,MARC /EIAR,2015-01-01,2015
+VARIETY_282,Common bean /Haricot bean - …,ACTIVE,282,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/282/,MARC /EIAR,2015-01-01,2015
+VARIETY_283,Groundnut - Habesha (ICG-7822),ACTIVE,283,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/283/,Sirinka and Gonder ARC/ARARI,2018-05-01,2018
+VARIETY_284,Soyabean - Gazale,ACTIVE,284,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/284/,HwARC/SARI and Pawe/EIAR,2015-01-01,2015
+VARIETY_285,Soyabean - Pawe 01 (PARC-2013-2),ACTIVE,285,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/285/,Pawe ARC/EIAR/,2015-01-01,2015
+VARIETY_286,Soybean - Pawe-02 (PARC-2013-3),ACTIVE,286,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/286/,,2015-01-01,2015
+VARIETY_287,Tef - Dagem [DZ-Cr-438 (RIL …,ACTIVE,287,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/287/,Debre Zeit ARC/EIAR/,2016-05-01,2016
+VARIETY_288,Erimo (Adzuki bean),ACTIVE,288,,Pulse Crops,SEED_114,Domestic,CROP_114,Adzuki bean,https://ethioseed.moa.gov.et/seed-variety-details/288/,MARC /EIAR and ACOS …,2015-01-01,2015
+VARIETY_289,Linseed - Yadanno (H31 X …,ACTIVE,289,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/289/,KARC/EIAR,2015-01-01,2015
+VARIETY_290,Bread Wheat - WANE (ETBW …,ACTIVE,290,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/290/,Kulumsa ARC/EIAR/,2016-05-01,2016
+VARIETY_291,Rapeseed and Ethiopian mustard - …,ACTIVE,291,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/291/,HARC and BAYER CROP …,2015-01-01,2015
+VARIETY_292,Rapeseed and Ethiopian mustard - …,ACTIVE,292,,,SEED_32,Imported,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/292/,HARC and BAYER CROP …,2015-01-01,2015
+VARIETY_293,Bread Wheat - LEMU (ETBW …,ACTIVE,293,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/293/,Kulumsa ARC/EIAR/,,
+VARIETY_294,Sesame - Dangur (E.W.013. (8)),ACTIVE,294,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/294/,Pawe ARC/EIAR,2015-01-01,2015
+VARIETY_295,Sunflower - Gimja (P63A98),ACTIVE,295,,,SEED_35,Imported,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/295/,DuPont Pioneer,2015-01-01,2015
+VARIETY_296,Sunflower - Pawi 2 (P63LL06),ACTIVE,296,,,SEED_35,Domestic,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/296/,,2015-01-01,2015
+VARIETY_298,Safflower - Kuhar Acc 229086,ACTIVE,298,,,SEED_36,Domestic,CROP_36,Safflower,https://ethioseed.moa.gov.et/seed-variety-details/298/,Adet ARC,2015-01-01,2015
+VARIETY_299,Rice- Fogera 1,ACTIVE,299,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/299/,Fogera National Rice Research …,2016-05-01,2016
+VARIETY_300,Rice - Maitsebri-2,ACTIVE,300,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/300/,Shire – Maitsebri ARC …,2016-05-01,2016
+VARIETY_301,Low land rice - Fogera2 …,ACTIVE,301,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/301/,Fogera National Rice Research …,2016-05-01,2016
+VARIETY_302,Maize - AMH-852Q,ACTIVE,302,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/302/,75-85,2016-05-01,2016
+VARIETY_303,Maize - AMH853,ACTIVE,303,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/303/,EIAR/Ambo Plant Protection Research …,2016-05-01,2016
+VARIETY_304,Bread Wheat -NEJMAH-14,ACTIVE,304,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/304/,WARC/EIAR,2013-01-01,2013
+VARIETY_305,Bread Wheat - ADEL-6 (SAMAR-13/Pastor-1),ACTIVE,305,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/305/,WERER/ARC,2013-01-01,2013
+VARIETY_306,Bread Wheat - Sekota-1 (ETBW4886),ACTIVE,306,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/306/,SDARC/ARARI,2013-01-01,2013
+VARIETY_307,Sorghum - ESH-4,ACTIVE,307,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/307/,Melkassa ARC/EIAR,2016-05-01,2016
+VARIETY_308,Bread Wheat - Sorra (Vorobeycmss96Y02555-040y-020m),ACTIVE,308,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/308/,Sirinka ARC,2013-01-01,2013
+VARIETY_309,Bread Wheat - FRTI-1(Mekel 4),ACTIVE,309,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/309/,Mekelle and Alamata ARC/TARI,2013-01-01,2013
+VARIETY_310,Triticale - Zenkatie (TCL 59),ACTIVE,310,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/310/,Adet ARC,2013-01-01,2013
+VARIETY_311,Triticale - Abdissa (TCL-76),ACTIVE,311,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/311/,BARC/OARI,,
+VARIETY_312,Triticale - Moti (TCL-61),ACTIVE,312,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/312/,BARC/OARI,2013-01-01,2013
+VARIETY_313,Rice - NERICA-12 (WAB880-1-38-20-17-P1-HB),ACTIVE,313,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/313/,Adet Agricultural Research Center …,2013-01-01,2013
+VARIETY_314,Rice - Hiber (IRGA370-38-1-1F-B1-1),ACTIVE,314,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/314/,Adet Agricultural Research Center …,2013-01-01,2013
+VARIETY_315,Rice - Chewaqa (YIN LU20),ACTIVE,315,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/315/,Bako ARC/OARI,2013-01-01,2013
+VARIETY_316,Sorghum - አደሌ (ACC#70583/Hararghecoll #4),ACTIVE,316,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/316/,MARC/EIAR,2016-05-01,2016
+VARIETY_317,Rice - VRH 606,ACTIVE,317,,,SEED_9,Imported,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/317/,ViBHA,2013-01-01,2013
+VARIETY_318,Rice - VRH 640,ACTIVE,318,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/318/,ViBHA,2013-01-01,2013
+VARIETY_319,Sorghum - ጅሩ (Jiru) (yellow)/ETS-2752),ACTIVE,319,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/319/,Melkassa ARC/EIAR,2016-05-01,2016
+VARIETY_320,Rice - VRH 654,ACTIVE,320,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/320/,ViBHA,,
+VARIETY_321,Maize - BH546,ACTIVE,321,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/321/,Bako ARC,2013-01-01,2013
+VARIETY_322,Maize - BH547,ACTIVE,322,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/322/,Bako NMRP,2013-01-01,2013
+VARIETY_323,Maize - Melkasa1Q,ACTIVE,323,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/323/,Melkasa ARC,2013-01-01,2013
+VARIETY_324,Maize - Mh140,ACTIVE,324,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/324/,Melkassa ARC/EIAR/,2013-01-01,2013
+VARIETY_325,Maize - CPS.6,ACTIVE,325,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/325/,Ethio Flora,2013-01-01,2013
+VARIETY_326,Maize - CPS.10,ACTIVE,326,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/326/,Ethio Flora,2013-01-01,2013
+VARIETY_327,Maize - PAC 781,ACTIVE,327,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/327/,GCT Trading,2013-01-01,2013
+VARIETY_328,Finger millet - መባ (GBK- …,ACTIVE,328,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/328/,Melkassa ARC/EIAR,2016-05-01,2016
+VARIETY_329,Maize - Galaxy,ACTIVE,329,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/329/,GCT Trading,2013-01-01,2013
+VARIETY_330,Sorghum - PAC537,ACTIVE,330,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/330/,Bako ARC/ORARI,2013-01-01,2013
+VARIETY_331,Finger Millet - አክሱም (ACC …,ACTIVE,331,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/331/,Melkassa ARC/EIAR,2016-05-01,2016
+VARIETY_332,Finger Millet - Diga-1 (ACC. …,ACTIVE,332,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/332/,BakoARC (OARI),2016-05-01,2016
+VARIETY_333,Finger Millet - Urji (Acc. …,ACTIVE,333,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/333/,BakoARC(OARI),2016-05-01,2016
+VARIETY_334,Sorghum - Chemeda (Acc- BRC-18),ACTIVE,334,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/334/,BARC/OARI,2013-01-01,2013
+VARIETY_335,Sorghum - Gemedi (ACC-BCC-5),ACTIVE,335,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/335/,Bako ARC/ORARI/,2013-01-01,2013
+VARIETY_336,Finger Millet - Mereb-1 (KNE#622),ACTIVE,336,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/336/,Axum ARC/TARI,2016-05-01,2016
+VARIETY_337,Malt Barley -Traveler,ACTIVE,337,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/337/,HARC/EIAR,2013-01-01,2013
+VARIETY_338,Malt Barley - Grace,ACTIVE,338,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/338/,Holetta ARC/EIAR,2013-01-01,2013
+VARIETY_339,Food Barley - Illala-01(ERETH07-51),ACTIVE,339,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/339/,Mekelle ARC/TARI,2016-05-01,2016
+VARIETY_340,Faba Bean - Mosisaa (: …,ACTIVE,340,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/340/,Sinana ARC (OARI),2013-01-01,2013
+VARIETY_341,Faba Bean - EK01001-5-1,ACTIVE,341,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/341/,Kulumsa ARC/EIAR,2013-01-01,2013
+VARIETY_342,Food Barley - Illala-02 (ERETH07-80),ACTIVE,342,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/342/,Mekelle ARC/TARI,2016-05-01,2016
+VARIETY_343,Faba bean - EH00099-1,ACTIVE,343,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/343/,Hawassa ARC,2013-01-01,2013
+VARIETY_344,Field pea - ICN Bunsi …,ACTIVE,344,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/344/,Melkassa ARC/EIAR/,2013-01-01,2013
+VARIETY_345,Food Barley - Robera (ACC.218956),ACTIVE,345,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/345/,Sinana ARC/OARI/,,
+VARIETY_346,Food Barley - ADENA (SXH-08-F4-S-143),ACTIVE,346,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/346/,Mekelle University,2016-05-01,2016
+VARIETY_347,Food Barley - Wolelay (SXH-08-F4-T-10),ACTIVE,347,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/347/,Mekelle University,2016-05-01,2016
+VARIETY_348,Chickpea - Dalota (ICCV-00104),ACTIVE,348,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/348/,Debere Ziet ARC/ EIAR,2013-01-01,2013
+VARIETY_349,Chickpea - Teketay (ICCX-940002-F5-242P-1-1-1),ACTIVE,349,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/349/,D/zeit ARC/EIAR,,
+VARIETY_350,Malt Barley - HB1963,ACTIVE,350,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/350/,Holetta ARC/EIAR,2016-05-01,2016
+VARIETY_351,Lentil - Dembi (El – …,ACTIVE,351,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/351/,Debere Ziet ARC/ EIAR,2013-01-01,2013
+VARIETY_352,Malt Barley - HB1964,ACTIVE,352,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/352/,Holetta ARC/EIAR,2016-05-01,2016
+VARIETY_353,Common bean /Haricot bean - …,ACTIVE,353,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/353/,Melkassa ARC/EIAR/,2013-01-01,2013
+VARIETY_354,Common bean /Haricot bean - …,ACTIVE,354,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/354/,Melkassa ARC/EIAR/,2013-01-01,2013
+VARIETY_355,Common bean /Haricot bean - …,ACTIVE,355,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/355/,Melkassa ARC/EIAR/,2013-01-01,2013
+VARIETY_356,Malt Barley - Singitan (IBON-MRA),ACTIVE,356,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/356/,Sinana ARC/OARI),2019-05-01,2019
+VARIETY_357,Linseed - BILTSTAR,ACTIVE,357,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/357/,,2013-01-01,2013
+VARIETY_358,Quinoa - Yenewa የኔዋ (Titicaca),ACTIVE,358,,,SEED_17,Domestic,CROP_17,Quinoa,https://ethioseed.moa.gov.et/seed-variety-details/358/,Dan church and Melkassa …,2016-05-01,2016
+VARIETY_359,Linseed - Furtu (CI-1525 X …,ACTIVE,359,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/359/,Kulumsa ARC/EIAR/,2013-01-01,2013
+VARIETY_360,Sesame - Chalasa - EW023(2),ACTIVE,360,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/360/,Bako ARC/ORARI/,2013-01-01,2013
+VARIETY_361,Sesame - Acc.00047,ACTIVE,361,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/361/,Sirinka ARC,2013-01-01,2013
+VARIETY_362,Faba bean - Numan (ኑማን) …,ACTIVE,362,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/362/,KARC/EIAR,2016-05-01,2016
+VARIETY_363,Sunflower - Hysun 33,ACTIVE,363,,,SEED_35,Imported,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/363/,GCT PLC,2013-01-01,2013
+VARIETY_364,Chickpea - Dimtu ( DZ-2012 …,ACTIVE,364,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/364/,DZARC/EIAR,2016-05-01,2016
+VARIETY_365,Tef - Kena (23-Tafi-Adi-72),ACTIVE,365,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/365/,Bako Agricultural Research Center,2008-01-01,2008
+VARIETY_366,"Maize - Morka (UCBS1,C2)",ACTIVE,366,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/366/,JARC/CIAR,2008-01-01,2008
+VARIETY_367,Chickpea - (Hora) DZ-2012 CK-001/FLIP …,ACTIVE,367,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/367/,DZARC/EIAR,2016-05-01,2016
+VARIETY_368,Maize - CML-161 X CML-165,ACTIVE,368,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/368/,EIAR/ Bako National Maize …,2008-01-01,2008
+VARIETY_369,Faba bean - Gachena (ETH91001-13-2),ACTIVE,369,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/369/,HU(Haramaya University),2008-01-01,2008
+VARIETY_370,Chickpea - (Dhera) DZ-2012 CK-009/FLIP …,ACTIVE,370,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/370/,DZARC/EIAR,2016-05-01,2016
+VARIETY_371,Faba bean - Walki (EH96049-2) …,ACTIVE,371,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/371/,HARC/EIAR,2008-01-01,2008
+VARIETY_372,Field Pea - JMeti (NI-21),ACTIVE,372,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/372/,HU (Haramaya University),2008-01-01,2008
+VARIETY_373,Soybean - Pawe 03 (TGX-1987-62F),ACTIVE,373,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/373/,Pawe ARC/EIAR,2016-05-01,2016
+VARIETY_374,Cowpea - 82D-889,ACTIVE,374,,,SEED_23,Domestic,CROP_23,Cowpea,https://ethioseed.moa.gov.et/seed-variety-details/374/,EIAR/MARC,2008-01-01,2008
+VARIETY_375,Fenugreek - Wereilu (201606/2),ACTIVE,375,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/375/,Sirinka ARC/ARARI,2016-05-01,2016
+VARIETY_376,Fenugreek - Jamma (202169/3),ACTIVE,376,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/376/,Sirinka ARC/ARARI,2016-05-01,2016
+VARIETY_377,Fenugreek - Burqaa (201617Sno3-7),ACTIVE,377,,,SEED_29,Domestic,CROP_29,Fenugreek,https://ethioseed.moa.gov.et/seed-variety-details/377/,Sinana ARC/OARI,2016-05-01,2016
+VARIETY_378,Soyabean - BOSHE (IAC-13-1),ACTIVE,378,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/378/,BARC/OARI,2013-01-01,2013
+VARIETY_379,Soyabean - Dhidhessa (PR-149-81-EP-7-2,ACTIVE,379,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/379/,BARC/OARI,2008-01-01,2008
+VARIETY_380,Linseed - Kuma/ ኩማ (R734D …,ACTIVE,380,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/380/,Kulumssa ARC/EIAR,2016-05-01,2016
+VARIETY_381,Rape seed - Swifter,ACTIVE,381,,,SEED_32,Imported,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/381/,Bayer Crops Science Rep. …,2016-05-01,2016
+VARIETY_382,Sesame - Benishangul-1 (WW-001(6)),ACTIVE,382,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/382/,Humera ARC/TARI and Asossa …,2016-05-01,2016
+VARIETY_383,Sesame - Gonder-1 (Acc.ba002),ACTIVE,383,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/383/,Gonder ARC/ARARI,2016-05-01,2016
+VARIETY_384,Sesame - Setit-2 (J-03),ACTIVE,384,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/384/,Humera ARC/TARI,2016-05-01,2016
+VARIETY_385,Sesame - BaHaNecho-(W-109/WSS/(Acc-EW-012(5)),ACTIVE,385,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/385/,Haramaya University,2016-05-01,2016
+VARIETY_386,Sesame - BaHaZeyit-(W-119/WSM/(Acc-EW-023(1)),ACTIVE,386,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/386/,Haramaya University,2016-05-01,2016
+VARIETY_387,Groundnut - Babile-1 (ICGV-98412),ACTIVE,387,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/387/,Haramaya University,2016-05-01,2016
+VARIETY_388,Groundnut - Babile-2 (ICGV-98404),ACTIVE,388,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/388/,Haramaya University,,
+VARIETY_389,Groundnut - Babile-3 (ICGV-94100),ACTIVE,389,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/389/,Haramaya University,2016-05-01,2016
+VARIETY_390,Groundnut - DAMKT-2016 (ICGV-96346),ACTIVE,390,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/390/,Werer ARC/EIAR,2016-05-01,2016
+VARIETY_391,Tef - Kora [DZ-Cr-438,ACTIVE,391,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/391/,DZARC/EIAR,2014-05-01,2014
+VARIETY_392,Tef - Worekitu (214746A),ACTIVE,392,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/392/,Sirinka Agricultural Research Center/ARARI/,2014-05-01,2014
+VARIETY_393,Bread Wheat - Mandoyu (Worrakatta/Pastor),ACTIVE,393,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/393/,Sinana Agricultural Research Center …,2014-05-01,2014
+VARIETY_394,Bread Wheat - Sanate (14F/HAR …,ACTIVE,394,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/394/,,2014-05-01,2014
+VARIETY_395,Bread Wheat - BIQA (ETBW …,ACTIVE,395,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/395/,KARC/EIAR,,
+VARIETY_396,Bread Wheat - HONQOLO (ETBW …,ACTIVE,396,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/396/,KARC/EIAR,2014-05-01,2014
+VARIETY_397,Rice - ADET (WAB450-1-B-P-462-HB),ACTIVE,397,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/397/,Adet Agricultural Research Center …,2014-05-01,2014
+VARIETY_398,Rice - Maytsebri-1 (NERICA 13),ACTIVE,398,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/398/,Maitsebri Agricultural Research Center …,2014-05-01,2014
+VARIETY_399,Maize - SC 719,ACTIVE,399,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/399/,Seed Co Zimbabwe (pvt) …,,
+VARIETY_402,Maize -Melkasa-1Q,ACTIVE,402,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/402/,Melkasa ARC/EIAR,2013-05-01,2013
+VARIETY_403,Maize - Mh140 (Melkasa Hybrid …,ACTIVE,403,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/403/,Melkasa ARC/EIAR,2013-05-01,2013
+VARIETY_404,Sorghum - ESH-3 (Ethiopian Sorghum …,ACTIVE,404,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/404/,MARC/EIAR,2014-05-01,2014
+VARIETY_405,Sorghum - PAC 537,ACTIVE,405,,,SEED_7,Imported,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/405/,GCT/MARC (Advanta Seed International),,
+VARIETY_406,Finger Millet - Tessema (ተሰማ),ACTIVE,406,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/406/,EIAR/MARC,2014-05-01,2014
+VARIETY_407,Finger Millet - Gudetu (Acc.215990),ACTIVE,407,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/407/,BARC/OARI,2014-05-01,2014
+VARIETY_408,Finger Millet - Mecha(ሜጫ),ACTIVE,408,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/408/,ADARC/ARARI,2014-05-01,2014
+VARIETY_409,Faba bean - DIDE'A ዲደዓ …,ACTIVE,409,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/409/,KARC/EIAR,2014-05-01,2014
+VARIETY_410,Tef - DZ-01-787,ACTIVE,410,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/410/,DZARC/EIAR,1978-01-01,1978
+VARIETY_411,Faba bean - GORA (EK …,ACTIVE,411,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/411/,KARC/EIAR,2013-05-01,2013
+VARIETY_412,Tef - Magna (DZ-01-196),ACTIVE,412,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/412/,DZARC/EIAR,1978-01-01,1978
+VARIETY_413,Tef - DZ-Cr-44,ACTIVE,413,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/413/,DZARC/EIAR,1982-01-01,1982
+VARIETY_414,Tef - DZ-Cr-82,ACTIVE,414,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/414/,DZARC/EIAR,1982-01-01,1982
+VARIETY_415,Tef - Tsedey (DZ-Cr-37),ACTIVE,415,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/415/,DZARC/EIAR,1984-01-01,1984
+VARIETY_416,Tef - Gibe (DZ-Cr-255),ACTIVE,416,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/416/,DZARC/EIAR,1993-01-01,1993
+VARIETY_417,Tef - Ziquala (DZ-Cr-358),ACTIVE,417,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/417/,Debere Ziet ARC/ EIAR,1995-01-01,1995
+VARIETY_418,common bean/ Haricot bean - …,ACTIVE,418,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/418/,EIAR/MARC,2014-05-01,2014
+VARIETY_419,Tef - Dukem (DZ-01-974),ACTIVE,419,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/419/,Debere Ziet ARC/ EIAR,1995-01-01,1995
+VARIETY_420,Tef - Holeta Key (DZ-01-2053),ACTIVE,420,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/420/,Debere Ziet ARC/ EIAR,1998-01-01,1998
+VARIETY_421,Tef - Ambo Toke (DZ-01-1278),ACTIVE,421,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/421/,Debere Ziet ARC/ EIAR,1999-01-01,1999
+VARIETY_422,Tef - Gerado,ACTIVE,422,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/422/,Debere Ziet ARC/ EIAR,2002-01-01,2002
+VARIETY_423,Common bean /Haricot bean -SER …,ACTIVE,423,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/423/,EIAR/M ARC,,
+VARIETY_424,Common bean/Haricot bean - Remeda …,ACTIVE,424,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/424/,HwRC/ SARI,2014-05-01,2014
+VARIETY_425,Common bean /Haricot bean - …,ACTIVE,425,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/425/,HwRC/ SARI,2014-05-01,2014
+VARIETY_426,Common bean/ Haricot bean - …,ACTIVE,426,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/426/,HwRC/ SARI,2014-05-01,2014
+VARIETY_427,Soyabean - Nyala,ACTIVE,427,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/427/,HwRC/ SARI and Pawe …,2014-05-01,2014
+VARIETY_428,Mung Bean - NVL-1,ACTIVE,428,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/428/,Nirmal Plc./ EIAR/MARC,2014-05-01,2014
+VARIETY_429,Mung bean - Arkebe (SML-668),ACTIVE,429,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/429/,Humera ARC/ TARI,2014-05-01,2014
+VARIETY_430,Linseed - Bekoji-14,ACTIVE,430,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/430/,HARC/ EIAR,2014-05-01,2014
+VARIETY_431,Sunflower - Ayehu(አየሁ),ACTIVE,431,,,SEED_35,Domestic,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/431/,AARC/ARARI,2014-05-01,2014
+VARIETY_432,Sunflower - X6859,ACTIVE,432,,,SEED_35,Imported,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/432/,Minerba Plc /HARC/EIAR/,2014-05-01,2014
+VARIETY_433,Sunflower - Camara II,ACTIVE,433,,,SEED_35,Domestic,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/433/,Minerba Plc /HARC/EIAR/,2014-05-01,2014
+VARIETY_434,Sunflower - NLN 11037,ACTIVE,434,,,SEED_35,Domestic,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/434/,Minerba Plc /HARC/EIAR/,2014-05-01,2014
+VARIETY_435,Sunflower - Vincenzo,ACTIVE,435,,,SEED_35,Domestic,CROP_35,Sunflower,https://ethioseed.moa.gov.et/seed-variety-details/435/,Minerba Plc /HARC/EIAR/,2014-05-01,2014
+VARIETY_436,Tef - Koye,ACTIVE,436,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/436/,DZARC/EIAR,2002-01-01,2002
+VARIETY_437,Tef - Gola,ACTIVE,437,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/437/,SRARC/ARARI,2003-01-01,2003
+VARIETY_438,Tef - Ajora,ACTIVE,438,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/438/,ARARC/SRARI,2004-01-01,2004
+VARIETY_439,Tef - Genete,ACTIVE,439,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/439/,SRARC/ARARI,2005-01-01,2005
+VARIETY_440,Tef - Zobel,ACTIVE,440,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/440/,SRARC/ARARI,2005-01-01,2005
+VARIETY_441,Tef - Gimbichu,ACTIVE,441,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/441/,DZARC/EIAR,2005-01-01,2005
+VARIETY_442,Tef - Dega-Tef,ACTIVE,442,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/442/,DZARC/EIAR,2005-01-01,2005
+VARIETY_443,Tef - Yilmana,ACTIVE,443,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/443/,ADARC/ARARI,2005-01-01,2005
+VARIETY_444,Tef - Dima,ACTIVE,444,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/444/,ADARC/ARARI,2005-01-01,2005
+VARIETY_445,Tef - Guduru,ACTIVE,445,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/445/,BARC/OARI,2006-01-01,2006
+VARIETY_446,Tef - Amarach,ACTIVE,446,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/446/,DZARC/EIAR,2006-01-01,2006
+VARIETY_447,Tef - Kuncho,ACTIVE,447,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/447/,DZARC/EIAR,2006-01-01,2006
+VARIETY_448,Tef - Mechare,ACTIVE,448,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/448/,SRARC/ARARI,2007-01-01,2007
+VARIETY_449,Tef - Gemechis (DZ-Cr-387),ACTIVE,449,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/449/,MARC/EIAR,2007-01-01,2007
+VARIETY_450,Tef - Estub,ACTIVE,450,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/450/,Adet ARC,2008-01-01,2008
+VARIETY_452,Tef - Simada,ACTIVE,452,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/452/,DZARC/EIAR,2009-01-01,2009
+VARIETY_453,Tef - Lakech,ACTIVE,453,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/453/,Sirinka ARC,2009-01-01,2009
+VARIETY_455,Bread Wheat - Guna,ACTIVE,455,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/455/,ADARC/ARARI,2001-01-01,2001
+VARIETY_456,Bread Wheat - Dure,ACTIVE,456,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/456/,SARC/OARI,2001-01-20,2001
+VARIETY_457,Bread Wheat - KBG-01,ACTIVE,457,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/457/,KARC/EIAR,2001-01-20,2001
+VARIETY_458,Bread Wheat - Dodota,ACTIVE,458,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/458/,KARC/EIAR,2001-01-01,2001
+VARIETY_459,Bread Wheat - Densa,ACTIVE,459,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/459/,ADARC/ARARI,2002-01-01,2002
+VARIETY_460,Bread Wheat - Bobicho,ACTIVE,460,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/460/,KARC/EIAR,2002-01-01,2002
+VARIETY_461,Bread Wheat - Tossa,ACTIVE,461,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/461/,SRARC/ARARI,2004-01-01,2004
+VARIETY_462,Bread Wheat - Digalu,ACTIVE,462,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/462/,KARC/EIAR,2005-01-01,2005
+VARIETY_463,Bread Wheat - Senkegna,ACTIVE,463,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/463/,ADARC/ARARI,2005-01-20,2005
+VARIETY_464,Bread Wheat - Tay,ACTIVE,464,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/464/,ADARC/ARARI,2005-01-01,2005
+VARIETY_465,Bread Wheat - Meraro,ACTIVE,465,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/465/,KARC/EIAR,2005-01-01,2005
+VARIETY_466,Bread Wheat - Warkaye,ACTIVE,466,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/466/,SRARC/ARARI,2006-01-01,2006
+VARIETY_467,Bread Wheat - Jiru,ACTIVE,467,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/467/,DBARC/ARARI,,
+VARIETY_468,Bread Wheat - Millenium,ACTIVE,468,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/468/,KARC/EIAR,2007-01-01,2007
+VARIETY_469,Bread Wheat - Sulla,ACTIVE,469,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/469/,AwARC /SARI,2007-01-01,2007
+VARIETY_470,Bread Wheat - Menze,ACTIVE,470,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/470/,DBARC,2007-01-01,2007
+VARIETY_471,Bread Wheat - Alidoro,ACTIVE,471,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/471/,HARC/EIAR,2007-01-01,2007
+VARIETY_472,Bread Wheat - Dinknesh,ACTIVE,472,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/472/,SRARC/ARARI,2007-01-01,2007
+VARIETY_473,Bread Wheat - Gasay,ACTIVE,473,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/473/,ADARC/ARARI,2007-01-01,2007
+VARIETY_474,Bread Wheat - Qulqullu,ACTIVE,474,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/474/,HU,2009-01-01,2009
+VARIETY_475,Bread Wheat - Bolo,ACTIVE,475,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/475/,DBARC,2009-01-01,2009
+VARIETY_476,Bread Wheat - Inseno-1,ACTIVE,476,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/476/,AWARC/SARI,2009-01-01,2009
+VARIETY_477,Bread Wheat - Galil,ACTIVE,477,,Cereal Crops,SEED_2,Imported,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/477/,Hazera Genetics Ltd,2010-01-01,2010
+VARIETY_478,Bread Wheat - Kakaba (Picaflor …,ACTIVE,478,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/478/,KARC/EIAR,2010-01-01,2010
+VARIETY_479,Bread Wheat - Danda’a (Danphe#1),ACTIVE,479,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/479/,KARC/EIAR,2010-01-01,2010
+VARIETY_480,Bread Wheat - Gambo = …,ACTIVE,480,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/480/,KARC/EIAR,2011-01-01,2011
+VARIETY_481,Bread Wheat - MeKelle-02/HI-1418/,ACTIVE,481,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/481/,Mekele-ARC,2011-01-01,2011
+VARIETY_482,Bread Wheat - MeKelle-01/HUW-468/,ACTIVE,482,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/482/,Mekele-ARC,2011-01-01,2011
+VARIETY_483,Bread Wheat - Tsehay/HAR3837/,ACTIVE,483,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/483/,Debre Birhan ARC/ARARI/,2011-01-01,2011
+VARIETY_484,Bread Wheat - Hoggana (ETBW …,ACTIVE,484,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/484/,KARC/EIAR,2011-01-01,2011
+VARIETY_485,Bread Wheat - Shorima (ETBW …,ACTIVE,485,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/485/,KARC/EIAR,2011-01-01,2011
+VARIETY_488,Bread Wheat - Ogolcho (ETBW5520),ACTIVE,488,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/488/,KARC/EIAR,2012-01-01,2012
+VARIETY_491,Durem Wheat - Ude,ACTIVE,491,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/491/,DZARC/EIAR,2002-01-01,2002
+VARIETY_492,Durem Wheat - Ginchi (DZ-1050),ACTIVE,492,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/492/,DZARC/EIAR,1900-01-01,1900
+VARIETY_493,Durem Wheat - Robe (DZ-1640),ACTIVE,493,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/493/,DZARC/EIAR,1998-01-01,1998
+VARIETY_494,Durem Wheat - Asasa (DZ …,ACTIVE,494,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/494/,DZARC/EIAR,1997-01-01,1997
+VARIETY_495,Durem Wheat - Arsi-Robe (TOB …,ACTIVE,495,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/495/,DZARC/EIAR,1996-01-01,1996
+VARIETY_496,Durem Wheat - Quami (CD-75533-A),ACTIVE,496,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/496/,DZARC/EIAR,1996-01-01,1996
+VARIETY_497,Durem Wheat - Bichena (DZ …,ACTIVE,497,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/497/,DZARC/EIAR,1995-01-01,1995
+VARIETY_498,Durem Wheat - Kilinto (DZ …,ACTIVE,498,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/498/,DZARC/EIAR,1994-01-01,1994
+VARIETY_499,Durem Wheat - Foka,ACTIVE,499,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/499/,DZARC/EIAR,1993-01-01,1993
+VARIETY_500,Durem Wheat - Boohai,ACTIVE,500,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/500/,DZARC/EIAR,1982-01-01,1982
+VARIETY_501,Durem Wheat - Yerer (CD …,ACTIVE,501,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/501/,DZARC/EIAR,2002-01-01,2002
+VARIETY_502,Durem Wheat - Lelisso (DZ-1605),ACTIVE,502,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/502/,SARC/OARI,2002-01-01,2002
+VARIETY_503,Durem Wheat - Laste (Tob …,ACTIVE,503,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/503/,SRARC/ARARI,2002-01-01,2002
+VARIETY_504,Durem Wheat - Selam (DZ …,ACTIVE,504,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/504/,ADARC/ARARI,2004-01-01,2004
+VARIETY_505,Durem Wheat - Mettaya (DZ …,ACTIVE,505,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/505/,ADARC /ARARI,2004-01-01,2004
+VARIETY_506,Durem Wheat - Mosobo (DZ …,ACTIVE,506,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/506/,ADARC/ARARI,2004-01-01,2004
+VARIETY_507,Durem Wheat - Megenagna (DZ …,ACTIVE,507,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/507/,ADARC/ARARI,2004-01-01,2004
+VARIETY_508,Durem Wheat - Ilani (DZ …,ACTIVE,508,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/508/,SARC/OARI,2004-01-01,2004
+VARIETY_509,Durem Wheat - Oda (DZ …,ACTIVE,509,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/509/,SARC/OARI,2004-01-01,2004
+VARIETY_510,Durem Wheat - Malefia- (CD …,ACTIVE,510,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/510/,SRARC/ARARI,2005-01-01,2005
+VARIETY_511,Durem Wheat - Kokate -- …,ACTIVE,511,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/511/,AwARC/SARI,2005-01-01,2005
+VARIETY_512,Durem Wheat - Bakalcha (980SN …,ACTIVE,512,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/512/,SARC/OARI,2005-01-01,2005
+VARIETY_513,Durem Wheat - EJERSA LABUD/NIGERIS …,ACTIVE,513,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/513/,SARC/OARI,2005-01-01,2005
+VARIETY_514,Durem Wheat - OBSA (ALTAR …,ACTIVE,514,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/514/,SARC/OARI,2006-01-01,2006
+VARIETY_515,Durem Wheat - FLAKIT (EN-25),ACTIVE,515,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/515/,-,2007-01-01,2007
+VARIETY_516,Maize - A-511,ACTIVE,516,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/516/,AwARC,1973-01-01,1973
+VARIETY_517,Maize - Alemaya Composite,ACTIVE,517,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/517/,-,1973-01-01,1973
+VARIETY_518,Maize - Katumani,ACTIVE,518,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/518/,BARC/EIAR/,1974-01-01,1974
+VARIETY_519,Maize - Guto,ACTIVE,519,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/519/,BARC/EIAR,1988-01-01,1988
+VARIETY_520,Maize - BH 140,ACTIVE,520,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/520/,BARC/EIAR,1988-01-01,1988
+VARIETY_521,Maize - BH 660,ACTIVE,521,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/521/,/BARC/EIAR,1993-01-01,1993
+VARIETY_522,Maize - Jabi (PHB 3253),ACTIVE,522,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/522/,Pioneer Hi-Bred Seeds Ethiopia …,1995-01-01,1995
+VARIETY_523,Maize - BH540,ACTIVE,523,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/523/,BARC/EIAR,1995-01-01,1995
+VARIETY_524,Tef - Boset [ DZ-Cr-409 …,ACTIVE,524,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/524/,DZARC/EIAR,2012-05-01,2012
+VARIETY_525,Bread Wheat - Jefferson,ACTIVE,525,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/525/,OARI/Fedis)/MORRELL,2012-05-01,2012
+VARIETY_526,Bread Wheat - Hulluka (ETBW5496),ACTIVE,526,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/526/,KARC/EIAR,2012-05-01,2012
+VARIETY_527,Bread Wheat - Ogolcho (ETBW5520),ACTIVE,527,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/527/,KARC/EIAR,2012-05-01,2012
+VARIETY_528,Bread Wheat - Hidase (ETBW5795),ACTIVE,528,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/528/,KARC/EIAR,2012-05-01,2012
+VARIETY_529,Bread Wheat - Mekelle- 03 …,ACTIVE,529,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/529/,Mekele and Alamata ARC/TARI,2012-05-01,2012
+VARIETY_530,Durum Wheat - Mukiye (STJ3/BCR …,ACTIVE,530,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/530/,DZARC/EIAR,2012-05-01,2012
+VARIETY_531,Durum Wheat - Mangudo (ICAJIHAN …,ACTIVE,531,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/531/,DZARC/EIAR,2012-05-01,2012
+VARIETY_532,Durum Wheat - Dire,ACTIVE,532,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/532/,SARC/OARI,2012-05-01,2012
+VARIETY_533,Triticale - Dersolign (ADTR-085),ACTIVE,533,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/533/,ADARC,2012-05-01,2012
+VARIETY_534,Rice - Hidasse (WAB 515-B-16A1-2),ACTIVE,534,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/534/,Adet Agricultural Research Center …,2012-05-01,2012
+VARIETY_535,Maize - MHQ 138(CML 144/CML159),ACTIVE,535,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/535/,MARC/EIAR,2012-05-01,2012
+VARIETY_536,Maize - Giba –Awash Fendisha,ACTIVE,536,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/536/,BAKO (EIAR),2012-05-01,2012
+VARIETY_537,Maize - Webi (AMH760Q),ACTIVE,537,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/537/,APRC (EIAR),,
+VARIETY_538,Maize - Limu/Anger (P3812W ),ACTIVE,538,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/538/,Pioneer HI-Bred Seeds Ethiopia,2012-05-01,2012
+VARIETY_539,Maize - SC-403,ACTIVE,539,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/539/,Seedco,,
+VARIETY_540,Maize - Hawassa-1 (ESE-237),ACTIVE,540,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/540/,Ethiopian Seed Enterprise ( …,,
+VARIETY_541,Maize - Kuleni,ACTIVE,541,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/541/,BARC/EIAR,1995-01-01,1995
+VARIETY_542,Maize - Fetene (ACV3),ACTIVE,542,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/542/,ACA,1996-01-01,1996
+VARIETY_543,Maize - Tesfa (ACV6),ACTIVE,543,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/543/,ACA,1996-01-01,1996
+VARIETY_544,Maize - Raare-1(EV-1),ACTIVE,544,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/544/,AU,1997-01-01,1997
+VARIETY_545,Maize - Gibe Comp-1 (MMRC-51),ACTIVE,545,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/545/,BARC/EIAR,2001-01-01,2001
+VARIETY_546,Maize - BH-541 (NSCM-41-188/32/ X …,ACTIVE,546,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/546/,BARC/EIAR,2002-01-01,2002
+VARIETY_547,Maize - Gusaw (Gambella Composite),ACTIVE,547,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/547/,BARC/EIAR,2002-01-01,2002
+VARIETY_548,Maize - BH-QP-542 (CML-144XCML-159 X …,ACTIVE,548,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/548/,BARC/EIAR,2002-01-01,2002
+VARIETY_549,Maize - BH-670 (A-7033xF7215x144-7-,ACTIVE,549,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/549/,BARC/EIAR,2002-01-01,2002
+VARIETY_550,Maize - Melkassa-3 (SADVE),ACTIVE,550,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/550/,MARC/EIAR,2004-01-01,2004
+VARIETY_551,Maize - Melkassa –2 (ZM-521),ACTIVE,551,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/551/,MARC/EIAR,2004-01-01,2004
+VARIETY_552,Maize - Toga (ESE-203 hybrid),ACTIVE,552,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/552/,Ethiopian Seed Enterprise,2005-01-01,2005
+VARIETY_553,Maize - Beles SC 713 …,ACTIVE,553,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/553/,Syngenta,2005-01-01,2005
+VARIETY_554,Maize - Bereda SC 715 …,ACTIVE,554,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/554/,Syngenta,2005-01-01,2005
+VARIETY_555,Sorghum - Dekeba (ICSR 24004),ACTIVE,555,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/555/,MARC/EIAR,2012-05-01,2012
+VARIETY_556,Maize - BH -543 (SC-22 …,ACTIVE,556,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/556/,EIAR/Bako National Maize,2005-01-01,2005
+VARIETY_557,Food barley - Walker,ACTIVE,557,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/557/,OARI(Fedis)/MORRELL,2012-05-01,2012
+VARIETY_558,Maize - Hora (Ambo 2 …,ACTIVE,558,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/558/,EIAR/Ambo Plant Protection Research …,2005-01-01,2005
+VARIETY_559,Food barley - Golden eye,ACTIVE,559,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/559/,OARI(Fedis)/MORRELL,2012-05-01,2012
+VARIETY_560,Food barley - Aquila,ACTIVE,560,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/560/,OARI (Fedis)/MORRELL,2012-05-01,2012
+VARIETY_561,Food barley - Cross # …,ACTIVE,561,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/561/,HARC/EIAR,2012-05-01,2012
+VARIETY_562,Food barley - EH 1493/F6.32H.3,ACTIVE,562,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/562/,HARC/EIAR,,
+VARIETY_563,Food barley - Gobe,ACTIVE,563,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/563/,KARC/EIAR,2012-05-01,2012
+VARIETY_564,"Food barley - Fetina (SXH, …",ACTIVE,564,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/564/,Mekele University,2012-05-01,2012
+VARIETY_565,"Food barley - Hriti(SXH, S106)",ACTIVE,565,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/565/,Mekele University,2012-05-01,2012
+VARIETY_566,Maize - Jibat (AMH851),ACTIVE,566,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/566/,EIAR/Ambo Plant Protection Research …,2009-01-01,2009
+VARIETY_567,Maize - ZAMA,ACTIVE,567,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/567/,Red Speckled Ethiopia Trading,2009-01-01,2009
+VARIETY_568,Maize - Bako-1 SC-22XFH-625-263 XCML …,ACTIVE,568,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/568/,Bako National Maize Research …,2006-01-01,2006
+VARIETY_569,Maize - Arganne (AMH-800),ACTIVE,569,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/569/,EIAR/Ambo Highland maize research …,2005-01-01,2005
+VARIETY_570,Maize - Aba raya (Sc …,ACTIVE,570,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/570/,Syngenta Agro-services AGEthiopia,2006-01-01,2006
+VARIETY_571,Maize - Melkasa-4 (ECA-EE-36),ACTIVE,571,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/571/,MARC/EIAR,2006-01-01,2006
+VARIETY_572,Maize - Shone (Phb30G19),ACTIVE,572,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/572/,,2006-01-01,2006
+VARIETY_573,Malt Barley - IBON 174/03,ACTIVE,573,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/573/,HARC/EIAR,2012-05-01,2012
+VARIETY_574,Faba bean - Bule-04(EH00102-5),ACTIVE,574,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/574/,HWARC/SARI,2012-05-01,2012
+VARIETY_575,Field pea - BILALLO (EH …,ACTIVE,575,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/575/,KARC/EIAR,2012-05-01,2012
+VARIETY_576,Field pea - Haranna (Cool …,ACTIVE,576,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/576/,SARC/OARI,,
+VARIETY_577,Field pea - Teshale (EH99005-7 …,ACTIVE,577,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/577/,AARC/EIAR,2012-05-01,2012
+VARIETY_578,Maize - Shala (P2859W),ACTIVE,578,,,SEED_1,Imported,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/578/,Pioneer Hi-bred seeds Ethiopia …,2011-01-01,2011
+VARIETY_579,Maize - GIBE 2,ACTIVE,579,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/579/,Bako NMRC /EIAR,2011-01-01,2011
+VARIETY_580,Maize - BH661 (CML395 x …,ACTIVE,580,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/580/,Bako NMRC/EIAR,2011-01-01,2011
+VARIETY_581,Chickpea - Kobo (ICCV-01308),ACTIVE,581,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/581/,Sirinka ARC/ARARI,2012-05-01,2012
+VARIETY_582,Maize -Wenchi (AMH 850),ACTIVE,582,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/582/,EIAR/Ambo Plant Protection Research …,2008-01-01,2008
+VARIETY_583,Maize - Melkasa-6Q (Pool 15 …,ACTIVE,583,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/583/,EIAR/MARC,2008-01-01,2008
+VARIETY_584,Maize - Melkasa-7 (Pop 147 …,ACTIVE,584,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/584/,EIAR/MARC,2008-01-01,2008
+VARIETY_585,Cowpea - Keti (IT99K-1122),ACTIVE,585,,,SEED_94,Domestic,CROP_94,Cow pea,https://ethioseed.moa.gov.et/seed-variety-details/585/,MARC /EIAR,2012-05-01,2012
+VARIETY_586,Maize - Melkasa- 5 (SADVIB#),ACTIVE,586,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/586/,EIAR/MARC,2008-01-01,2008
+VARIETY_587,Maize - MH 130 (CML440/CML445/ …,ACTIVE,587,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/587/,MARC /EIAR,2012-01-01,2012
+VARIETY_588,Common bean/Haricot Bean -Fedis (ECAB0060),ACTIVE,588,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/588/,,,
+VARIETY_589,Sorghum - Gambella 1107,ACTIVE,589,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/589/,MARC/EIAR,1976-01-01,1976
+VARIETY_590,Sorghum - 76TI# 23,ACTIVE,590,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/590/,76TI# 23,1979-01-01,1979
+VARIETY_591,Sorghum - IS 9302,ACTIVE,591,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/591/,MARC/EIAR,1981-01-01,1981
+VARIETY_592,Sorghum - Dinkimash,ACTIVE,592,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/592/,MARC/EIAR,1986-01-01,1986
+VARIETY_593,Sorghum - Seredo,ACTIVE,593,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/593/,MARC/EIAR,1986-01-01,1986
+VARIETY_594,Sorghum - Birmash,ACTIVE,594,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/594/,MARC/EIAR,1989-01-01,1989
+VARIETY_595,Sorghum - Chiro (Coll#4),ACTIVE,595,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/595/,MARC/EIAR,1996-01-01,1996
+VARIETY_596,Sorghum - Baji (85 MW …,ACTIVE,596,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/596/,MARC/EIAR,1996-01-01,1996
+VARIETY_597,Sorghum - MEKO-1 (M – …,ACTIVE,597,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/597/,MARC/EIAR,1997-01-01,1997
+VARIETY_598,Sorghum - ABSHIR (P-9403),ACTIVE,598,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/598/,MARC/EIAR,2000-01-01,2000
+VARIETY_599,Sorghum - Gubiye (P-9401),ACTIVE,599,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/599/,MARC/EIAR,2000-01-01,2000
+VARIETY_600,Sorghum - Muyra-2 (EST-567),ACTIVE,600,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/600/,HU,2000-01-01,2000
+VARIETY_601,Sorghum - Muyra-1 (EST-1005),ACTIVE,601,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/601/,HU,2000-01-01,2000
+VARIETY_602,Sorghum - Aba-Melko (Sartu),ACTIVE,602,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/602/,JARC/EIAR,2001-01-01,2001
+VARIETY_603,Sorghum - Yeju (ICSV 111 …,ACTIVE,603,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/603/,SRARC/ARARI,2002-01-01,2002
+VARIETY_604,Sorghum - Teshale (3443-2-0P),ACTIVE,604,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/604/,SRARC/ARARI and MARC/EIAR,2002-01-01,2002
+VARIETY_605,Sorghum - Birhan (Key#8566),ACTIVE,605,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/605/,SRARC/ARARI,2002-01-01,2002
+VARIETY_606,Sorghum - Abuare (90MW 5353),ACTIVE,606,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/606/,SRARC/ARARI,2003-01-01,2003
+VARIETY_607,Sorghum - Hormat -- (ICSV …,ACTIVE,607,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/607/,SRARC/ARARI,2005-01-01,2005
+VARIETY_608,Sorghum - Chelenko ETS 1176,ACTIVE,608,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/608/,MARC/EIAR,2005-01-01,2005
+VARIETY_609,Sorghum - Dano (BRC-378),ACTIVE,609,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/609/,BARC/OARI,2006-01-01,2006
+VARIETY_610,Sorghum - Lalo (BRC-245),ACTIVE,610,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/610/,BARC/OARI,2006-01-01,2006
+VARIETY_611,Sorghum - GIRANA-1 (Early maturing),ACTIVE,611,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/611/,SRARC/ARARI,2007-01-01,2007
+VARIETY_612,Sorghum - MISKIR (PGRC/E#69441XP-9401) (Early …,ACTIVE,612,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/612/,SRARC/ARARI,2007-01-01,2007
+VARIETY_613,Sorghum - RAYA (PGRC/ EX222878XKAT369-1),ACTIVE,613,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/613/,SRARC/ARARI,2007-01-01,2007
+VARIETY_614,Sorghum - EMAHOY (Pw01-092),ACTIVE,614,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/614/,PARC/EIAR,2007-01-01,2007
+VARIETY_615,Sorghum - MACIA (Malting type),ACTIVE,615,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/615/,MARC/EIAR,2007-01-01,2007
+VARIETY_616,Sorghum - RED SWAZI (Malting …,ACTIVE,616,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/616/,MARC/EIAR,2007-01-01,2007
+VARIETY_617,Sorghum - GEREMEW (87 BK …,ACTIVE,617,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/617/,MARC/EIAR,2007-01-01,2007
+VARIETY_618,Sorghum - GEDO (Striga resistant),ACTIVE,618,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/618/,SRARC/ARARI,2007-01-01,2007
+VARIETY_619,Food Barley - HB-42,ACTIVE,619,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/619/,HARC/EIAR,1984-01-01,1984
+VARIETY_620,Food Barley - Shege,ACTIVE,620,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/620/,HARC/EIAR,1995-01-01,1995
+VARIETY_621,Food Barley - Abay/(3357-10),ACTIVE,621,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/621/,ADARC/ARARI,1997-01-01,1997
+VARIETY_622,Food Barley - Meserach (Kulumsa …,ACTIVE,622,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/622/,SHARC/ARARI,1997-01-01,1997
+VARIETY_623,Food Barley - Dimtu (3369-19),ACTIVE,623,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/623/,HARC/EIAR,2001-01-01,2001
+VARIETY_624,Malt Barley - Beka,ACTIVE,624,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/624/,HARC/EIAR,1976-01-01,1976
+VARIETY_625,Malt Barley - Holker,ACTIVE,625,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/625/,HARC/EIAR,1979-01-01,1979
+VARIETY_626,Malt Barley - HB-120,ACTIVE,626,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/626/,HARC/EIAR,1994-01-01,1994
+VARIETY_627,Faba bean - CS-20-DK,ACTIVE,627,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/627/,HARC/ EIAR,1977-01-01,1977
+VARIETY_628,Faba bean - NC-58,ACTIVE,628,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/628/,HARC/EIAR,1978-01-01,1978
+VARIETY_629,Faba bean - KUSE /2-27-33/,ACTIVE,629,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/629/,HARC/EIAR,1979-01-01,1979
+VARIETY_630,Faba bean - Kassa,ACTIVE,630,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/630/,HARC/ EIAR,1980-01-01,1980
+VARIETY_631,Faba bean - Bulga 70,ACTIVE,631,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/631/,HARC/EIAR,1994-01-01,1994
+VARIETY_632,Faba bean - Messay,ACTIVE,632,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/632/,HARC/EIAR,1995-01-01,1995
+VARIETY_633,Faba bean - Tesfa (75 …,ACTIVE,633,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/633/,HARC/EIAR,1995-01-01,1995
+VARIETY_634,Faba bean -Shallo (EH011-22-1),ACTIVE,634,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/634/,SARC/OARI,1999-01-01,1999
+VARIETY_635,Field pea - FP DZ,ACTIVE,635,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/635/,HARC/EIAR,1979-01-01,1979
+VARIETY_636,Field pea - Mohanderfer,ACTIVE,636,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/636/,HARC/EIAR,1979-01-01,1979
+VARIETY_637,Field pea - G22763-2c,ACTIVE,637,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/637/,HARC/EIAR,1981-01-01,1981
+VARIETY_638,Field pea - Nc-95 Haik,ACTIVE,638,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/638/,HARC/EIAR,1981-01-01,1981
+VARIETY_639,Field pea - Tegegnech,ACTIVE,639,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/639/,HARC/ EIAR,1993-01-01,1993
+VARIETY_640,Field pea - Tulu (PGRC/E32 …,ACTIVE,640,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/640/,SARC/OARI,1994-01-01,1994
+VARIETY_641,Field pea - Dadimos,ACTIVE,641,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/641/,SARC/OARI,1994-01-01,1994
+VARIETY_642,Field pea - Markos,ACTIVE,642,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/642/,HARC/EIAR,1994-01-01,1994
+VARIETY_643,Field pea - Milky,ACTIVE,643,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/643/,HARC/EIAR,1995-01-01,1995
+VARIETY_644,Field pea - Hassabe,ACTIVE,644,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/644/,HARC/EIAR,1995-01-01,1995
+VARIETY_645,Field pea - Adi,ACTIVE,645,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/645/,HARC/EIAR,1995-01-01,1995
+VARIETY_646,Field pea - Holetta,ACTIVE,646,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/646/,HARC/ EIAR,1995-01-01,1995
+VARIETY_647,Field pea - Sefinesh,ACTIVE,647,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/647/,ADARC/ARARI,1997-09-01,1997
+VARIETY_648,Field pea - Adet 1,ACTIVE,648,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/648/,ADARC/ARARI,1997-01-01,1997
+VARIETY_649,Field pea - Hursa (KFP-103/B/),ACTIVE,649,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/649/,SARC/OARI,1997-01-01,1997
+VARIETY_650,Field pea - Wolmera,ACTIVE,650,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/650/,HARC/EIAR,1999-01-01,1999
+VARIETY_651,Field pea - Tullu-dimtu,ACTIVE,651,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/651/,SARC/OARI,1999-01-01,1999
+VARIETY_652,Field pea - Weyitu (EH …,ACTIVE,652,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/652/,SARC/OARI,1999-01-01,1999
+VARIETY_653,Chickpea - Arerti (FLIP 89-84C),ACTIVE,653,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/653/,DZARC/EIAR,1999-01-01,1999
+VARIETY_654,Chickpea - Shasho (ICCV-93512),ACTIVE,654,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/654/,DZARC/EIAR,1999-01-01,1999
+VARIETY_655,Chickpea - DZ –10-11,ACTIVE,655,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/655/,DZARC/EIAR,1974-01-01,1974
+VARIETY_656,Chickpea - DZ –10-4,ACTIVE,656,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/656/,DZARC/EIAR,1974-01-01,1974
+VARIETY_657,Chickpea - Mariye,ACTIVE,657,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/657/,DZARC / EIAR,1985-01-01,1985
+VARIETY_658,Chickpea - Worku (DZ-10-16.2),ACTIVE,658,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/658/,DZARC/EIAR,1994-01-01,1994
+VARIETY_659,Chickpea - Akaki (DZ-10-9-2),ACTIVE,659,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/659/,DZARC/ EIAR,1995-01-01,1995
+VARIETY_660,Lentil - Checole (ENAL-2704),ACTIVE,660,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/660/,DZARC/ EIAR,1984-01-01,1984
+VARIETY_661,Lentil - Chalew (NEL 358),ACTIVE,661,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/661/,DZARC/ EIAR,1984-01-01,1984
+VARIETY_662,Lentil - ADA (Flip- 86-14L),ACTIVE,662,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/662/,DZARC/ EIAR,1995-01-01,1995
+VARIETY_663,Lentil - Gudo (Flip 84-78L),ACTIVE,663,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/663/,DZARC/ EIAR,1995-01-01,1995
+VARIETY_664,Lentil - Alemaya 98(Flip 89-63L),ACTIVE,664,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/664/,DZARC/EIAR,1997-01-01,1997
+VARIETY_665,Common bean /Haricot bean - …,ACTIVE,665,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/665/,MARC/EIAR,1973-01-01,1973
+VARIETY_666,Common bean /Haricot bean - …,ACTIVE,666,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/666/,MARC/EIAR,1990-01-01,1990
+VARIETY_667,Common bean /Haricot bean - …,ACTIVE,667,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/667/,MARC/EIAR,1990-01-01,1990
+VARIETY_668,Common bean /Haricot bean - …,ACTIVE,668,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/668/,MARC/EIAR,1998-01-01,1998
+VARIETY_669,Soyabean - Davis,ACTIVE,669,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/669/,AwARC/SRARI,1981-01-01,1981
+VARIETY_670,Soyabean - Coker 240,ACTIVE,670,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/670/,AwARC/SRARI,1981-01-01,1981
+VARIETY_671,Soyabean - Clark 63K,ACTIVE,671,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/671/,AwARC/SRARI,1981-01-01,1981
+VARIETY_672,Noug - Este-1,ACTIVE,672,,,SEED_30,Domestic,CROP_30,Noug,https://ethioseed.moa.gov.et/seed-variety-details/672/,HARC/EIAR,1988-01-01,1988
+VARIETY_673,Noug - Fogera,ACTIVE,673,,,SEED_30,Domestic,CROP_30,Noug,https://ethioseed.moa.gov.et/seed-variety-details/673/,HARC/EIAR,1988-01-01,1988
+VARIETY_674,Noug - Kuyu,ACTIVE,674,,,SEED_30,Domestic,CROP_30,Noug,https://ethioseed.moa.gov.et/seed-variety-details/674/,HARC/EIAR,1994-01-01,1994
+VARIETY_675,Linseed - CI - 1652,ACTIVE,675,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/675/,HARC/ EIAR,1984-01-01,1984
+VARIETY_676,Linseed - Cl-1525,ACTIVE,676,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/676/,HARC/ EIAR,1984-01-01,1984
+VARIETY_677,Linseed - Chilalo,ACTIVE,677,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/677/,HARC/ EIAR,1992-01-01,1992
+VARIETY_678,Linseed - Belay-96 (IAR/Li),ACTIVE,678,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/678/,HARC/ EIAR,1996-01-01,1996
+VARIETY_679,Linseed - Geregera (R7-20D),ACTIVE,679,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/679/,ADARC/ARARI,1999-01-01,1999
+VARIETY_680,Linseed - Berene (PGRC/E 01 …,ACTIVE,680,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/680/,HARC/ EIAR,2001-01-01,2001
+VARIETY_681,Rapeseed and Ethiopian mustard - …,ACTIVE,681,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/681/,HARC/EIAR,1976-01-01,1976
+VARIETY_682,Rapeseed and Ethiopian mustard - …,ACTIVE,682,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/682/,HARC/EIAR,1986-01-01,1986
+VARIETY_683,Rapeseed and Ethiopian mustard - …,ACTIVE,683,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/683/,SARC/OARI,1993-01-01,1993
+VARIETY_684,Sesame - Kelafo 74,ACTIVE,684,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/684/,WARC/EIAR,1976-01-01,1976
+VARIETY_685,Sesame - T.85,ACTIVE,685,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/685/,WARC/EIAR,1976-01-01,1976
+VARIETY_686,Sesame - E,ACTIVE,686,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/686/,WARC/EIAR,1978-01-01,1978
+VARIETY_687,Sesame - S,ACTIVE,687,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/687/,WARC/EIAR,1978-01-01,1978
+VARIETY_688,Sesame - Mehado.80,ACTIVE,688,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/688/,WARC/EIAR,1989-01-01,1989
+VARIETY_689,Sesame - Tate /BSC-003/,ACTIVE,689,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/689/,WARC/EIAR,1989-01-01,1989
+VARIETY_690,Sesame - Abasena,ACTIVE,690,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/690/,WARC/EIAR,1990-01-01,1990
+VARIETY_691,Sesame - Sarkamo,ACTIVE,691,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/691/,WARC/EIAR,1993-01-01,1993
+VARIETY_692,Sesame - Adi,ACTIVE,692,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/692/,WARC/EIAR,1993-01-01,1993
+VARIETY_693,Sesame - Argane,ACTIVE,693,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/693/,WARC/EIAR,1993-01-01,1993
+VARIETY_694,Groundnut - Shulamit,ACTIVE,694,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/694/,WARC/EIAR,1976-01-01,1976
+VARIETY_695,Groundnut - NC 4X,ACTIVE,695,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/695/,WARC/EIAR,1986-01-01,1986
+VARIETY_696,Groundnut - NC 343,ACTIVE,696,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/696/,WARC/EIAR,1986-01-01,1986
+VARIETY_697,Groundnut - Roba (ICG-7794),ACTIVE,697,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/697/,WARC/EIAR,1989-01-01,1989
+VARIETY_698,Groundnut - Betisedi (ICG-273),ACTIVE,698,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/698/,WARC/EIAR,1993-01-01,1993
+VARIETY_699,Common bean - Jabdu (Ram-20),ACTIVE,699,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/699/,Haro Sabu ARC/ORARI,2021-05-01,2021
+VARIETY_700,Common bean -Milkesa (ሚልኬሳ) DAB-523,ACTIVE,700,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/700/,Sinana ARC/ORARI,2021-05-01,2021
+VARIETY_701,Common bean - Hora (ሆራ) …,ACTIVE,701,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/701/,Sinana ARC/ORARI,2021-05-01,2021
+VARIETY_702,Common bean/Haricot bean - DAB-413 …,ACTIVE,702,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/702/,Srinika ARC/ARARI,2021-05-01,2021
+VARIETY_703,Common bean/Haricot bean -DAB-372 (Belete),ACTIVE,703,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/703/,Melkassa ARC/EIAR,2021-05-01,2021
+VARIETY_704,Common bean/Haricot bean- (Hundaf) (ሁንዳፍ) …,ACTIVE,704,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/704/,Sinana ARC/ORARI,2019-05-01,2019
+VARIETY_705,Bread Wheat - Dereselgne,ACTIVE,705,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/705/,KARC/EIAR,1974-01-01,1974
+VARIETY_706,Bread Wheat -K 6290 bulk,ACTIVE,706,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/706/,KARC/EIAR,1977-01-01,1977
+VARIETY_707,Bread Wheat - K6295-4A,ACTIVE,707,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/707/,KARC/EIAR,1980-01-01,1980
+VARIETY_708,Bread Wheat-ET-13 A2,ACTIVE,708,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/708/,KARC/EIAR,1981-01-01,1981
+VARIETY_709,Bread Wheat-Pavon 76,ACTIVE,709,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/709/,KARC/EIAR,1982-01-01,1982
+VARIETY_710,Bread Wheat-Dashen,ACTIVE,710,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/710/,KARC/EIAR,1984-01-01,1984
+VARIETY_711,Bread Wheat - Mitike (HAR …,ACTIVE,711,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/711/,KARC/EIAR,1994-01-01,1994
+VARIETY_712,Bread Wheat-Kubsa (HAR 1685),ACTIVE,712,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/712/,KARC/EIAR,1995-01-01,1995
+VARIETY_713,Bread Wheat-Wabe (HAR-710) 1995 KARC/EIAR,ACTIVE,713,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/713/,KARC/EIAR,1995-01-01,1995
+VARIETY_714,Bread Wheat-Galema (HAR-604),ACTIVE,714,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/714/,KARC/EIAR,1995-01-01,1995
+VARIETY_715,Bread Wheat-Megala (HAR-1595),ACTIVE,715,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/715/,KARC/EIAR,1997-01-01,1997
+VARIETY_716,Bread Wheat-Abola (HAR-1522),ACTIVE,716,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/716/,KARC/EIAR,1997-01-01,1997
+VARIETY_717,Bread Wheat-Tuse (HAR-1407),ACTIVE,717,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/717/,KARC/EIAR,1997-01-01,1997
+VARIETY_718,Bread Wheat-Tura (HAR-1775),ACTIVE,718,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/718/,KARC/EIAR,1998-01-01,1998
+VARIETY_719,Bread Wheat-Katar (HAR-1899),ACTIVE,719,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/719/,KARC/EIAR,1998-01-01,1998
+VARIETY_720,Bread Wheat-Shina (HAR-1868),ACTIVE,720,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/720/,ADARC/ARARI,1998-01-01,1998
+VARIETY_721,Bread Wheat-Simba (HAR-2536),ACTIVE,721,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/721/,KARC/EIAR,1999-01-01,1999
+VARIETY_722,Bread Wheat-Wetera (HAR-1920),ACTIVE,722,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/722/,KARC/EIAR,1999-01-01,1999
+VARIETY_723,Bread Wheat-Hawi (HAR-2501),ACTIVE,723,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/723/,KARC/EIAR,1999-01-01,1999
+VARIETY_724,Bread Wheat-Madda Walabu (HAR-1480),ACTIVE,724,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/724/,SARC/OARI,1999-01-01,1999
+VARIETY_725,Bread Wheat-Sofumar (HAR-1889),ACTIVE,725,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/725/,SARC/OARI,1999-01-01,1999
+VARIETY_726,Bread Wheat-Guna (HAR-2029),ACTIVE,726,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/726/,ADARC/ARARI,2001-01-01,2001
+VARIETY_727,Bread Wheat-Dure (HAR-1008),ACTIVE,727,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/727/,SARC/OARI,2001-01-01,2001
+VARIETY_728,Bread Wheat-KBG-01 (FH-1-7A or Line …,ACTIVE,728,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/728/,KARC/EIAR,2001-01-01,2001
+VARIETY_729,Bread Wheat-Doddota (HAR-2508),ACTIVE,729,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/729/,KARC/EIAR,2001-01-01,2001
+VARIETY_730,Bread Wheat-Sirbo (HAR-2192),ACTIVE,730,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/730/,KARC/EIAR,2001-01-01,2001
+VARIETY_731,Bread Wheat-Densa (HAR-2562),ACTIVE,731,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/731/,ADARC/ARARI,2002-01-01,2002
+VARIETY_732,Bread Wheat-Bobicho (HAR-2419),ACTIVE,732,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/732/,KARC/EIAR,2002-01-01,2002
+VARIETY_733,Bread Wheat-Tossa (HAR 3123),ACTIVE,733,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/733/,SRARC/ARARI,2004-01-01,2004
+VARIETY_734,Bread Wheat-Digalu (SHA 7/ KAUZ …,ACTIVE,734,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/734/,KARC/EIAR,2005-01-01,2005
+VARIETY_735,Bread Wheat-Senkegna (HAR 3646),ACTIVE,735,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/735/,ADARC/ARARI,2005-01-01,2005
+VARIETY_736,Bread Wheat-TAY (ET-12 D4/HAR 604 …,ACTIVE,736,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/736/,ADARC/ARARI,2005-01-01,2005
+VARIETY_737,Bread Wheat-Meraro (11-6-24),ACTIVE,737,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/737/,KARC/EIAR,2005-01-01,2005
+VARIETY_738,Bread Wheat-Warkaye (HAR-3820),ACTIVE,738,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/738/,SRARC/ARARI,2006-01-01,2006
+VARIETY_739,Bread Wheat-Jiru (HAR-2896),ACTIVE,739,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/739/,DBARC/ARARI,2006-01-01,2006
+VARIETY_740,Bread Wheat-Millennium (ETBW-4921),ACTIVE,740,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/740/,KARC/EIAR,2007-01-01,2007
+VARIETY_742,Common bean/Haricot bean - Fedis …,ACTIVE,742,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/742/,Haramaya University,2012-05-01,2012
+VARIETY_743,Common bean - Hirna (ECAB …,ACTIVE,743,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/743/,Haramaya University,2012-05-01,2012
+VARIETY_744,Tef - DZ-01-99,ACTIVE,744,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/744/,DZARC/EIAR,1970-01-01,1970
+VARIETY_745,Tef - Enatit (DZ-01-354),ACTIVE,745,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/745/,DZARC/EIAR,1970-01-01,1970
+VARIETY_746,Triticale - Snan (95t62-APL9-M),ACTIVE,746,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/746/,ADARC/ARARI,2002-01-01,2002
+VARIETY_747,Triticale - Minet (USGEN 19),ACTIVE,747,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/747/,ADARC/ARARI,2002-01-01,2002
+VARIETY_748,Triticale - TT14 (LOGAW SHIBO),ACTIVE,748,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/748/,KARC/EIAR,2007-01-01,2007
+VARIETY_749,Triticale - TT2 (DILFEKAR),ACTIVE,749,,,SEED_12,Domestic,CROP_12,Triticale,https://ethioseed.moa.gov.et/seed-variety-details/749/,KARC/EIAR,2007-01-01,2007
+VARIETY_750,Emmer wheat/Aja - Sinana-01 (Acc. …,ACTIVE,750,,,SEED_13,Domestic,CROP_13,Emmer wheat (Aja),https://ethioseed.moa.gov.et/seed-variety-details/750/,SARC/ OARI,2001-01-01,2001
+VARIETY_751,Emmer wheat/Aja - Lammesso (ACC-224885-2),ACTIVE,751,,,SEED_13,Domestic,CROP_13,Emmer wheat (Aja),https://ethioseed.moa.gov.et/seed-variety-details/751/,SARC/OARI,2005-01-01,2005
+VARIETY_752,Buck wheat - Shashe (Japan),ACTIVE,752,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/752/,DZARC/EIAR,2010-01-01,2010
+VARIETY_753,Rice - HODEN (MTU-1001),ACTIVE,753,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/753/,GoPARC/SoRPARI,2007-01-01,2007
+VARIETY_754,Rice - GODE-1 (BG-90-2),ACTIVE,754,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/754/,GoPARC/SoRPARI,2007-01-01,2007
+VARIETY_755,Rice - SHEBELLE (IR 688059-76-3-3-3-2),ACTIVE,755,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/755/,GoPARC/SoRPARI,2007-01-01,2007
+VARIETY_756,Rice - NERICA-14 (upland type),ACTIVE,756,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/756/,GoPARC/SoRPARI,2010-01-01,2010
+VARIETY_757,Rice - Kallafo-1/FOFIFA-3737/),ACTIVE,757,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/757/,GoPARC/SoRPARI,2010-01-01,2010
+VARIETY_758,Common bean/Haricot bean - (Keyyo) …,ACTIVE,758,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/758/,Melkassa ARC/EIAR,2019-05-01,2019
+VARIETY_759,Common bean/Haricot bean--Babile (ECAB 0247),ACTIVE,759,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/759/,Haramaya University,2012-05-01,2012
+VARIETY_760,Common bean/Haricot bean -- Hundane …,ACTIVE,760,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/760/,Haramaya University,2012-05-01,2012
+VARIETY_761,Common bean/ Haricot bean -- …,ACTIVE,761,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/761/,Haramaya University,2012-05-01,2012
+VARIETY_762,Common bean/Haricot/ bean - Mexican …,ACTIVE,762,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/762/,MARC/EIAR,1973-01-01,1973
+VARIETY_763,Common bean/Haricot bean - Awash …,ACTIVE,763,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/763/,MARC/EIAR,1990-01-01,1990
+VARIETY_764,Common bean - Melka Awash-98 …,ACTIVE,764,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/764/,MARC/EIAR,1998-01-01,1998
+VARIETY_765,Common bean - Nazareth-2 (TA04JI) …,ACTIVE,765,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/765/,MARC/EIAR,2005-01-01,2005
+VARIETY_766,Common bean - AR04GY- Canning …,ACTIVE,766,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/766/,MARC/EIAR,2005-01-01,2005
+VARIETY_767,Common bean - Red Wolaita- …,ACTIVE,767,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/767/,MARC/EIAR,1974-01-01,1974
+VARIETY_768,Common bean - Atndaba /A-262/- …,ACTIVE,768,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/768/,MARC/EIAR,1997-01-01,1997
+VARIETY_769,Common bean - Gofta- Food …,ACTIVE,769,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/769/,HU,1977-01-01,1977
+VARIETY_770,Common bean - Ayenew- Food …,ACTIVE,770,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/770/,HU,1997-01-01,1997
+VARIETY_771,Common bean - Melke/Areka 97 …,ACTIVE,771,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/771/,MARC/EIAR,1997-01-01,1997
+VARIETY_772,Common bean - Beshbesh/Melk 97 …,ACTIVE,772,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/772/,MARC/EIAR,1997-01-01,1997
+VARIETY_773,Common bean - Gobe Rasha-1(ICA-15541) …,ACTIVE,773,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/773/,MARC/EIAR,1998-01-01,1998
+VARIETY_775,Faba bean,ACTIVE,775,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/775/,HARC/EIAR,,
+VARIETY_776,142-1-e (Maize parental line),ACTIVE,776,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/776/,BARC,2011-01-01,2011
+VARIETY_777,CML 395 X CML 202 …,ACTIVE,777,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/777/,BARC,2011-01-01,2011
+VARIETY_779,Sorghum,ACTIVE,779,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/779/,MARC/EIAR,2009-01-01,2009
+VARIETY_780,Food barley HB 1307,ACTIVE,780,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/780/,HARC/EIAR,2006-01-01,2006
+VARIETY_781,Sorghum Melkam (WSV 387),ACTIVE,781,,,SEED_7,Domestic,CROP_7,Sorghum,https://ethioseed.moa.gov.et/seed-variety-details/781/,MARC/EIAR,2009-01-01,2009
+VARIETY_782,(DZ-Cr-551(RIL173 (ደዘ-ክሮስ-551),ACTIVE,782,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/782/,Debreziet ARC/ARARI/,2022-01-01,2022
+VARIETY_783,(DZ-Cr-542(RIL106),ACTIVE,783,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/783/,Debrezeit ARC/ORARI/,2024-01-01,2024
+VARIETY_784,Tef - Biradama,ACTIVE,784,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/784/,Adet ARC/ARARI/EIAR,2024-01-01,2024
+VARIETY_785,Tef - Bekur በኩር,ACTIVE,785,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/785/,Adet ARC / ARARI,2024-01-01,2024
+VARIETY_786,Wheat - MIJU (ETBW7082),ACTIVE,786,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/786/,BoARC/OARI,2024-01-01,2024
+VARIETY_787,Wheat - BIFTU,ACTIVE,787,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/787/,Kulumsa ARC/EIAR/,2024-01-01,2024
+VARIETY_788,Wheat - Emegwa እመጓ,ACTIVE,788,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/788/,DBARC/ARARI,2024-01-01,2024
+VARIETY_789,Wheat - Begna,ACTIVE,789,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/789/,SARC/ORARI,2024-01-01,2024
+VARIETY_790,Maize - AMH854: (Ambo),ACTIVE,790,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/790/,Ambo ARC/EIAR,2024-01-01,2024
+VARIETY_791,Mungbean Rasa,ACTIVE,791,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/791/,EIAR/MARC,2011-01-01,2011
+VARIETY_792,Setit-1 (col sel p#1),ACTIVE,792,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/792/,Humera ARC/TARI,2011-01-01,2011
+VARIETY_793,A7033/ F-7215 (Female for BH …,ACTIVE,793,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/793/,BARC/EIAR,,
+VARIETY_794,142-1-e (Male parent for BH …,ACTIVE,794,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/794/,BARC/EIAR,1993-01-01,1993
+VARIETY_795,A7033/ F7215 (Female parent for …,ACTIVE,795,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/795/,BARC/EIAR,2002-01-01,2002
+VARIETY_796,144-7-b (Male parent for BH670),ACTIVE,796,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/796/,BARC/EIAR,2002-01-01,2002
+VARIETY_797,CML395/CML202 (Female parent for BH661),ACTIVE,797,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/797/,BARC/EIAR,2011-01-01,2011
+VARIETY_798,CML395 (Female parent for Basic …,ACTIVE,798,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/798/,BARC/EIAR,2013-01-01,2013
+VARIETY_799,CML202 (Male parent for BH543 …,ACTIVE,799,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/799/,BARC/EIAR,2005-01-01,2005
+VARIETY_800,BKL001 (Male parent for BH546),ACTIVE,800,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/800/,,2013-01-01,2013
+VARIETY_801,BKL003 (Male parent for BH547),ACTIVE,801,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/801/,BARC/EIAR,2013-01-01,2013
+VARIETY_802,SC22 (Female parent for BH540 …,ACTIVE,802,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/802/,MARC/EIAR,2013-01-01,2013
+VARIETY_803,124-b(109) (Male parent for Basic …,ACTIVE,803,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/803/,BARC/EIAR,2005-01-01,2005
+VARIETY_804,BKL002 (Female parent for BH547 …,ACTIVE,804,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/804/,BARC NMRP,2013-01-01,2013
+VARIETY_805,Ground nut,ACTIVE,805,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/805/,WARI/EIAR,2004-01-01,2004
+VARIETY_806,Groundnut variety Werer 962,ACTIVE,806,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/806/,Werer/EIAR,2004-01-01,2004
+VARIETY_807,Tomato,ACTIVE,807,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/807/,Green life trading PLC,2013-01-01,2013
+VARIETY_808,Onion,ACTIVE,808,,,SEED_48,Domestic,CROP_48,Onion,https://ethioseed.moa.gov.et/seed-variety-details/808/,MARC/EIAR,2004-01-01,2004
+VARIETY_809,Rice Nerika-4,ACTIVE,809,,,SEED_9,Domestic,CROP_9,Rice,https://ethioseed.moa.gov.et/seed-variety-details/809/,PARC/EIAR,2006-01-01,2006
+VARIETY_810,Chickpea- Habiru,ACTIVE,810,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/810/,D/Zeit ARC EIAR,2004-01-01,2004
+VARIETY_811,Chickpea - Naatoli,ACTIVE,811,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/811/,D/Zeit ARC EIAR,2007-01-01,2007
+VARIETY_812,Sesame - Humera-1,ACTIVE,812,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/812/,TRARI/HARC,2011-01-01,2011
+VARIETY_813,Banana-Dinkua-1,ACTIVE,813,,,SEED_80,Domestic,CROP_80,Banana,https://ethioseed.moa.gov.et/seed-variety-details/813/,MARC/EIAR,2019-01-01,2019
+VARIETY_814,Banana-Lady Finger,ACTIVE,814,,,SEED_80,Domestic,CROP_80,Banana,https://ethioseed.moa.gov.et/seed-variety-details/814/,MARC/EIAR,2019-01-01,2019
+VARIETY_815,BH-545,ACTIVE,815,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/815/,BNMRC/EIAR,2008-01-01,2008
+VARIETY_816,Jefferson,ACTIVE,816,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/816/,,2012-11-01,2012
+VARIETY_817,malt barley- Bekoji-1,ACTIVE,817,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/817/,,2010-01-11,2010
+VARIETY_818,Malt barley- Fanaka,ACTIVE,818,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/818/,,2016-01-11,2016
+VARIETY_819,faba bean- Hachalu,ACTIVE,819,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/819/,,2010-01-01,2010
+VARIETY_820,faba bean-Tumsa,ACTIVE,820,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/820/,,2010-01-01,2010
+VARIETY_821,Awash-2,ACTIVE,821,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/821/,,2013-11-11,2013
+VARIETY_822,Ada,ACTIVE,822,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/822/,,2013-01-01,2013
+VARIETY_823,Hawassa Dume,ACTIVE,823,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/823/,,2008-01-01,2008
+VARIETY_824,Dandesu,ACTIVE,824,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/824/,,2013-01-11,2013
+VARIETY_825,Minjar,ACTIVE,825,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/825/,,2010-01-11,2010
+VARIETY_826,mungbean- Arkebe,ACTIVE,826,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/826/,,2014-01-01,2014
+VARIETY_827,mungbean- Borda,ACTIVE,827,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/827/,,2008-01-01,2008
+VARIETY_828,Gishama,ACTIVE,828,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/828/,PARC,2010-01-01,2010
+VARIETY_829,SER 125,ACTIVE,829,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/829/,EIAR/M ARC,2014-01-01,2014
+VARIETY_830,SER 119,ACTIVE,830,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/830/,,2014-01-01,2014
+VARIETY_831,Gishama (PR-143-(26)),ACTIVE,831,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/831/,,2010-01-01,2010
+VARIETY_832,Malt barley- HB1963,ACTIVE,832,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/832/,,2016-01-01,2016
+VARIETY_833,Malt barley- HB1964,ACTIVE,833,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/833/,,2016-01-01,2016
+VARIETY_834,Derso (Alemaya FLIP-88-411-02-AK-14),ACTIVE,834,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/834/,,2010-01-01,2010
+VARIETY_835,tef -Beriso (BK-01-1817),ACTIVE,835,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/835/,Bako AARC/ORARI,2023-01-01,2023
+VARIETY_836,Tef-hanga ( BK-01- 53-17),ACTIVE,836,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/836/,,2023-01-01,2023
+VARIETY_837,Tef-Ataye (አጣየ) (DZ-CR-459(RIL-16),ACTIVE,837,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/837/,,2023-01-01,2023
+VARIETY_838,bread wheat-Damota,ACTIVE,838,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/838/,,2023-01-01,2023
+VARIETY_839,read wheat-Bokku (ETBW 9548),ACTIVE,839,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/839/,,2023-01-01,2023
+VARIETY_840,bread wheat-Dugda,ACTIVE,840,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/840/,,2023-01-01,2023
+VARIETY_841,bread wheat-EL-SHALOM ( ETBW9006),ACTIVE,841,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/841/,,2023-01-01,2023
+VARIETY_842,bread wheat-Kulito (ETBW9131),ACTIVE,842,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/842/,,2023-01-01,2023
+VARIETY_843,bread wheat-Kulumsa (EBW192346),ACTIVE,843,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/843/,,2023-01-01,2023
+VARIETY_844,bread wheat-Asgori (EBW192350),ACTIVE,844,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/844/,,2023-01-01,2023
+VARIETY_845,bread wheat-Harato (Acc.ETBW9413),ACTIVE,845,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/845/,,2023-01-01,2023
+VARIETY_846,bread wheat-Sekela (Maringa),ACTIVE,846,,Cereal Crops,SEED_2,Domestic,CROP_2,Bread Wheat,https://ethioseed.moa.gov.et/seed-variety-details/846/,,2023-01-01,2023
+VARIETY_847,durum wheat-Seiftu (DW-183142),ACTIVE,847,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/847/,,2023-01-01,2023
+VARIETY_848,maize-P3815W (Loko),ACTIVE,848,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/848/,,2023-01-01,2023
+VARIETY_849,finger millet-Adet-06,ACTIVE,849,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/849/,,2023-01-01,2023
+VARIETY_850,finger millet-Haro (FMC-33),ACTIVE,850,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/850/,,2023-01-01,2023
+VARIETY_851,Soybean EthioYugozlavia,ACTIVE,851,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/851/,BARC/OARI,2007-01-01,2007
+VARIETY_852,Haro (FMC-33) Landrace,ACTIVE,852,,,SEED_10,Domestic,CROP_10,Finger Millet,https://ethioseed.moa.gov.et/seed-variety-details/852/,,2023-01-01,2023
+VARIETY_853,GABISA' (ICBO4-0080-0AP-6AP-0AP- 0AP-0TR-0AREC),ACTIVE,853,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/853/,,2023-01-01,2023
+VARIETY_854,Odasha (IBONH141P#38,ACTIVE,854,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/854/,,2023-01-01,2023
+VARIETY_855,food barly-Gishen (Acc204669-1),ACTIVE,855,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/855/,,2023-01-01,2023
+VARIETY_856,GNT1808 (Fetenech,ACTIVE,856,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/856/,,2023-01-01,2023
+VARIETY_857,food barley-Sena/ Semi- Hulled,ACTIVE,857,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/857/,,2023-01-01,2023
+VARIETY_858,food oat-Richo,ACTIVE,858,,,SEED_18,Domestic,CROP_18,Food oat,https://ethioseed.moa.gov.et/seed-variety-details/858/,,2023-01-12,2023
+VARIETY_859,Fababean-EH011089-3 (Cherinet),ACTIVE,859,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/859/,,2023-01-01,2023
+VARIETY_860,chick pea-hewa (X11TH-78-7),ACTIVE,860,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/860/,,2023-01-01,2023
+VARIETY_861,cow pea-Hundaol (ILRI#25368),ACTIVE,861,,,SEED_94,Domestic,CROP_94,Cow pea,https://ethioseed.moa.gov.et/seed-variety-details/861/,,2023-01-01,2023
+VARIETY_862,common/haricot/bean-Key-Burre,ACTIVE,862,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/862/,,2023-01-01,2023
+VARIETY_863,common/haricot/bean-Key-Woliata,ACTIVE,863,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/863/,,2023-01-01,2023
+VARIETY_864,common/haricot/bean-Labu,ACTIVE,864,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/864/,,2023-02-02,2023
+VARIETY_865,soybean-Bechera(Late set),ACTIVE,865,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/865/,,2023-01-01,2023
+VARIETY_866,soybeen,ACTIVE,866,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/866/,,2023-01-01,2023
+VARIETY_867,mung bean-Mieso 1 (VC-6492-59A),ACTIVE,867,,,SEED_28,Domestic,CROP_28,Mung bean,https://ethioseed.moa.gov.et/seed-variety-details/867/,,2023-01-01,2023
+VARIETY_868,Pigeon pea,ACTIVE,868,,,SEED_96,Domestic,CROP_96,Pigeon pea,https://ethioseed.moa.gov.et/seed-variety-details/868/,,2023-01-01,2023
+VARIETY_869,Rapeseed-ACC 20131 (Melkaa),ACTIVE,869,,,SEED_32,Domestic,CROP_32,Rapeseed,https://ethioseed.moa.gov.et/seed-variety-details/869/,Sinana ARC/ORARI,2023-01-01,2023
+VARIETY_870,durum wheat- tate (CD94523),ACTIVE,870,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/870/,SARI/OARI,2009-11-01,2009
+VARIETY_871,durum wheat- hitosa ( CHEN/ALTAR-84),ACTIVE,871,,,SEED_3,Domestic,CROP_3,Durum Wheat,https://ethioseed.moa.gov.et/seed-variety-details/871/,DZARC/EIAR,2009-01-01,2009
+VARIETY_872,Malt barley- HB 52,ACTIVE,872,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/872/,EARO/HARC,2001-01-01,2001
+VARIETY_873,malt barley- sabini,ACTIVE,873,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/873/,KARC/EAIR,2011-01-01,2011
+VARIETY_874,malt barley- kiflu-B (miskal 21),ACTIVE,874,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/874/,HARC/EIAR,2006-01-01,2006
+VARIETY_875,malt barley abdane,ACTIVE,875,,,SEED_5,Domestic,CROP_5,Malt Barley,https://ethioseed.moa.gov.et/seed-variety-details/875/,SARC,2011-01-01,2011
+VARIETY_876,Tef- koye (DZ-01-1285),ACTIVE,876,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/876/,EARO/DZARC,2002-01-01,2002
+VARIETY_877,Tef- gerado (DZ- 01-1281),ACTIVE,877,,,SEED_6,Domestic,CROP_6,Tef,https://ethioseed.moa.gov.et/seed-variety-details/877/,EARO/DZARC,2002-02-20,2002
+VARIETY_878,Faba bean - gebelcho (ET96009-1),ACTIVE,878,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/878/,HARC/EIAR,2006-01-01,2006
+VARIETY_879,Faba bean- degaga (R-878-3),ACTIVE,879,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/879/,EARO/HARC,2002-01-01,2002
+VARIETY_880,faba bean - dagm (Grarjarso …,ACTIVE,880,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/880/,ARARI/SHARC,2002-01-01,2002
+VARIETY_881,Faba bean dosha (COLL 155/00-3),ACTIVE,881,,,SEED_19,Domestic,CROP_19,Faba bean,https://ethioseed.moa.gov.et/seed-variety-details/881/,HARC/EIAR,2009-01-01,2009
+VARIETY_882,field pea- burkitu( EH99004-2),ACTIVE,882,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/882/,,2009-01-01,2009
+VARIETY_883,field pea- dume (EH96026-1-4),ACTIVE,883,,Pulse Crops,SEED_20,Domestic,CROP_20,Field pea,https://ethioseed.moa.gov.et/seed-variety-details/883/,HARC/EIAR,2006-01-01,2006
+VARIETY_884,soyabean- belesa -95( PR-149-6,ACTIVE,884,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/884/,SARI/AARC,2003-01-01,2003
+VARIETY_885,soyabean- katta(PR-145-2),ACTIVE,885,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/885/,BARC,2011-01-01,2011
+VARIETY_886,soyabean- korme (AGS-129-2),ACTIVE,886,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/886/,B,2011-01-01,2011
+VARIETY_887,soyabean- cheri IPB -81-EP7,ACTIVE,887,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/887/,,2003-01-01,2003
+VARIETY_888,soyabean- ETHIO- YUGOSLAVIA,ACTIVE,888,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/888/,BARC/OARI,2007-01-01,2007
+VARIETY_889,haricot bean- Nasir,ACTIVE,889,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/889/,EARO/NZARC,2003-01-01,2003
+VARIETY_890,haricot bean- melka awash -98,ACTIVE,890,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/890/,EARO/NZARC,1999-11-01,1999
+VARIETY_891,haricot bean- Anger (EMP-376),ACTIVE,891,,,SEED_25,Domestic,CROP_25,Common/Haricot/ bean,https://ethioseed.moa.gov.et/seed-variety-details/891/,BARC/ORARI,2005-01-01,2005
+VARIETY_892,chich pea mastewal,ACTIVE,892,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/892/,DBARC/ARARI,2006-12-01,2006
+VARIETY_893,linseed- tolle,ACTIVE,893,,,SEED_31,Domestic,CROP_31,Linseed,https://ethioseed.moa.gov.et/seed-variety-details/893/,EARO/HARC,2004-02-01,2004
+VARIETY_894,chick pea - teji,ACTIVE,894,,,SEED_22,Domestic,CROP_22,Chickpea,https://ethioseed.moa.gov.et/seed-variety-details/894/,,2005-12-01,2005
+VARIETY_895,lentil- asanno,ACTIVE,895,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/895/,ORARI/SARC,2003-01-01,2003
+VARIETY_896,lentil- Ada,ACTIVE,896,,,SEED_24,Domestic,CROP_24,Lentil,https://ethioseed.moa.gov.et/seed-variety-details/896/,-,1998-01-01,1998
+VARIETY_897,Maize BKL004: Female parent of …,ACTIVE,897,,,SEED_1,Domestic,CROP_1,Maize,https://ethioseed.moa.gov.et/seed-variety-details/897/,BNMRC/EIAR,2017-01-01,2017
+VARIETY_898,Soybean Afgat,ACTIVE,898,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/898/,AwARC/SRARI,2007-01-01,2007
+VARIETY_899,food barly-'GABISA' (ICBO4-0080-0AP-6AP-0AP- 0AP-0TR-0AREC),ACTIVE,899,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/899/,-,2023-01-01,2023
+VARIETY_900,food barely -Odasha (IBONH141P#38),ACTIVE,900,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/900/,,2023-01-01,2023
+VARIETY_901,food barely-‘Gesse’,ACTIVE,901,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/901/,,2023-01-01,2023
+VARIETY_902,food barley,ACTIVE,902,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/902/,,2023-01-01,2023
+VARIETY_903,food barley-GNT1808 (Fetenech),ACTIVE,903,,Cereal Crops,SEED_4,Domestic,CROP_4,Food Barley,https://ethioseed.moa.gov.et/seed-variety-details/903/,,2023-01-01,2023
+VARIETY_904,soybean-Maya,ACTIVE,904,,,SEED_26,Domestic,CROP_26,Soybean,https://ethioseed.moa.gov.et/seed-variety-details/904/,,2023-01-01,2023
+VARIETY_905,Pigeon pea-Arjo (Medium set),ACTIVE,905,,,SEED_96,Domestic,CROP_96,Pigeon pea,https://ethioseed.moa.gov.et/seed-variety-details/905/,,2023-01-01,2023
+VARIETY_906,Sesame -Marzeneb (Accession 159),ACTIVE,906,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/906/,,2023-01-01,2023
+VARIETY_907,sesame-Sifan (Accession HSc-016#13),ACTIVE,907,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/907/,,2023-01-01,2023
+VARIETY_908,sesame-Sifan (Accession HSc-016#13),ACTIVE,908,,Oil Crop,SEED_33,Domestic,CROP_33,Sesame,https://ethioseed.moa.gov.et/seed-variety-details/908/,,2023-01-01,2023
+VARIETY_909,groundnut-Hirko (Accession # 23525),ACTIVE,909,,,SEED_34,Domestic,CROP_34,Groundnut,https://ethioseed.moa.gov.et/seed-variety-details/909/,,2023-01-01,2023
+VARIETY_910,Irish potato- (Solanum tuberosum)Hermes,ACTIVE,910,,,SEED_40,Domestic,CROP_40,Irish potato,https://ethioseed.moa.gov.et/seed-variety-details/910/,,2023-01-01,2023
+VARIETY_911,irish potato-Caruso,ACTIVE,911,,,SEED_40,Domestic,CROP_40,Irish potato,https://ethioseed.moa.gov.et/seed-variety-details/911/,,2023-01-01,2023
+VARIETY_912,irish potato-Birhan (CIP312921.576),ACTIVE,912,,,SEED_40,Domestic,CROP_40,Irish potato,https://ethioseed.moa.gov.et/seed-variety-details/912/,,2023-01-01,2023
+VARIETY_913,irish potato-Dagnew (CIP312929.532),ACTIVE,913,,,SEED_40,Domestic,CROP_40,Irish potato,https://ethioseed.moa.gov.et/seed-variety-details/913/,,2023-01-01,2023
+VARIETY_914,-irish potato-Worku (AD501645.9),ACTIVE,914,,,SEED_40,Domestic,CROP_40,Irish potato,https://ethioseed.moa.gov.et/seed-variety-details/914/,,2023-01-01,2023
+VARIETY_915,Sweet potato (Ipomoea batatas)-NASPOT-12 (Orange …,ACTIVE,915,,,SEED_41,Domestic,CROP_41,Sweet potato,https://ethioseed.moa.gov.et/seed-variety-details/915/,,2023-01-01,2023
+VARIETY_916,Taro (Colocasia esculenta)-Mulu-04 (053),ACTIVE,916,,,SEED_42,Domestic,CROP_42,Taro,https://ethioseed.moa.gov.et/seed-variety-details/916/,,2023-01-01,2023
+VARIETY_917,Cassava (Manihot esculenta)-Hawassa 5 (1708),ACTIVE,917,,,SEED_43,Domestic,CROP_43,Cassava,https://ethioseed.moa.gov.et/seed-variety-details/917/,,2023-01-01,2023
+VARIETY_918,Tomato -Jorgie-1 (Wonhong No.3) Cherry …,ACTIVE,918,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/918/,,2023-01-01,2023
+VARIETY_919,tomato-Jorgie-2 (Wonhong No.5) Cherry tomato,ACTIVE,919,,,SEED_46,Domestic,CROP_46,Tomato,https://ethioseed.moa.gov.et/seed-variety-details/919/,,2023-01-01,2023
+VARIETY_920,Carrot-Brillyance F1,ACTIVE,920,,,SEED_52,Domestic,CROP_52,Carrot,https://ethioseed.moa.gov.et/seed-variety-details/920/,,2023-01-01,2023
+VARIETY_921,watermelon-Tamerlan F1,ACTIVE,921,,,SEED_117,Domestic,CROP_117,Water melon,https://ethioseed.moa.gov.et/seed-variety-details/921/,,,
+VARIETY_922,Avocado-AL1,ACTIVE,922,,,SEED_84,Domestic,CROP_84,Avocado,https://ethioseed.moa.gov.et/seed-variety-details/922/,,2023-01-01,2023
+VARIETY_923,Avocado-Choquette,ACTIVE,923,,,SEED_84,Domestic,CROP_84,Avocado,https://ethioseed.moa.gov.et/seed-variety-details/923/,,2023-01-01,2023
+VARIETY_924,lemmon-Allen Eureka,ACTIVE,924,,,SEED_72,Domestic,CROP_72,Lemon verbena,https://ethioseed.moa.gov.et/seed-variety-details/924/,,2023-01-01,2023
+VARIETY_925,lemon-Lemon Eureka,ACTIVE,925,,,SEED_72,Domestic,CROP_72,Lemon verbena,https://ethioseed.moa.gov.et/seed-variety-details/925/,,2023-01-01,2023
+VARIETY_926,lemon-Limoneira Lisbon,ACTIVE,926,,,SEED_72,Domestic,CROP_72,Lemon verbena,https://ethioseed.moa.gov.et/seed-variety-details/926/,,2023-01-01,2023
+VARIETY_927,cotton-Jantekel (Amibara I),ACTIVE,927,,,SEED_109,Domestic,CROP_109,Cotton,https://ethioseed.moa.gov.et/seed-variety-details/927/,,2023-01-01,2023
+VARIETY_928,Yellow Dodola,ACTIVE,928,,Oil Crop,SEED_132,Domestic,CROP_132,Ethiopian mustard,https://ethioseed.moa.gov.et/seed-variety-details/928/,HARC/EIAR,1986-01-01,1986

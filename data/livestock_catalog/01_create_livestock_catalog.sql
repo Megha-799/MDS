@@ -4,17 +4,6 @@
 -- ET-LITS registry: https://etlits.moa.gov.et
 -- Reference standard: National Livestock Data Standard for Ethiopia (MOA / Development Gateway, March 2024)
 
-DROP VIEW IF EXISTS "livestock_registry_validation" CASCADE;
-DROP TABLE IF EXISTS "livestock_registry_entry" CASCADE;
-DROP TABLE IF EXISTS "livestock_production_type_species" CASCADE;
-DROP TABLE IF EXISTS "livestock_production_type" CASCADE;
-DROP TABLE IF EXISTS "livestock_body_condition" CASCADE;
-DROP TABLE IF EXISTS "livestock_location_type" CASCADE;
-DROP TABLE IF EXISTS "livestock_gender" CASCADE;
-DROP TABLE IF EXISTS "livestock_record_status" CASCADE;
-DROP TABLE IF EXISTS "livestock_breed" CASCADE;
-DROP TABLE IF EXISTS "livestock_population" CASCADE;
-DROP TABLE IF EXISTS "livestock_catalog" CASCADE;
 
 CREATE TABLE "livestock_catalog" (
     species_code TEXT PRIMARY KEY,

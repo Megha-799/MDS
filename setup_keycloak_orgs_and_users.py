@@ -42,6 +42,43 @@ def run():
         sys.exit(1)
     print(f"Found client {CLIENT_MNEMONIC} with ID: {client_id}")
 
+    # 1b. Ensure redirectUris and post.logout.redirect.uris include MDS UI (3005)
+    target_clients = [CLIENT_MNEMONIC, "iam-staff-portal"]
+    for c in clients:
+        cid = c.get("clientId")
+        if cid in target_clients:
+            c_internal_id = c["id"]
+            current_redirects = c.get("redirectUris", [])
+            new_redirects = list(set(current_redirects + [
+                "http://localhost:3005/*",
+                "http://localhost:3005",
+                "http://localhost:3001/*",
+                "http://localhost:3001",
+                "http://localhost:3000/*"
+            ]))
+            attrs = c.get("attributes", {})
+            existing_post_logout = attrs.get("post.logout.redirect.uris", "")
+            post_logout_list = [p for p in existing_post_logout.split("##") if p]
+            new_post_logout = list(set(post_logout_list + [
+                "+",
+                "http://localhost:3005/*",
+                "http://localhost:3005",
+                "http://localhost:3001/*",
+                "http://localhost:3001"
+            ]))
+            attrs["post.logout.redirect.uris"] = "##".join(new_post_logout)
+            web_origins = list(set(c.get("webOrigins", []) + ["+", "http://localhost:3005", "http://localhost:3001"]))
+            requests.put(
+                f"{KEYCLOAK_URL}/admin/realms/{REALM}/clients/{c_internal_id}",
+                headers=headers,
+                json={
+                    "redirectUris": new_redirects,
+                    "webOrigins": web_origins,
+                    "attributes": attrs
+                }
+            )
+            print(f"Enforced 3005 redirect URIs and post.logout.redirect.uris on {cid}")
+
     # 2. Get available client roles
     res = requests.get(f"{KEYCLOAK_URL}/admin/realms/{REALM}/clients/{client_id}/roles", headers=headers)
     roles = {r["name"]: r for r in res.json()}

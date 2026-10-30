@@ -5,3 +5,7 @@ __pycache__/
 *.swp
 *.bak
 .env
+*.pptx
+*.docx
+*Playbook.md
+.~lock.*

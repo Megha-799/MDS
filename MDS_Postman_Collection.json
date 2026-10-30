@@ -1,0 +1,3004 @@
+{
+  "info": {
+    "_postman_id": "8e0dadb9-33e1-4047-8126-b2ae4a9f78db",
+    "name": "OpenG2P Master Data Service (MDS) Complete API Suite",
+    "description": "Comprehensive Postman Collection covering 100% of the OpenG2P Master Data Service (MDS) APIs:\n\n1. **Authentication & Tokens**: Keycloak M2M Client Credentials and User Password Grants for Maker/Checker organizational hierarchy.\n2. **Public Open Catalogue**: DCAT-3 JSON-LD discovery, public datasets, SKOS concepts, CSV/GeoJSON exports, geography boundaries.\n3. **Catalogue Datasets & Metadata**: List registry, schemas, domains, ownership.\n4. **Maker-Checker Governance**: Four-eyes approval workflows (draft creation, submission, review, approval/rejection, change tracking).\n5. **Dataset Values & Entries**: Querying, versioning, batch upserts, retirement.\n6. **Administrative Geography**: Hierarchy from National (l0) down to Woreda (l3), polygon boundaries, crosswalks.\n7. **Catalogue Releases**: Version pinning and release packaging for agricultural data.\n8. **Legacy & Extension APIs**: Backward compatible Attributes and Geo endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{access_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// OpenG2P Master Data Service Collection Pre-request Script"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "// Check HTTP status code",
+          "pm.test(\"HTTP Status code is successful (200, 201)\", function () {",
+          "    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+          "});",
+          "",
+          "// Check OpenG2P Envelope Response Status if returned",
+          "try {",
+          "    var res = pm.response.json();",
+          "    if (res.response_header && res.response_header.response_status) {",
+          "        pm.test(\"OpenG2P Response Status is SUCCESS\", function () {",
+          "            pm.expect(res.response_header.response_status).to.eql(\"SUCCESS\");",
+          "        });",
+          "    }",
+          "} catch (e) {}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "00. Authentication & Tokens",
+      "description": "Keycloak Token endpoints for Machine-to-Machine (M2M) and User-based Maker/Checker access.",
+      "item": [
+        {
+          "name": "01. M2M Token (Client Credentials - master-data)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"M2M Token acquired successfully\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.access_token).to.be.a('string');",
+                  "    pm.environment.set(\"access_token\", json.access_token);",
+                  "    console.log(\"Saved M2M access_token to environment!\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile email",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Acquire M2M token for Registry-to-Registry / Partner Manager integration using master-data client."
+          }
+        },
+        {
+          "name": "02. User Token - MoA Maker (moa.maker)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"MoA Maker token acquired\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.access_token).to.be.a('string');",
+                  "    pm.environment.set(\"access_token\", json.access_token);",
+                  "    console.log(\"Saved moa.maker access_token!\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "moa.maker",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{user_password}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile email",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Authenticate as Ministry of Agriculture (MoA) Maker to create and edit Crops, Seeds, and Fertilizer drafts."
+          }
+        },
+        {
+          "name": "03. User Token - MoA Checker (moa.checker)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"MoA Checker token acquired\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.access_token).to.be.a('string');",
+                  "    pm.environment.set(\"access_token\", json.access_token);",
+                  "    console.log(\"Saved moa.checker access_token!\");",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "moa.checker",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{user_password}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile email",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Authenticate as MoA Checker to review, approve, or reject MoA catalog drafts."
+          }
+        },
+        {
+          "name": "04. User Token - LDI Specialist (ldi.specialist)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"LDI Specialist token acquired\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.access_token).to.be.a('string');",
+                  "    pm.environment.set(\"access_token\", json.access_token);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "ldi.specialist",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{user_password}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile email",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Authenticate as Livestock Development Institute (LDI) Specialist."
+          }
+        },
+        {
+          "name": "05. User Token - CSA Admin (csa.admin)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"CSA Admin token acquired\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "    var json = pm.response.json();",
+                  "    pm.expect(json.access_token).to.be.a('string');",
+                  "    pm.environment.set(\"access_token\", json.access_token);",
+                  "});"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "client_secret",
+                  "value": "{{client_secret}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "csa.admin",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{user_password}}",
+                  "type": "text"
+                },
+                {
+                  "key": "scope",
+                  "value": "openid profile email",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Authenticate as Central Statistical Agency (CSA) Admin to manage administrative geography and boundaries."
+          }
+        },
+        {
+          "name": "06. Get Current User Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/userinfo",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "userinfo"
+              ]
+            },
+            "description": "Inspect currently authenticated user profile and roles."
+          }
+        }
+      ]
+    },
+    {
+      "name": "01. System & Health (Public)",
+      "description": "Endpoints in group 01. System & Health (Public)",
+      "item": [
+        {
+          "name": "GET /ping - Get Ping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/ping",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "ping"
+              ]
+            },
+            "description": "Returns \"pong\" always, if the service is healthy.\nThis can also used for service health checks.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "02. Open Catalogue (Anonymous / DCAT 3 / Public)",
+      "description": "Endpoints in group 02. Open Catalogue (Anonymous / DCAT 3 / Public)",
+      "item": [
+        {
+          "name": "GET /public/catalog - DCAT catalogue (JSON-LD)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/catalog",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "catalog"
+              ]
+            },
+            "description": "dcat:Catalog of the public datasets (and the geography when public) as JSON-LD, DCAT-AP style: dct:title / description / publisher / license / issued / modified, dcat:theme, dcat:version (and owl:versionInfo), dcat:distribution per format with dcat:downloadURL and dcat:mediaType. Harvestable by CKAN / DCAT harvesters.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets - Public datasets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets"
+              ]
+            },
+            "description": "Every public dataset with a published version in effect: code, title, description, theme, publisher, licence, current version, effective date, issued / modified and links.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code} - One public dataset",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "Metadata plus its published versions.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code}/download.csv - Download a version as CSV",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code/download.csv",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code",
+                "download.csv"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "One row per entry of the selected published version.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code}/download.json - Download a version as JSON",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code/download.json",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code",
+                "download.json"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "The selected published version with its entries.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code}/entries - Entries of a public dataset",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code/entries",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code",
+                "entries"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "Entries (code, label, labels per language, parent, attributes, roles, status) of the selected PUBLISHED version: `version` (number or latest) or `as_of`. Paged with `page` / `page_size`.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code}/entries/{entry_code} - One entry of a public dataset",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code/entries/:entry_code",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code",
+                "entries",
+                ":entry_code"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                },
+                {
+                  "key": "entry_code",
+                  "value": "{{sample_entry_code}}",
+                  "description": "Path parameter entry_code"
+                }
+              ]
+            },
+            "description": "Also the dereferenceable IRI of the entry's skos:Concept.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/datasets/{code}/skos - SKOS concept scheme (JSON-LD)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/datasets/:code/skos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "datasets",
+                ":code",
+                "skos"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "skos:ConceptScheme of the selected published version with one skos:Concept per active entry: skos:notation (code), skos:prefLabel per language, skos:broader (parent), skos:inScheme.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/geography - Public geography",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/geography",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "geography"
+              ]
+            },
+            "description": "404 unless the geography is public. Country, publisher, licence, version, levels (with unit counts and download links) and published versions.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/geography/levels - Geography levels",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/geography/levels",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "geography",
+                "levels"
+              ]
+            },
+            "description": "Levels of the selected published geography version.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/geography/levels/{level}/boundaries.geojson - Boundaries of a level (GeoJSON)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/geography/levels/:level/boundaries.geojson",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "geography",
+                "levels",
+                ":level",
+                "boundaries.geojson"
+              ],
+              "variable": [
+                {
+                  "key": "level",
+                  "value": "{{sample_geo_level}}",
+                  "description": "Path parameter level"
+                }
+              ]
+            },
+            "description": "Streamed from the boundary object store (immutable per version).\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/geography/levels/{level}/units.csv - Units of a level as CSV",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/geography/levels/:level/units.csv",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "geography",
+                "levels",
+                ":level",
+                "units.csv"
+              ],
+              "variable": [
+                {
+                  "key": "level",
+                  "value": "{{sample_geo_level}}",
+                  "description": "Path parameter level"
+                }
+              ]
+            },
+            "description": "One row per unit of `level` (mnemonic or id).\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/geography/units - Geography units",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/geography/units",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "geography",
+                "units"
+              ]
+            },
+            "description": "Filter by `level` and `parent`; paged.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/releases - Published releases",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/releases",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "releases"
+              ]
+            },
+            "description": "Published catalogue releases, each with only its public members (and the geography version when the geography is public); a release with nothing public is not listed.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        },
+        {
+          "name": "GET /public/releases/{code} - One published release",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/public/releases/:code",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "public",
+                "releases",
+                ":code"
+              ],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "{{sample_list_code}}",
+                  "description": "Path parameter code"
+                }
+              ]
+            },
+            "description": "Public members only.\n\nAnonymous (no token). 404 unless the public catalogue is enabled and the item is public; only PUBLISHED versions. Responses carry ETag / Last-Modified (304 on If-None-Match / If-Modified-Since) and Cache-Control; over the per-IP rate limit the answer is 429 with Retry-After.",
+            "auth": {
+              "type": "noauth"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "03. Catalogue - Datasets & Metadata",
+      "description": "Endpoints in group 03. Catalogue - Datasets & Metadata",
+      "item": [
+        {
+          "name": "POST /catalogue/create_list - Create a dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/create_list",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_list"
+              ]
+            },
+            "description": "Registers a new list (code, label, labels per locale, description, owner_org, domain, visibility (private by default), licence_uri / licence_label, hierarchy flag, attribute_schema) and opens its first draft (version 1). Nothing is published until that draft is submitted and approved. `attribute_schema` is a JSON Schema (2020-12) for each value's `attributes`; a property may carry `\"x-list-ref\": \"<LIST_CODE>\"` (its value is a code of that list), and so may the `items` of an array property (a list of codes, e.g. `{\"type\": \"array\", \"items\": {\"type\": \"string\", \"x-list-ref\": \"CROP_GROUP\"}}`).\n\nPermission: `referenceData:create`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"display\": \"Test Display Name\",\n      \"display_i18n\": {},\n      \"description\": \"sample_value\",\n      \"owner_org\": \"Ministry of Agriculture\",\n      \"domain\": \"agriculture\",\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://example.org\",\n      \"licence_label\": \"sample_value\",\n      \"is_hierarchical\": false,\n      \"attribute_schema\": {},\n      \"list_id\": \"{{$guid}}\",\n      \"change_note\": \"Automated test change\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_catalogue_config - How this catalogue is configured",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_catalogue_config",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_catalogue_config"
+              ]
+            },
+            "description": "`approval_mode` (permission | awe \u2014 the UI shows approve/reject buttons only in permission mode), whether boundary upload, audit and WebSub are enabled, the country, the geography version currently in effect and whether the anonymous /public catalogue is enabled (with its base URL).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list - One dataset at a version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_list",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list"
+              ]
+            },
+            "description": "A list's metadata as it is in the selected version (code, labels, attribute schema), plus that version's metadata.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_lists - All datasets",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_lists",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_lists"
+              ]
+            },
+            "description": "Every dataset (list) with its owner, domain (shown as Theme: `core`, `agriculture`, ...; null when unknown), visibility, licence, current published version (in effect now), highest published version (may be future-effective), open draft (number and status) and a summary of its attribute schema (properties, required, list references).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"include_unpublished\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_list - Update a dataset's metadata",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/update_list",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_list"
+              ]
+            },
+            "description": "`description`, `owner_org`, `domain`, `visibility` and `licence_uri` / `licence_label` are administrative and apply at once. `new_list_code`, `display`, `display_i18n`, `is_hierarchical` and `attribute_schema` are part of what consumers see, so they go into the open draft.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"description\": \"sample_value\",\n      \"owner_org\": \"Ministry of Agriculture\",\n      \"domain\": \"agriculture\",\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://example.org\",\n      \"licence_label\": \"sample_value\",\n      \"new_list_code\": \"{{sample_list_code}}\",\n      \"display\": \"Test Display Name\",\n      \"display_i18n\": {},\n      \"is_hierarchical\": true,\n      \"attribute_schema\": {}\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "04. Catalogue - Drafts & Four-Eyes Governance (Maker-Checker)",
+      "description": "Endpoints in group 04. Catalogue - Drafts & Four-Eyes Governance (Maker-Checker)",
+      "item": [
+        {
+          "name": "POST /catalogue/approve_draft - Approve and publish (permission mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/approve_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "approve_draft"
+              ]
+            },
+            "description": "Publishes the SUBMITTED version: it becomes immutable, `effective_from` defaults to now (or the draft's / this call's date, possibly future), and \u2014 if in effect \u2014 the legacy /attributes tables are refreshed in the same transaction. Maker \u2260 checker: the approver must not have created, edited or submitted the draft (G2P-CAT-403). Disabled in awe mode.\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"version_no\": 1,\n      \"decision_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/create_list_draft - Open a draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/create_list_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_list_draft"
+              ]
+            },
+            "description": "Opens the list's draft as a copy of the highest published version (its base). `copy_from_version` copies another version's content instead (e.g. a REJECTED draft to rework). Optional `change_note` and `effective_from` (may be in the future). 409 if a draft is open.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"base_version\": 1,\n      \"copy_from_version\": 1,\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/discard_draft - Discard the open draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/discard_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "discard_draft"
+              ]
+            },
+            "description": "Closes the open draft (DRAFT, or SUBMITTED in permission mode) as DISCARDED. The version row is kept so its number is never reused; the next draft gets the next number. Published versions are untouched.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_changes - Change feed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_changes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_changes"
+              ]
+            },
+            "description": "Catalogue lifecycle events in order, from the append-only change log: list.created, list.updated, list.draft.created, list.draft.values_changed, list.draft.values_retired, list.draft.submitted, list.approval.requested, list.draft.approved, list.draft.rejected, list.version.published, list.version.effective, list.version.migrated, list.draft.discarded (and the geo.* equivalents, release.created / members_set / published / deleted). Pass the returned `next_cursor` as `cursor` to continue; `has_more` says whether to call again. Filter by `subject_type`, `subject_id`, `event_types`; `newest: true` returns the newest `limit` events instead (a recent-activity view). `actor` is the stable user id (token sub) or a system name, `actor_name` a user's display name. Every event \u2014 including those written by the database (`*.version.effective`, `*.version.migrated`) and the country-pack loader \u2014 is relayed to the Audit Manager when configured, and `*.version.published`, `*.version.effective` and `release.published` to the WebSub hub, with retries.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"cursor\": 0,\n      \"limit\": 100,\n      \"subject_type\": \"list\",\n      \"subject_id\": \"{{$guid}}\",\n      \"event_types\": [\n        \"sample_value\"\n      ],\n      \"newest\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_diff - Differences between two versions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_list_diff",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_diff"
+              ]
+            },
+            "description": "`added`, `changed` (per field before/after), `retired` and `reactivated` values, and `metadata_changes` (code, label, labels, hierarchy flag, attribute schema) from `from_version` (default: the base of `to_version`) to `to_version` (number, \"latest\" or \"draft\"; default \"latest\"). Use `to_version: \"draft\"` to review a draft.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"from_version\": 1,\n      \"to_version\": 1\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/reject_draft - Reject the submitted draft (permission mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/reject_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "reject_draft"
+              ]
+            },
+            "description": "Marks the SUBMITTED version REJECTED with a required `decision_note`. Maker \u2260 checker. Rework it with create_list_draft + copy_from_version.\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"version_no\": 1,\n      \"decision_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/retire_draft_units - Retire units in the geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/retire_draft_units",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "retire_draft_units"
+              ]
+            },
+            "description": "Units of the base version become RETIRED (never deleted); units added in this draft are removed. Active descendants block unless `cascade`.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"unit_ids\": [\n        \"{{sample_geo_code}}\"\n      ],\n      \"cascade\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/submit_draft - Submit the draft for approval",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/submit_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "submit_draft"
+              ]
+            },
+            "description": "Validates the draft (labels, hierarchy, attribute schema and every value's typed attributes incl. list references; must differ from its base) and moves it to SUBMITTED. In awe mode this also opens an AWE approval request (policy `awe_policy_key_list`, artifact `master_data.list_version`, context incl. owner_org) and records its id in `approval_ref`.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_list_draft - Set a draft's change note / effective date",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/update_list_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_list_draft"
+              ]
+            },
+            "description": "`effective_from` may not be earlier than the latest published version's.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upload_draft_boundary - Upload a level's boundary GeoJSON to the draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/upload_draft_boundary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upload_draft_boundary"
+              ]
+            },
+            "description": "Stores the FeatureCollection in MinIO/S3 under the draft's key `geo/<country>/v<draft>/<level>.geojson` (never a published version's key) and records it on the draft; it becomes immutable on publish. Units whose geometry changed (features keyed by `properties.pcode`) get a BOUNDARY_CHANGE event at submit. Needs the boundary store configured.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level\": \"{{sample_geo_level}}\",\n      \"geojson\": {}\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_levels - Add or change levels in the geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/upsert_draft_levels",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_levels"
+              ]
+            },
+            "description": "Matched on level_id. Mnemonics must be unique under the same parent level.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"levels\": [\n        {\n          \"level_id\": \"{{sample_geo_level}}\",\n          \"level_mnemonic\": \"{{sample_geo_level}}\",\n          \"parent_level_id\": \"{{sample_geo_level}}\",\n          \"display\": \"Test Display Name\",\n          \"display_i18n\": {}\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_units - Add or change units in the geography draft (batch)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/upsert_draft_units",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_units"
+              ]
+            },
+            "description": "Matched on unit_id (P-code). A unit's parent must be an active unit of the parent level; names are unique among siblings. Upserting a retired unit re-activates it. Renames, re-parenting and new units get change events automatically at submit unless you record them.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"units\": [\n        {\n          \"unit_id\": \"{{sample_geo_code}}\",\n          \"level_id\": \"{{sample_geo_level}}\",\n          \"name\": \"Test Display Name\",\n          \"name_i18n\": {},\n          \"parent_unit_id\": \"{{sample_geo_code}}\",\n          \"status\": \"ACTIVE\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "05. Catalogue - Dataset Values / Entries",
+      "description": "Endpoints in group 05. Catalogue - Dataset Values / Entries",
+      "item": [
+        {
+          "name": "POST /catalogue/get_list_value - One entry by code at a version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_list_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_value"
+              ]
+            },
+            "description": "Resolves a code in the selected version \u2014 including a RETIRED value, so an old reference still resolves against the version it was taken from.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"list_code\": \"{{sample_list_code}}\",\n      \"value_code\": \"{{sample_entry_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_values - Entries (values) of a dataset at a version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_list_values",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_values"
+              ]
+            },
+            "description": "Values of the selected version, ordered by sort_order. Active values only unless `include_retired`. Filters: `parent_code` (\"\" = top level), `attribute_filters` (JSON containment on the typed attributes), `search` (code or label). Paged with `pagination_request`. ATTRIBUTE data policies apply as on /attributes/get_attribute_values. Response: `{list_code, version: {version_no, status, effective_from, published_at, is_latest, ...}, values: [{value_id, value_code, display, display_i18n, parent_code, sort_order, attributes, roles, status}], total}`.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"list_code\": \"{{sample_list_code}}\",\n      \"include_retired\": false,\n      \"parent_code\": \"sample_value\",\n      \"attribute_filters\": {},\n      \"search\": \"sample_value\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_versions - Version history of a dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_list_versions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_versions"
+              ]
+            },
+            "description": "All versions, newest first: DRAFT, SUBMITTED, PUBLISHED (with effective_from, published_at, decided_by), REJECTED (with decision_note) and DISCARDED. Numbers are never reused. `is_latest` marks the version in effect now. `*_by` fields hold stable user ids (token `sub`) or a system name; `*_by_name` the user's display name (null for a system actor).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/retire_draft_values - Retire entries in the draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/retire_draft_values",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "retire_draft_values"
+              ]
+            },
+            "description": "A value that exists in the base version becomes RETIRED (kept, so old references still resolve); a value added in this draft is removed. Active children block unless `cascade`.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"value_codes\": [\n        \"{{sample_entry_code}}\"\n      ],\n      \"cascade\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_values - Add or change entries in the draft (batch)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/upsert_draft_values",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_values"
+              ]
+            },
+            "description": "Each item is matched on `value_id` when given, else on `value_code`; unmatched items are added. Only fields present are changed. Labels, attributes, parent and sort order stay editable; a code can change (item with `value_id`) only for an entry that was never published \u2014 a published code is refused with `G2P-CAT-CODE-IMMUTABLE` (retire it and add a new entry instead). Upserting a retired code re-activates it. `attributes` are validated against the draft's attribute_schema, and `x-list-ref` codes must be ACTIVE values of the referenced list's version in effect (now, or at the draft's future effective_from) \u2014 never its draft: publish a referenced list first.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"values\": [\n        {\n          \"value_code\": \"{{sample_entry_code}}\",\n          \"display\": \"Test Display Name\",\n          \"display_i18n\": {},\n          \"parent_code\": \"sample_value\",\n          \"sort_order\": 1,\n          \"attributes\": {},\n          \"roles\": [\n            \"sample_value\"\n          ],\n          \"value_id\": \"{{$guid}}\",\n          \"status\": \"ACTIVE\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "06. Catalogue - Geography (Published)",
+      "description": "Endpoints in group 06. Catalogue - Geography (Published)",
+      "item": [
+        {
+          "name": "POST /catalogue/get_geo_crosswalk - Map a unit across versions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_crosswalk",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_crosswalk"
+              ]
+            },
+            "description": "Follows the change events from `from_version` to `to_version` (default latest; may be earlier, to find predecessors) across any number of versions. Returns the unit's successors (SPLIT gives several, MERGE one, RECODE the new code; RENAME/REPARENT/BOUNDARY_CHANGE keep the unit) as they are in `to_version`, `unmapped` units (retired without successor / created without predecessor) and the `path` of events taken.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"unit_id\": \"{{sample_geo_code}}\",\n      \"from_version\": 1,\n      \"to_version\": 1\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_levels - Levels of a geography version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_levels",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_levels"
+              ]
+            },
+            "description": "Levels top-down (level_id, level_mnemonic, parent_level_id, display, display_i18n).\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_settings - Geography settings (visibility, licence)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_settings"
+              ]
+            },
+            "description": "`visibility` (private \u2014 the default \u2014 or public) and the optional licence (`licence_uri`, `licence_label`) of the geography. Administrative, not versioned.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_unit - One unit, with its ancestors",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_unit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_unit"
+              ]
+            },
+            "description": "A unit of the selected version (retired ones too) and its ancestor chain.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"unit_id\": \"{{sample_geo_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_units - Units of a geography version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_units",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_units"
+              ]
+            },
+            "description": "Units (unit_id = P-code, level_id, name, name_i18n, parent_unit_id, status, valid_from, valid_to), filtered by `level` (id or mnemonic), `parent_unit_id` (\"\" = roots), `search`; active only unless `include_retired`. Paged. GEO data policies apply.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"level\": \"{{sample_geo_level}}\",\n      \"parent_unit_id\": \"{{sample_geo_code}}\",\n      \"include_retired\": false,\n      \"search\": \"sample_value\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_versions - Geography version history",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_versions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_versions"
+              ]
+            },
+            "description": "All geography versions, newest first, with status, effective_from, owner_org, country, active unit count and the boundary object key per level.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_geo_settings - Set the geography's visibility / licence",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/update_geo_settings",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_geo_settings"
+              ]
+            },
+            "description": "Applied at once (not versioned); only fields present are changed, an empty licence field clears it. `visibility: \"public\"` lets the anonymous /public catalogue (when enabled) show the geography's PUBLISHED versions; drafts are never public. Logged as `geo.settings.updated`.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://example.org\",\n      \"licence_label\": \"sample_value\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "07. Catalogue - Geography Drafts Workflow",
+      "description": "Endpoints in group 07. Catalogue - Geography Drafts Workflow",
+      "item": [
+        {
+          "name": "POST /catalogue/approve_geo_draft - Approve and publish the geography draft (permission mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/approve_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "approve_geo_draft"
+              ]
+            },
+            "description": "Publishes the SUBMITTED version (immutable), stamps valid_from / valid_to on new and retired units and \u2014 if in effect \u2014 refreshes the legacy /geo tables in the same transaction. Maker \u2260 checker. Disabled in awe mode.\n\nPermission: `geo:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version_no\": 1,\n      \"decision_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/create_geo_draft - Open a geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/create_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_geo_draft"
+              ]
+            },
+            "description": "Copies levels, units and boundary keys of the highest published version (or `copy_from_version`). Optional `change_note`, `effective_from` (e.g. new woredas from 2027-01-01), `owner_org`.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"base_version\": 1,\n      \"copy_from_version\": 1,\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\",\n      \"owner_org\": \"Ministry of Agriculture\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/delete_geo_change - Remove a change event from the geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/delete_geo_change",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "delete_geo_change"
+              ]
+            },
+            "description": "Only events of the open DRAFT.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"change_id\": 1\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/discard_geo_draft - Discard the geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/discard_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "discard_geo_draft"
+              ]
+            },
+            "description": "Closes the open geography draft as DISCARDED (kept, so its number and boundary keys are never reused). Uploaded objects of the draft stay in the bucket under its own version's keys.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_boundary - Boundary GeoJSON of a level",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_boundary",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_boundary"
+              ]
+            },
+            "description": "The object key of the level's boundary in the selected version (`geo/<country>/v<version>/<level>.geojson`, immutable once published; an unchanged level points at an earlier version's object), with `url` (when a public base URL is configured) and a `presigned_url`. With `stream: true` the GeoJSON itself is returned as application/geo+json.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version\": 1,\n      \"as_of\": \"sample_value\",\n      \"release\": \"{{sample_release_code}}\",\n      \"level\": \"{{sample_geo_level}}\",\n      \"stream\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_changes - Change events (lineage) between versions",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_geo_changes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_changes"
+              ]
+            },
+            "description": "Events of the published versions in (`from_version`, `to_version`] \u2014 CREATE, RETIRE, RENAME, RECODE, SPLIT, MERGE, REPARENT, BOUNDARY_CHANGE with from_units (base version) and to_units (new version), effective_date, note, is_auto. `unit_id` filters to events naming it; `include_draft` adds the open draft's events.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"from_version\": 1,\n      \"to_version\": 1,\n      \"unit_id\": \"{{sample_geo_code}}\",\n      \"include_draft\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/record_geo_change - Record a change event in the geography draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/record_geo_change",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "record_geo_change"
+              ]
+            },
+            "description": "Lineage against the draft's base version. Rules: CREATE \u2014 to-units active in the draft and new; RETIRE \u2014 from-units active in base, retired in the draft; RENAME / REPARENT \u2014 one unit, same id, name / parent differs; RECODE \u2014 one old code (retired) to one new code (new), same level; SPLIT \u2014 one from-unit (retired, or kept as one of the parts) to \u22652 active to-units; MERGE \u2014 \u22652 from-units (retired, or the survivor) to one active unit; BOUNDARY_CHANGE \u2014 units active in both. A unit can end in only one RETIRE/SPLIT/MERGE/RECODE per version. Edit the units first, then record the event.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"change_type\": \"CREATE\",\n      \"from_units\": [],\n      \"to_units\": [],\n      \"effective_date\": \"{{$isoTimestamp}}\",\n      \"note\": \"Automated test change\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/reject_geo_draft - Reject the geography draft (permission mode)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/reject_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "reject_geo_draft"
+              ]
+            },
+            "description": "Requires `decision_note`. Maker \u2260 checker.\n\nPermission: `geo:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"version_no\": 1,\n      \"decision_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/submit_geo_draft - Submit the geography draft for approval",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/submit_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "submit_geo_draft"
+              ]
+            },
+            "description": "Validates levels, units and every recorded event, completes the lineage (auto CREATE / RETIRE / RENAME / REPARENT / BOUNDARY_CHANGE events for anything not covered, flagged is_auto) and moves the draft to SUBMITTED; in awe mode opens an AWE request (`awe_policy_key_geo`, artifact `master_data.geo_version`).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_geo_draft - Set the geography draft's note / effective date / owner",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/update_geo_draft",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_geo_draft"
+              ]
+            },
+            "description": "Only fields present are changed.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"change_note\": \"Automated test change\",\n      \"effective_from\": \"{{$isoTimestamp}}\",\n      \"owner_org\": \"Ministry of Agriculture\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "08. Catalogue - Releases Management",
+      "description": "Endpoints in group 08. Catalogue - Releases Management",
+      "item": [
+        {
+          "name": "POST /catalogue/create_release - Create a draft release",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/create_release",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_release"
+              ]
+            },
+            "description": "`release_code` (e.g. 2027.1), `title`, `note`.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"release_code\": \"{{sample_release_code}}\",\n      \"title\": \"sample_value\",\n      \"note\": \"Automated test change\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/delete_release - Delete a draft release",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/delete_release",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "delete_release"
+              ]
+            },
+            "description": "Published releases cannot be deleted.\n\nPermission: `referenceData:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"release_code\": \"{{sample_release_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_release - One release with its members",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_release",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_release"
+              ]
+            },
+            "description": "`members: [{list_id, list_code, version_no}]` and `geo_version_no`.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"release_code\": \"{{sample_release_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_releases - All catalogue releases",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/get_releases",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_releases"
+              ]
+            },
+            "description": "Named sets of list versions plus one geography version, for consumers that pin everything at once. Any versioned read accepts `release` to answer from a release's pins.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/publish_release - Publish a release (immutable)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/publish_release",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "publish_release"
+              ]
+            },
+            "description": "Checks every member is published and that `x-list-ref` references between member lists resolve within the release's own pins. Maker \u2260 checker (publisher \u2260 creator and \u2260 whoever last set the members). Immutable afterwards (enforced in Postgres).\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"release_code\": \"{{sample_release_code}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/set_release_members - Pin dataset versions and a geography version",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/catalogue/set_release_members",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "set_release_members"
+              ]
+            },
+            "description": "Only PUBLISHED versions can be members. `replace: true` (default) replaces all members; false adds / overwrites the given ones. `geo_version_no` sets the geography pin. DRAFT releases only.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"release_code\": \"{{sample_release_code}}\",\n      \"members\": [],\n      \"geo_version_no\": 1,\n      \"replace\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "09. Legacy Attributes API",
+      "description": "Endpoints in group 09. Legacy Attributes API",
+      "item": [
+        {
+          "name": "POST /attributes/add_attribute - Add a dataset (into a draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/add_attribute",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "add_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"attribute_code\": \"sample_value\",\n      \"attribute_display\": \"Test Display Name\",\n      \"is_hierarchical\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/add_attribute_value - Add an entry (into the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/add_attribute_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "add_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"attribute_id\": \"{{$guid}}\",\n      \"value_code\": \"{{sample_entry_code}}\",\n      \"value_display\": \"Test Display Name\",\n      \"parent_value_id\": \"{{$guid}}\",\n      \"sort_order\": 1\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/delete_attribute - Delete a dataset",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/delete_attribute",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "delete_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"attribute_id\": \"{{$guid}}\",\n      \"cascade\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/delete_attribute_value - Retire an entry (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/delete_attribute_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "delete_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"value_id\": \"{{$guid}}\",\n      \"attribute_id\": \"{{$guid}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/get_all_attributes - All datasets (current published version)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/get_all_attributes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "get_all_attributes"
+              ]
+            },
+            "description": "All datasets (lists), as currently published. `current_version_no` (additive) is the published version the list shows; null for a list never published. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/get_attribute_values - Entries of datasets (current published version)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/get_attribute_values",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "get_attribute_values"
+              ]
+            },
+            "description": "Values of the current published version (active values only). `list_versions` (additive) maps each attribute_id returned to that version. For other versions use /catalogue/get_list_values. ATTRIBUTE data policies filter the result. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"attribute_id\": \"{{$guid}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/update_attribute - Update a dataset (in its draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/update_attribute",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "update_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"attribute_id\": \"{{$guid}}\",\n      \"attribute_code\": \"sample_value\",\n      \"attribute_display\": \"Test Display Name\",\n      \"is_hierarchical\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/update_attribute_value - Update an entry (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/attributes/update_attribute_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "attributes",
+                "update_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). `value_code` can change only for an entry that was never published (`G2P-CAT-CODE-IMMUTABLE` otherwise). Permission: `referenceData:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"value_id\": \"{{$guid}}\",\n      \"attribute_id\": \"{{$guid}}\",\n      \"value_code\": \"{{sample_entry_code}}\",\n      \"value_display\": \"Test Display Name\",\n      \"parent_value_id\": \"{{$guid}}\",\n      \"sort_order\": 1\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "10. Legacy Geography API",
+      "description": "Endpoints in group 10. Legacy Geography API",
+      "item": [
+        {
+          "name": "POST /geo/add_geo_level - Add a geography level (into the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/add_geo_level",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "add_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_mnemonic\": \"{{sample_geo_level}}\",\n      \"parent_level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/add_geo_level_value - Add a geography unit (into the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/add_geo_level_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "add_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_value_mnemonic\": \"{{sample_geo_level}}\",\n      \"parent_level_value_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/delete_geo_level - Delete a geography level (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/delete_geo_level",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "delete_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/delete_geo_level_value - Retire a geography unit (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/delete_geo_level_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "delete_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_value_id\": \"{{sample_geo_level}}\",\n      \"cascade\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/get_all_geo_levels - All geography levels (current published version)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/get_all_geo_levels",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "get_all_geo_levels"
+              ]
+            },
+            "description": "Levels of the geography version in effect (level_id, level_mnemonic, parent_level_id). Depth and names are country-specific: walk `parent_level_id`. For other versions use /catalogue/get_geo_levels. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {}\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/get_geo_level_values - Units of a geography level (current published version)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/get_geo_level_values",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "get_geo_level_values"
+              ]
+            },
+            "description": "Units of `level_id`, optionally only the children of `parent_level_value_id`, from the geography version in effect. Data policies filter the result. For other versions use /catalogue/get_geo_units. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20,\n      \"sort_by\": null,\n      \"filter_by\": null,\n      \"search_text\": null\n    },\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"parent_level_value_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/update_geo_level - Update a geography level (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/update_geo_level",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "update_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_mnemonic\": \"{{sample_geo_level}}\",\n      \"parent_level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /geo/update_geo_level_value - Update a geography unit (in the draft)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/geo/update_geo_level_value",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "geo",
+                "update_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"level_value_id\": \"{{sample_geo_level}}\",\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_value_mnemonic\": \"{{sample_geo_level}}\",\n      \"parent_level_value_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "11. Samples API (Demo / Test)",
+      "description": "Endpoints in group 11. Samples API (Demo / Test)",
+      "item": [
+        {
+          "name": "POST /samples/get_households - Sample households (testing and demos only)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/samples/get_households",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "samples",
+                "get_households"
+              ]
+            },
+            "description": "**For testing and demos only; not for production use.** The sample households the country pack loaded, in `household_id` order, with their head, size, dwelling and amenities (codes of the pack's datasets) and location. Optional filters: `geo_pcode`, `country`. Paged with `pagination_request` (`page_size`, `current_page`; default 1000 per page); `response_body.pagination_response` carries `number_of_items` and `number_of_pages`. Empty unless the deployment loaded the country pack's samples (`--load samples`). Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"geo_pcode\": \"sample_value\",\n      \"country\": \"sample_value\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "POST /samples/get_individuals - Sample people (testing and demos only)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/samples/get_individuals",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "samples",
+                "get_individuals"
+              ]
+            },
+            "description": "**For testing and demos only; not for production use.** Sample people are made-up demo data, not reference data: they are not versioned or approved, and a production deployment should not load them. The sample individuals the country pack loaded, in `individual_id` order: who they are (names, gender, birth date, national id, phone), where they live (`geo_pcode`, a unit of the geography, plus `address_parts` below the lowest level and coordinates) and coded facts (entries of the pack's datasets). Registries seed their sample records from these, so one set of people populates every registry of the deployment. Optional filters: `household_id`, `geo_pcode`, `country`. Paged with `pagination_request` (`page_size`, `current_page`; default 1000 per page); `response_body.pagination_response` carries `number_of_items` and `number_of_pages`. Empty unless the deployment loaded the country pack's samples (`--load samples`). Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"{{sender_app_mnemonic}}\",\n    \"sender_app_url\": \"{{sender_app_url}}\",\n    \"request_id\": \"{{$guid}}\",\n    \"request_timestamp\": \"{{$isoTimestamp}}\"\n  },\n  \"request_body\": {\n    \"request_payload\": {\n      \"household_id\": \"{{$guid}}\",\n      \"geo_pcode\": \"sample_value\",\n      \"country\": \"sample_value\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "12. Workflow Integration (AWE)",
+      "description": "Endpoints in group 12. Workflow Integration (AWE)",
+      "item": [
+        {
+          "name": "POST /catalogue/awe/callback - AWE decision callback",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/catalogue/awe/callback",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "awe",
+                "callback"
+              ]
+            },
+            "description": "Called by the Approval Workflow Engine (awe mode). Authenticated by HMAC, not JWT: `X-Approval-Signature: sha256=HMAC_SHA256(secret, \"<X-Approval-Timestamp>.\" + body)`, with `X-Approval-Timestamp` (unix seconds) and `X-Approval-Event-Id`. Body: AWE WebhookEvent (`event_id, event_type, request_id, artifact_type, artifact_id, status, stage_order, actor, occurred_at`). `request_approved` publishes the submitted version (artifact `master_data.list_version` `<list_id>:<version_no>`, or `master_data.geo_version` `geography:<version_no>`); `request_rejected` / `request_cancelled` reject it. Idempotent on event_id. 401 on a bad signature, 422 when the event cannot be applied."
+          }
+        }
+      ]
+    }
+  ]
+}

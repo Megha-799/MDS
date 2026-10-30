@@ -143,26 +143,20 @@ MDS connects directly to the OpenG2P Keycloak and Staff IAM services:
 
 ---
 
-## 5. Catalog Data Import Scripts
+## 5. Automated Catalog Data Seeding
 
-To populate or re-seed reference catalogs into PostgreSQL:
+Data seeding in this deployment follows the OpenG2P architecture where reference catalogs are automatically populated via a dedicated seeding service (`mds-db-seed`) upon startup.
 
-### Import All Core Catalogs (Crops, Livestock, Seeds)
+When `docker compose up -d` is executed, the `mds-db-seed` container:
+1. Waits for PostgreSQL and the Master Data API to become healthy.
+2. Automatically executes the catalog seeding scripts (`import_all_catalogs.py` and `add_geography_to_catalogs.py`).
+3. Seeds all 5 base domains (**Crops**, **Livestock**, **Seeds**, **Agricultural Inputs**, and **Administrative Geography**).
+4. Exits cleanly (`restart: "no"`).
+
+### Re-triggering Catalog Seeding Manually
+If you ever need to re-seed or update catalog data without restarting the entire cluster:
 ```bash
-docker cp import_all_catalogs.py mds-standalone-api:/tmp/import_all_catalogs.py
-docker exec mds-standalone-api python /tmp/import_all_catalogs.py
-```
-
-### Import Administrative Geography Catalogs (Regions, Zones, Woredas)
-```bash
-docker cp add_geography_to_catalogs.py mds-standalone-api:/tmp/add_geography_to_catalogs.py
-docker exec mds-standalone-api python /tmp/add_geography_to_catalogs.py
-```
-
-### Import Agricultural Inputs Catalog (5th Catalog)
-```bash
-docker cp import_input_catalog.py mds-standalone-api:/tmp/import_input_catalog.py
-docker exec mds-standalone-api python /tmp/import_input_catalog.py
+docker compose run --rm mds-db-seed
 ```
 
 ### Setup Keycloak Organizations & User Access Hierarchy
