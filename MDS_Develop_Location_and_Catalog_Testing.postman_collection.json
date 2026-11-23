@@ -1,0 +1,692 @@
+{
+  "info": {
+    "_postman_id": "c6b6637e-46c2-4a80-9961-0565e7dda5e7",
+    "name": "MDS Develop - Location & Catalog API Testing Collection",
+    "description": "Postman Collection for testing Master Data Service (MDS) on develop server (master-data.development.oanstaging.com):\n1. Authentication (Keycloak Token)\n2. Geography / Location Catalog (Hierarchy, Regions, Cascading Zones, Single Unit)\n3. Single Catalog / Dataset Data (List Definition, Values, Single Value, Crops, All Lists)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "api_url",
+      "value": "https://master-data.development.oanstaging.com",
+      "type": "string"
+    },
+    {
+      "key": "keycloak_url",
+      "value": "https://keycloak.development.oanstaging.com",
+      "type": "string"
+    },
+    {
+      "key": "realm",
+      "value": "staff",
+      "type": "string"
+    },
+    {
+      "key": "client_id",
+      "value": "admin-cli",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "alex.carter",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "pass",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "list_code",
+      "value": "LIVESTOCK_SPECIES",
+      "type": "string"
+    },
+    {
+      "key": "value_code",
+      "value": "CATTLE",
+      "type": "string"
+    },
+    {
+      "key": "sample_region_id",
+      "value": "ET04",
+      "type": "string"
+    },
+    {
+      "key": "sample_zone_id",
+      "value": "ET0401",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "1.1 Get Keycloak Access Token",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"Access token returned\", function () {",
+                  "    pm.expect(jsonData.access_token).to.be.a(\"string\");",
+                  "});",
+                  "if (jsonData.access_token) {",
+                  "    pm.collectionVariables.set(\"admin_token\", jsonData.access_token);",
+                  "    console.log(\"Token stored in admin_token variable\");",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            },
+            "description": "Acquires a Bearer JWT Token from Keycloak and automatically saves it to {{admin_token}}."
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Location & Geography Catalog",
+      "item": [
+        {
+          "name": "2.1 Get All Geography Levels (Hierarchy)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-geo-levels\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_levels",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_levels"
+              ]
+            },
+            "description": "Returns administrative hierarchy levels (Region, Zone, Woreda, Kebele)."
+          }
+        },
+        {
+          "name": "2.2 Get Level 1 Units - All Regions (Region Dropdown)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});",
+                  "pm.test(\"Units array populated\", function () {",
+                  "    var units = jsonData.response_body.response_payload.units;",
+                  "    pm.expect(units).to.be.an(\"array\").that.is.not.empty;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-geo-regions\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 50\n    },\n    \"request_payload\": {\n      \"level\": \"region\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_units"
+              ]
+            },
+            "description": "Fetches all Level 1 administrative units (Regions) to populate the initial Region dropdown."
+          }
+        },
+        {
+          "name": "2.3 Get Level 2 Units - Cascading Zones (Zone Dropdown)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-geo-zones\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 50\n    },\n    \"request_payload\": {\n      \"level\": \"zone\",\n      \"parent_unit_id\": \"{{sample_region_id}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_units"
+              ]
+            },
+            "description": "Cascading location: fetches only Zones belonging to the selected Region (e.g. ET04 Oromia)."
+          }
+        },
+        {
+          "name": "2.4 Get Level 3 Units - Cascading Woredas (Woreda Dropdown)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-geo-woredas\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 50\n    },\n    \"request_payload\": {\n      \"level\": \"woreda\",\n      \"parent_unit_id\": \"{{sample_zone_id}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_units"
+              ]
+            },
+            "description": "Cascading location: fetches only Woredas belonging to the selected Zone."
+          }
+        },
+        {
+          "name": "2.5 Get Single Location Unit Detail by ID",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-geo-single-unit\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 1\n    },\n    \"request_payload\": {\n      \"unit_id\": \"{{sample_region_id}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_unit",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_unit"
+              ]
+            },
+            "description": "Fetches metadata and boundaries/parent info for one specific geographic unit."
+          }
+        },
+        {
+          "name": "2.6 Get Geography Changes between Versions (Sync Diff)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"grievance-service\",\n    \"sender_app_url\": \"https://grievance.oanstaging.com\",\n    \"request_id\": \"req-geo-changes-sync\",\n    \"request_timestamp\": \"2026-11-09T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 100\n    },\n    \"request_payload\": {\n      \"from_version\": 1,\n      \"to_version\": 1,\n      \"include_draft\": false\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_changes",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_changes"
+              ]
+            },
+            "description": "Returns administrative unit change events (additions, splits, merges, retirements) between two geography versions for incremental database synchronization."
+          }
+        },
+        {
+          "name": "2.7 Get Change Feed (Lifecycle Event Polling)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"grievance-service\",\n    \"sender_app_url\": \"https://grievance.oanstaging.com\",\n    \"request_id\": \"req-change-feed\",\n    \"request_timestamp\": \"2026-11-09T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"cursor\": 0,\n      \"limit\": 20,\n      \"subject_type\": \"geo\",\n      \"newest\": true\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_changes",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_changes"
+              ]
+            },
+            "description": "Polls the immutable lifecycle change log for geography events (such as geo.version.published) to trigger downstream registry synchronization."
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Single Catalog & Dataset Data",
+      "item": [
+        {
+          "name": "3.1 Get Single Catalog Definition & Metadata (get_list)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});",
+                  "pm.test(\"List code matches request\", function () {",
+                  "    var list = jsonData.response_body.response_payload.list;",
+                  "    pm.expect(list.list_code).to.eql(pm.collectionVariables.get(\"list_code\"));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-get-list-def\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 1\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{list_code}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list"
+              ]
+            },
+            "description": "Fetches the catalog schema, version number, display name, and hierarchy settings."
+          }
+        },
+        {
+          "name": "3.2 Get All Values for a Single Catalog (get_list_values)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});",
+                  "pm.test(\"Values array returned\", function () {",
+                  "    var vals = jsonData.response_body.response_payload.values;",
+                  "    pm.expect(vals).to.be.an(\"array\").that.is.not.empty;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-get-list-values\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 50\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{list_code}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_values"
+              ]
+            },
+            "description": "Fetches all active values/records inside the selected catalog list (e.g. LIVESTOCK_SPECIES)."
+          }
+        },
+        {
+          "name": "3.3 Get Exactly One Specific Entry in a Catalog (get_list_value)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-get-single-value\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 1\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{list_code}}\",\n      \"value_code\": \"{{value_code}}\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_value"
+              ]
+            },
+            "description": "Returns details and attributes for one specific code (e.g. CATTLE in LIVESTOCK_SPECIES)."
+          }
+        },
+        {
+          "name": "3.4 Get Crop Catalog Values (CROP_CATALOG / CROP_COMMODITY)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-get-crops\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 50\n    },\n    \"request_payload\": {\n      \"list_code\": \"CROP_COMMODITY\"\n    }\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_values"
+              ]
+            },
+            "description": "Fetches crops from the Ethiopian Ministry of Agriculture crop list."
+          }
+        },
+        {
+          "name": "3.5 List All Available Catalogs (get_lists)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "pm.test(\"Response status SUCCESS\", function () {",
+                  "    pm.expect(jsonData.response_header.response_status).to.eql(\"SUCCESS\");",
+                  "});",
+                  "pm.test(\"Catalog lists array populated\", function () {",
+                  "    var lists = jsonData.response_body.response_payload.lists;",
+                  "    pm.expect(lists).to.be.an(\"array\").that.is.not.empty;",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-get-all-lists\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 100\n    },\n    \"request_payload\": {}\n  }\n}"
+            },
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_lists",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_lists"
+              ]
+            },
+            "description": "Discovers all available catalogs in MDS across agriculture, livestock, and core domains."
+          }
+        }
+      ]
+    }
+  ]
+}

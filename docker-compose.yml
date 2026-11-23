@@ -111,12 +111,14 @@ services:
       # [LOCAL ONLY]: TCP proxy forwarding localhost:8020/8080 to host machine.
       # On Server: Omit volume mount when IAM_URL points to actual server endpoints.
       - ./docker_proxy.py:/app/docker_proxy.py:ro
+      - ./patch_api.py:/app/patch_api.py:ro
     command:
       - /bin/sh
       - -c
       - |
         # [LOCAL ONLY]: Start forwarder; on server, run migrate and gunicorn directly.
         python3 /app/docker_proxy.py &
+        python3 /app/patch_api.py
         python3 -m openg2p_gen2_master_data.main migrate
         exec gunicorn "openg2p_gen2_master_data.main:app" --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
     ports:
@@ -142,13 +144,12 @@ services:
         condition: service_healthy
     volumes:
       # [LOCAL ONLY]: Omit on server when IAM_URL points directly to server IAM.
-      - ./docker_proxy.js:/app/docker_proxy.js:ro
-      # [REQUIRED ON SERVER]: Customizes navigation with 5 base domains (Crops, Livestock, Seeds, Inputs, Geography).
-      - ./customize_sidebar.js:/app/customize_sidebar.js:ro
+      - ./patch_dev_auth.js:/app/patch_dev_auth.js:ro
+      - ./patch_ui.js:/app/patch_ui.js:ro
     command: >
       sh -c "
-      node /app/customize_sidebar.js;
-      node /app/docker_proxy.js &
+      node /app/patch_dev_auth.js &&
+      node /app/patch_ui.js &&
       exec node server.js
       "
     environment:

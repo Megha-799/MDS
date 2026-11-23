@@ -1,0 +1,3296 @@
+{
+  "info": {
+    "_postman_id": "8d1203f0-c971-4662-96cf-43326b5032fb",
+    "name": "MDS Develop - Complete API Suite (All Endpoints)",
+    "description": "Complete Postman testing suite containing ALL 65 APIs of the Master Data Service (MDS) targeting:\n- Backend API: https://master-data.development.oanstaging.com\n- Keycloak: https://keycloak.development.oanstaging.com\n- Realm: staff, Client: admin-cli, User: alex.carter\n\nAll requests include pre-filled parameter values, proper OpenG2P envelopes, and automated token handling.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "api_url",
+      "value": "https://master-data.development.oanstaging.com",
+      "type": "string"
+    },
+    {
+      "key": "keycloak_url",
+      "value": "https://keycloak.development.oanstaging.com",
+      "type": "string"
+    },
+    {
+      "key": "realm",
+      "value": "staff",
+      "type": "string"
+    },
+    {
+      "key": "client_id",
+      "value": "admin-cli",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "alex.carter",
+      "type": "string"
+    },
+    {
+      "key": "password",
+      "value": "pass",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "sample_list_code",
+      "value": "LIVESTOCK_SPECIES",
+      "type": "string"
+    },
+    {
+      "key": "sample_value_code",
+      "value": "CATTLE",
+      "type": "string"
+    },
+    {
+      "key": "sample_geo_code",
+      "value": "ET04",
+      "type": "string"
+    },
+    {
+      "key": "sample_geo_level",
+      "value": "region",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "0. Authentication & Tokens",
+      "description": "Acquires Bearer token from Keycloak and automatically updates collection variables.",
+      "item": [
+        {
+          "name": "0.1 Get Admin Access Token (alex.carter)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var jsonData = pm.response.json();",
+                  "pm.test('Status is 200 OK', function () { pm.response.to.have.status(200); });",
+                  "pm.test('Access token returned', function () { pm.expect(jsonData.access_token).to.be.a('string'); });",
+                  "if (jsonData.access_token) {",
+                  "    pm.collectionVariables.set('admin_token', jsonData.access_token);",
+                  "    console.log('Stored admin_token successfully!');",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "grant_type",
+                  "value": "password",
+                  "type": "text"
+                },
+                {
+                  "key": "client_id",
+                  "value": "{{client_id}}",
+                  "type": "text"
+                },
+                {
+                  "key": "username",
+                  "value": "{{username}}",
+                  "type": "text"
+                },
+                {
+                  "key": "password",
+                  "value": "{{password}}",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{keycloak_url}}/realms/{{realm}}/protocol/openid-connect/token",
+              "host": [
+                "{{keycloak_url}}"
+              ],
+              "path": [
+                "realms",
+                "{{realm}}",
+                "protocol",
+                "openid-connect",
+                "token"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "1. Catalogue - Core Read & Query",
+      "item": [
+        {
+          "name": "POST /catalogue/awe/callback - AWE decision callback",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/awe/callback",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "awe",
+                "callback"
+              ]
+            },
+            "description": "Called by the Approval Workflow Engine (awe mode). Authenticated by HMAC, not JWT: `X-Approval-Signature: sha256=HMAC_SHA256(secret, \"<X-Approval-Timestamp>.\" + body)`, with `X-Approval-Timestamp` (unix seconds) and `X-Approval-Event-Id`. Body: AWE WebhookEvent (`event_id, event_type, request_id, artifact_type, artifact_id, status, stage_order, actor, occurred_at`). `request_approved` publishes the submitted version (artifact `master_data.list_version` `<list_id>:<version_no>`, or `master_data.geo_version` `geography:<version_no>`); `request_rejected` / `request_cancelled` reject it. Idempotent on event_id. 401 on a bad signature, 422 when the event cannot be applied.",
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_catalogue_config - How this catalogue is configured",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_catalogue_config",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_catalogue_config"
+              ]
+            },
+            "description": "`approval_mode` (permission | awe \u2014 the UI shows approve/reject buttons only in permission mode), whether boundary upload, audit and WebSub are enabled, the country, the geography version currently in effect and whether the anonymous /public catalogue is enabled (with its base URL).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_changes - Change feed",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_changes",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_changes"
+              ]
+            },
+            "description": "Catalogue lifecycle events in order, from the append-only change log: list.created, list.updated, list.draft.created, list.draft.values_changed, list.draft.values_retired, list.draft.submitted, list.approval.requested, list.draft.approved, list.draft.rejected, list.version.published, list.version.effective, list.version.migrated, list.draft.discarded (and the geo.* equivalents, release.created / members_set / published / deleted). Pass the returned `next_cursor` as `cursor` to continue; `has_more` says whether to call again. Filter by `subject_type`, `subject_id`, `event_types`; `newest: true` returns the newest `limit` events instead (a recent-activity view). `actor` is the stable user id (token sub) or a system name, `actor_name` a user's display name. Every event \u2014 including those written by the database (`*.version.effective`, `*.version.migrated`) and the country-pack loader \u2014 is relayed to the Audit Manager when configured, and `*.version.published`, `*.version.effective` and `release.published` to the WebSub hub, with retries.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"cursor\": 1,\n      \"limit\": 1,\n      \"subject_type\": \"sample_subject_type\",\n      \"subject_id\": \"sample_subject_id\",\n      \"event_types\": [],\n      \"newest\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list - One dataset at a version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list"
+              ]
+            },
+            "description": "A list's metadata as it is in the selected version (code, labels, attribute schema), plus that version's metadata.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_diff - Differences between two versions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_diff",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_diff"
+              ]
+            },
+            "description": "`added`, `changed` (per field before/after), `retired` and `reactivated` values, and `metadata_changes` (code, label, labels, hierarchy flag, attribute schema) from `from_version` (default: the base of `to_version`) to `to_version` (number, \"latest\" or \"draft\"; default \"latest\"). Use `to_version: \"draft\"` to review a draft.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"from_version\": 1,\n      \"to_version\": 1\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_value - One entry by code at a version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_value"
+              ]
+            },
+            "description": "Resolves a code in the selected version \u2014 including a RETIRED value, so an old reference still resolves against the version it was taken from.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"list_code\": \"{{sample_list_code}}\",\n      \"value_code\": \"{{sample_value_code}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_values - Entries (values) of a dataset at a version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_values"
+              ]
+            },
+            "description": "Values of the selected version, ordered by sort_order. Active values only unless `include_retired`. Filters: `parent_code` (\"\" = top level), `attribute_filters` (JSON containment on the typed attributes), `search` (code or label). Paged with `pagination_request`. ATTRIBUTE data policies apply as on /attributes/get_attribute_values. Response: `{list_code, version: {version_no, status, effective_from, published_at, is_latest, ...}, values: [{value_id, value_code, display, display_i18n, parent_code, sort_order, attributes, roles, status}], total}`.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"list_code\": \"{{sample_list_code}}\",\n      \"include_retired\": false,\n      \"parent_code\": \"sample_parent_code\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_list_versions - Version history of a dataset",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_list_versions",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_list_versions"
+              ]
+            },
+            "description": "All versions, newest first: DRAFT, SUBMITTED, PUBLISHED (with effective_from, published_at, decided_by), REJECTED (with decision_note) and DISCARDED. Numbers are never reused. `is_latest` marks the version in effect now. `*_by` fields hold stable user ids (token `sub`) or a system name; `*_by_name` the user's display name (null for a system actor).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_lists - All datasets",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_lists",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_lists"
+              ]
+            },
+            "description": "Every dataset (list) with its owner, domain (shown as Theme: `core`, `agriculture`, ...; null when unknown), visibility, licence, current published version (in effect now), highest published version (may be future-effective), open draft (number and status) and a summary of its attribute schema (properties, required, list references).\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"include_unpublished\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_geo_settings - Set the geography's visibility / licence",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/update_geo_settings",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_geo_settings"
+              ]
+            },
+            "description": "Applied at once (not versioned); only fields present are changed, an empty licence field clears it. `visibility: \"public\"` lets the anonymous /public catalogue (when enabled) show the geography's PUBLISHED versions; drafts are never public. Logged as `geo.settings.updated`.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://creativecommons.org/licenses/by/4.0/\",\n      \"licence_label\": \"CC BY 4.0\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Catalogue - Geography Read & Cascading",
+      "item": [
+        {
+          "name": "POST /catalogue/get_geo_boundary - Boundary GeoJSON of a level",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_boundary",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_boundary"
+              ]
+            },
+            "description": "The object key of the level's boundary in the selected version (`geo/<country>/v<version>/<level>.geojson`, immutable once published; an unchanged level points at an earlier version's object), with `url` (when a public base URL is configured) and a `presigned_url`. With `stream: true` the GeoJSON itself is returned as application/geo+json.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"level\": \"{{sample_geo_level}}\",\n      \"stream\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_crosswalk - Map a unit across versions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_crosswalk",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_crosswalk"
+              ]
+            },
+            "description": "Follows the change events from `from_version` to `to_version` (default latest; may be earlier, to find predecessors) across any number of versions. Returns the unit's successors (SPLIT gives several, MERGE one, RECODE the new code; RENAME/REPARENT/BOUNDARY_CHANGE keep the unit) as they are in `to_version`, `unmapped` units (retired without successor / created without predecessor) and the `path` of events taken.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"unit_id\": \"{{sample_geo_code}}\",\n      \"from_version\": 1,\n      \"to_version\": 1\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_levels - Levels of a geography version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_levels",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_levels"
+              ]
+            },
+            "description": "Levels top-down (level_id, level_mnemonic, parent_level_id, display, display_i18n).\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_settings - Geography settings (visibility, licence)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_settings",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_settings"
+              ]
+            },
+            "description": "`visibility` (private \u2014 the default \u2014 or public) and the optional licence (`licence_uri`, `licence_label`) of the geography. Administrative, not versioned.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_unit - One unit, with its ancestors",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_unit",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_unit"
+              ]
+            },
+            "description": "A unit of the selected version (retired ones too) and its ancestor chain.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"unit_id\": \"{{sample_geo_code}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_units - Units of a geography version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_units"
+              ]
+            },
+            "description": "Units (unit_id = P-code, level_id, name, name_i18n, parent_unit_id, status, valid_from, valid_to), filtered by `level` (id or mnemonic), `parent_unit_id` (\"\" = roots), `search`; active only unless `include_retired`. Paged. GEO data policies apply.\n\nVersion selection: `version` (number, `\"latest\"` \u2014 the default, the latest published version already in effect \u2014 or `\"draft\"`), `as_of` (date-time: the published version in effect then) or `release` (a catalogue release code). The response's `version` object says which version answered.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version\": 1,\n      \"release\": \"sample_release\",\n      \"level\": \"{{sample_geo_level}}\",\n      \"parent_unit_id\": \"{{sample_geo_code}}\",\n      \"include_retired\": false\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_versions - Geography version history",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_versions",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_versions"
+              ]
+            },
+            "description": "All geography versions, newest first, with status, effective_from, owner_org, country, active unit count and the boundary object key per level.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Catalogue - Maker-Checker Lifecycle & Drafts",
+      "item": [
+        {
+          "name": "POST /catalogue/approve_draft - Approve and publish (permission mode)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/approve_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "approve_draft"
+              ]
+            },
+            "description": "Publishes the SUBMITTED version: it becomes immutable, `effective_from` defaults to now (or the draft's / this call's date, possibly future), and \u2014 if in effect \u2014 the legacy /attributes tables are refreshed in the same transaction. Maker \u2260 checker: the approver must not have created, edited or submitted the draft (G2P-CAT-403). Disabled in awe mode.\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"version_no\": 1,\n      \"decision_note\": \"Approved by Ministry of Agriculture for staging deployment\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/create_list - Create a dataset",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/create_list",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_list"
+              ]
+            },
+            "description": "Registers a new list (code, label, labels per locale, description, owner_org, domain, visibility (private by default), licence_uri / licence_label, hierarchy flag, attribute_schema) and opens its first draft (version 1). Nothing is published until that draft is submitted and approved. `attribute_schema` is a JSON Schema (2020-12) for each value's `attributes`; a property may carry `\"x-list-ref\": \"<LIST_CODE>\"` (its value is a code of that list), and so may the `items` of an array property (a list of codes, e.g. `{\"type\": \"array\", \"items\": {\"type\": \"string\", \"x-list-ref\": \"CROP_GROUP\"}}`).\n\nPermission: `referenceData:create`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"display\": \"Sample Test Catalog\",\n      \"display_i18n\": \"Sample Test Catalog\",\n      \"description\": \"Sample dataset description for develop environment verification\",\n      \"owner_org\": \"Ministry of Agriculture\",\n      \"domain\": \"agriculture\",\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://creativecommons.org/licenses/by/4.0/\",\n      \"licence_label\": \"CC BY 4.0\",\n      \"is_hierarchical\": false,\n      \"attribute_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"description\": {\n            \"type\": \"string\"\n          }\n        }\n      },\n      \"list_id\": \"sample_list_id\",\n      \"change_note\": \"Reference data update for testing\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/create_list_draft - Open a draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/create_list_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_list_draft"
+              ]
+            },
+            "description": "Opens the list's draft as a copy of the highest published version (its base). `copy_from_version` copies another version's content instead (e.g. a REJECTED draft to rework). Optional `change_note` and `effective_from` (may be in the future). 409 if a draft is open.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"base_version\": 1,\n      \"copy_from_version\": 1,\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/discard_draft - Discard the open draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/discard_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "discard_draft"
+              ]
+            },
+            "description": "Closes the open draft (DRAFT, or SUBMITTED in permission mode) as DISCARDED. The version row is kept so its number is never reused; the next draft gets the next number. Published versions are untouched.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/reject_draft - Reject the submitted draft (permission mode)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/reject_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "reject_draft"
+              ]
+            },
+            "description": "Marks the SUBMITTED version REJECTED with a required `decision_note`. Maker \u2260 checker. Rework it with create_list_draft + copy_from_version.\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"version_no\": 1,\n      \"decision_note\": \"Approved by Ministry of Agriculture for staging deployment\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/retire_draft_values - Retire entries in the draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/retire_draft_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "retire_draft_values"
+              ]
+            },
+            "description": "A value that exists in the base version becomes RETIRED (kept, so old references still resolve); a value added in this draft is removed. Active children block unless `cascade`.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"value_codes\": \"{{sample_value_code}}\",\n      \"cascade\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/submit_draft - Submit the draft for approval",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/submit_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "submit_draft"
+              ]
+            },
+            "description": "Validates the draft (labels, hierarchy, attribute schema and every value's typed attributes incl. list references; must differ from its base) and moves it to SUBMITTED. In awe mode this also opens an AWE approval request (policy `awe_policy_key_list`, artifact `master_data.list_version`, context incl. owner_org) and records its id in `approval_ref`.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_list - Update a dataset's metadata",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/update_list",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_list"
+              ]
+            },
+            "description": "`description`, `owner_org`, `domain`, `visibility` and `licence_uri` / `licence_label` are administrative and apply at once. `new_list_code`, `display`, `display_i18n`, `is_hierarchical` and `attribute_schema` are part of what consumers see, so they go into the open draft.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"description\": \"Sample dataset description for develop environment verification\",\n      \"owner_org\": \"Ministry of Agriculture\",\n      \"domain\": \"agriculture\",\n      \"visibility\": \"private\",\n      \"licence_uri\": \"https://creativecommons.org/licenses/by/4.0/\",\n      \"licence_label\": \"CC BY 4.0\",\n      \"new_list_code\": \"{{sample_list_code}}\",\n      \"display\": \"Sample Test Catalog\",\n      \"display_i18n\": \"Sample Test Catalog\",\n      \"is_hierarchical\": false,\n      \"attribute_schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"description\": {\n            \"type\": \"string\"\n          }\n        }\n      }\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_list_draft - Set a draft's change note / effective date",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/update_list_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_list_draft"
+              ]
+            },
+            "description": "`effective_from` may not be earlier than the latest published version's.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_values - Add or change entries in the draft (batch)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/upsert_draft_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_values"
+              ]
+            },
+            "description": "Each item is matched on `value_id` when given, else on `value_code`; unmatched items are added. Only fields present are changed. Labels, attributes, parent and sort order stay editable; a code can change (item with `value_id`) only for an entry that was never published \u2014 a published code is refused with `G2P-CAT-CODE-IMMUTABLE` (retire it and add a new entry instead). Upserting a retired code re-activates it. `attributes` are validated against the draft's attribute_schema, and `x-list-ref` codes must be ACTIVE values of the referenced list's version in effect (now, or at the draft's future effective_from) \u2014 never its draft: publish a referenced list first.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"list_code\": \"{{sample_list_code}}\",\n      \"values\": [\n        {\n          \"value_code\": \"SAMPLE_VAL_01\",\n          \"display\": \"Sample Value 1\",\n          \"status\": \"ACTIVE\"\n        }\n      ]\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Catalogue - Geography Lifecycle & Boundaries",
+      "item": [
+        {
+          "name": "POST /catalogue/approve_geo_draft - Approve and publish the geography draft (permission mode)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/approve_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "approve_geo_draft"
+              ]
+            },
+            "description": "Publishes the SUBMITTED version (immutable), stamps valid_from / valid_to on new and retired units and \u2014 if in effect \u2014 refreshes the legacy /geo tables in the same transaction. Maker \u2260 checker. Disabled in awe mode.\n\nPermission: `geo:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version_no\": 1,\n      \"decision_note\": \"Approved by Ministry of Agriculture for staging deployment\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/create_geo_draft - Open a geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/create_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_geo_draft"
+              ]
+            },
+            "description": "Copies levels, units and boundary keys of the highest published version (or `copy_from_version`). Optional `change_note`, `effective_from` (e.g. new woredas from 2027-01-01), `owner_org`.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"base_version\": 1,\n      \"copy_from_version\": 1,\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\",\n      \"owner_org\": \"Ministry of Agriculture\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/delete_geo_change - Remove a change event from the geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/delete_geo_change",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "delete_geo_change"
+              ]
+            },
+            "description": "Only events of the open DRAFT.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"change_id\": 1\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/discard_geo_draft - Discard the geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/discard_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "discard_geo_draft"
+              ]
+            },
+            "description": "Closes the open geography draft as DISCARDED (kept, so its number and boundary keys are never reused). Uploaded objects of the draft stay in the bucket under its own version's keys.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_geo_changes - Change events (lineage) between versions",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_geo_changes",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_geo_changes"
+              ]
+            },
+            "description": "Events of the published versions in (`from_version`, `to_version`] \u2014 CREATE, RETIRE, RENAME, RECODE, SPLIT, MERGE, REPARENT, BOUNDARY_CHANGE with from_units (base version) and to_units (new version), effective_date, note, is_auto. `unit_id` filters to events naming it; `include_draft` adds the open draft's events.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"from_version\": 1,\n      \"to_version\": 1,\n      \"unit_id\": \"{{sample_geo_code}}\",\n      \"include_draft\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/record_geo_change - Record a change event in the geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/record_geo_change",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "record_geo_change"
+              ]
+            },
+            "description": "Lineage against the draft's base version. Rules: CREATE \u2014 to-units active in the draft and new; RETIRE \u2014 from-units active in base, retired in the draft; RENAME / REPARENT \u2014 one unit, same id, name / parent differs; RECODE \u2014 one old code (retired) to one new code (new), same level; SPLIT \u2014 one from-unit (retired, or kept as one of the parts) to \u22652 active to-units; MERGE \u2014 \u22652 from-units (retired, or the survivor) to one active unit; BOUNDARY_CHANGE \u2014 units active in both. A unit can end in only one RETIRE/SPLIT/MERGE/RECODE per version. Edit the units first, then record the event.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"change_type\": \"sample_change_type\",\n      \"from_units\": [],\n      \"to_units\": [],\n      \"effective_date\": \"sample_effective_date\",\n      \"note\": \"Sample dataset description for develop environment verification\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/reject_geo_draft - Reject the geography draft (permission mode)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/reject_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "reject_geo_draft"
+              ]
+            },
+            "description": "Requires `decision_note`. Maker \u2260 checker.\n\nPermission: `geo:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"version_no\": 1,\n      \"decision_note\": \"Approved by Ministry of Agriculture for staging deployment\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/retire_draft_units - Retire units in the geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/retire_draft_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "retire_draft_units"
+              ]
+            },
+            "description": "Units of the base version become RETIRED (never deleted); units added in this draft are removed. Active descendants block unless `cascade`.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"unit_ids\": \"{{sample_geo_code}}\",\n      \"cascade\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/submit_geo_draft - Submit the geography draft for approval",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/submit_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "submit_geo_draft"
+              ]
+            },
+            "description": "Validates levels, units and every recorded event, completes the lineage (auto CREATE / RETIRE / RENAME / REPARENT / BOUNDARY_CHANGE events for anything not covered, flagged is_auto) and moves the draft to SUBMITTED; in awe mode opens an AWE request (`awe_policy_key_geo`, artifact `master_data.geo_version`).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/update_geo_draft - Set the geography draft's note / effective date / owner",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/update_geo_draft",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "update_geo_draft"
+              ]
+            },
+            "description": "Only fields present are changed.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"change_note\": \"Reference data update for testing\",\n      \"effective_from\": \"sample_effective_from\",\n      \"owner_org\": \"Ministry of Agriculture\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upload_draft_boundary - Upload a level's boundary GeoJSON to the draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/upload_draft_boundary",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upload_draft_boundary"
+              ]
+            },
+            "description": "Stores the FeatureCollection in MinIO/S3 under the draft's key `geo/<country>/v<draft>/<level>.geojson` (never a published version's key) and records it on the draft; it becomes immutable on publish. Units whose geometry changed (features keyed by `properties.pcode`) get a BOUNDARY_CHANGE event at submit. Needs the boundary store configured.\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level\": \"{{sample_geo_level}}\",\n      \"geojson\": {}\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_levels - Add or change levels in the geography draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/upsert_draft_levels",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_levels"
+              ]
+            },
+            "description": "Matched on level_id. Mnemonics must be unique under the same parent level.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"levels\": [\n        {\n          \"level_id\": \"region\",\n          \"level_name\": \"Region\",\n          \"level_order\": 1\n        }\n      ]\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/upsert_draft_units - Add or change units in the geography draft (batch)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/upsert_draft_units",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "upsert_draft_units"
+              ]
+            },
+            "description": "Matched on unit_id (P-code). A unit's parent must be an active unit of the parent level; names are unique among siblings. Upserting a retired unit re-activates it. Renames, re-parenting and new units get change events automatically at submit unless you record them.\n\nEdits only ever touch the open DRAFT (one per list / for geography); a draft is created from the highest published version when none is open. Published versions are immutable (enforced in Postgres).\n\nPermission: `geo:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"units\": [\n        {\n          \"unit_id\": \"ET04\",\n          \"name\": \"Oromia\",\n          \"level\": \"region\"\n        }\n      ]\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Catalogue - Releases & Snapshots",
+      "item": [
+        {
+          "name": "POST /catalogue/create_release - Create a draft release",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/create_release",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "create_release"
+              ]
+            },
+            "description": "`release_code` (e.g. 2027.1), `title`, `note`.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"release_code\": \"ETH-2026-Q1\",\n      \"title\": \"Sample Test Catalog\",\n      \"note\": \"Sample dataset description for develop environment verification\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/delete_release - Delete a draft release",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/delete_release",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "delete_release"
+              ]
+            },
+            "description": "Published releases cannot be deleted.\n\nPermission: `referenceData:delete`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"release_code\": \"ETH-2026-Q1\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_release - One release with its members",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_release",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_release"
+              ]
+            },
+            "description": "`members: [{list_id, list_code, version_no}]` and `geo_version_no`.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"release_code\": \"ETH-2026-Q1\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/get_releases - All catalogue releases",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/get_releases",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "get_releases"
+              ]
+            },
+            "description": "Named sets of list versions plus one geography version, for consumers that pin everything at once. Any versioned read accepts `release` to answer from a release's pins.\n\nPermission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/publish_release - Publish a release (immutable)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/publish_release",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "publish_release"
+              ]
+            },
+            "description": "Checks every member is published and that `x-list-ref` references between member lists resolve within the release's own pins. Maker \u2260 checker (publisher \u2260 creator and \u2260 whoever last set the members). Immutable afterwards (enforced in Postgres).\n\nPermission: `referenceData:publish`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"release_code\": \"ETH-2026-Q1\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /catalogue/set_release_members - Pin dataset versions and a geography version",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/catalogue/set_release_members",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "catalogue",
+                "set_release_members"
+              ]
+            },
+            "description": "Only PUBLISHED versions can be members. `replace: true` (default) replaces all members; false adds / overwrites the given ones. `geo_version_no` sets the geography pin. DRAFT releases only.\n\nPermission: `referenceData:edit`",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"release_code\": \"ETH-2026-Q1\",\n      \"members\": [],\n      \"geo_version_no\": 1,\n      \"replace\": true\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Legacy Attributes APIs",
+      "item": [
+        {
+          "name": "POST /attributes/add_attribute - Add a dataset (into a draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/add_attribute",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "add_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"attribute_code\": \"sample_attribute_code\",\n      \"attribute_display\": \"Sample Test Catalog\",\n      \"is_hierarchical\": false\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/add_attribute_value - Add an entry (into the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/add_attribute_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "add_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"attribute_id\": \"sample_attribute_id\",\n      \"value_code\": \"{{sample_value_code}}\",\n      \"value_display\": \"Sample Test Catalog\",\n      \"parent_value_id\": \"sample_parent_value_id\",\n      \"sort_order\": 1\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/delete_attribute - Delete a dataset",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/delete_attribute",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "delete_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"attribute_id\": \"sample_attribute_id\",\n      \"cascade\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/delete_attribute_value - Retire an entry (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/delete_attribute_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "delete_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"value_id\": \"sample_value_id\",\n      \"attribute_id\": \"sample_attribute_id\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/get_all_attributes - All datasets (current published version)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/get_all_attributes",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "get_all_attributes"
+              ]
+            },
+            "description": "All datasets (lists), as currently published. `current_version_no` (additive) is the published version the list shows; null for a list never published. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/get_attribute_values - Entries of datasets (current published version)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/get_attribute_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "get_attribute_values"
+              ]
+            },
+            "description": "Values of the current published version (active values only). `list_versions` (additive) maps each attribute_id returned to that version. For other versions use /catalogue/get_list_values. ATTRIBUTE data policies filter the result. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"attribute_id\": \"sample_attribute_id\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/update_attribute - Update a dataset (in its draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/update_attribute",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "update_attribute"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). Permission: `referenceData:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"attribute_id\": \"sample_attribute_id\",\n      \"attribute_code\": \"sample_attribute_code\",\n      \"attribute_display\": \"Sample Test Catalog\",\n      \"is_hierarchical\": false\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /attributes/update_attribute_value - Update an entry (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/attributes/update_attribute_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "attributes",
+                "update_attribute_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the list's open DRAFT (creating one from the latest published version if needed); the change reaches the readers of /attributes/* only when the draft is submitted and approved (see /catalogue/submit_draft and /catalogue/approve_draft). `value_code` can change only for an entry that was never published (`G2P-CAT-CODE-IMMUTABLE` otherwise). Permission: `referenceData:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"value_id\": \"sample_value_id\",\n      \"attribute_id\": \"sample_attribute_id\",\n      \"value_code\": \"{{sample_value_code}}\",\n      \"value_display\": \"Sample Test Catalog\",\n      \"parent_value_id\": \"sample_parent_value_id\",\n      \"sort_order\": 1\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Legacy Geo APIs",
+      "item": [
+        {
+          "name": "POST /geo/add_geo_level - Add a geography level (into the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/add_geo_level",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "add_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_mnemonic\": \"sample_level_mnemonic\",\n      \"parent_level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/add_geo_level_value - Add a geography unit (into the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/add_geo_level_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "add_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:create`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_value_mnemonic\": \"sample_level_value_mnemonic\",\n      \"parent_level_value_id\": \"sample_parent_level_value_id\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/delete_geo_level - Delete a geography level (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/delete_geo_level",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "delete_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/delete_geo_level_value - Retire a geography unit (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/delete_geo_level_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "delete_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:delete`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_value_id\": \"sample_level_value_id\",\n      \"cascade\": true\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/get_all_geo_levels - All geography levels (current published version)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/get_all_geo_levels",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "get_all_geo_levels"
+              ]
+            },
+            "description": "Levels of the geography version in effect (level_id, level_mnemonic, parent_level_id). Depth and names are country-specific: walk `parent_level_id`. For other versions use /catalogue/get_geo_levels. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {}\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/get_geo_level_values - Units of a geography level (current published version)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/get_geo_level_values",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "get_geo_level_values"
+              ]
+            },
+            "description": "Units of `level_id`, optionally only the children of `parent_level_value_id`, from the geography version in effect. Data policies filter the result. For other versions use /catalogue/get_geo_units. Cached per worker. Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"parent_level_value_id\": \"sample_parent_level_value_id\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/update_geo_level - Update a geography level (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/update_geo_level",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "update_geo_level"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_mnemonic\": \"sample_level_mnemonic\",\n      \"parent_level_id\": \"{{sample_geo_level}}\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /geo/update_geo_level_value - Update a geography unit (in the draft)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/geo/update_geo_level_value",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "geo",
+                "update_geo_level_value"
+              ]
+            },
+            "description": "Catalogue: this no longer changes published data. It edits the open geography DRAFT (creating one from the latest published version if needed); deleting a unit RETIRES it in the draft. The change reaches the readers of /geo/* only when the draft is submitted and approved (see /catalogue/submit_geo_draft and /catalogue/approve_geo_draft). Permission: `geo:edit`.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"level_value_id\": \"sample_level_value_id\",\n      \"level_id\": \"{{sample_geo_level}}\",\n      \"level_value_mnemonic\": \"sample_level_value_mnemonic\",\n      \"parent_level_value_id\": \"sample_parent_level_value_id\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. System Health & Samples",
+      "item": [
+        {
+          "name": "GET /ping - Get Ping",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/ping",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "ping"
+              ]
+            },
+            "description": "Returns \"pong\" always, if the service is healthy.\nThis can also used for service health checks."
+          }
+        },
+        {
+          "name": "POST /samples/get_households - Sample households (testing and demos only)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/samples/get_households",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "samples",
+                "get_households"
+              ]
+            },
+            "description": "**For testing and demos only; not for production use.** The sample households the country pack loaded, in `household_id` order, with their head, size, dwelling and amenities (codes of the pack's datasets) and location. Optional filters: `geo_pcode`, `country`. Paged with `pagination_request` (`page_size`, `current_page`; default 1000 per page); `response_body.pagination_response` carries `number_of_items` and `number_of_pages`. Empty unless the deployment loaded the country pack's samples (`--load samples`). Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"geo_pcode\": \"sample_geo_pcode\",\n      \"country\": \"sample_country\"\n    }\n  }\n}"
+            }
+          }
+        },
+        {
+          "name": "POST /samples/get_individuals - Sample people (testing and demos only)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+                  "var jsonData = pm.response.json();",
+                  "if (jsonData.response_header) {",
+                  "    pm.test('Response status is SUCCESS', function () {",
+                  "        pm.expect(jsonData.response_header.response_status).to.eql('SUCCESS');",
+                  "    });",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{admin_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{api_url}}/samples/get_individuals",
+              "host": [
+                "{{api_url}}"
+              ],
+              "path": [
+                "samples",
+                "get_individuals"
+              ]
+            },
+            "description": "**For testing and demos only; not for production use.** Sample people are made-up demo data, not reference data: they are not versioned or approved, and a production deployment should not load them. The sample individuals the country pack loaded, in `individual_id` order: who they are (names, gender, birth date, national id, phone), where they live (`geo_pcode`, a unit of the geography, plus `address_parts` below the lowest level and coordinates) and coded facts (entries of the pack's datasets). Registries seed their sample records from these, so one set of people populates every registry of the deployment. Optional filters: `household_id`, `geo_pcode`, `country`. Paged with `pagination_request` (`page_size`, `current_page`; default 1000 per page); `response_body.pagination_response` carries `number_of_items` and `number_of_pages`. Empty unless the deployment loaded the country pack's samples (`--load samples`). Permission: any authenticated caller.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request_header\": {\n    \"sender_app_mnemonic\": \"postman-qa\",\n    \"sender_app_url\": \"https://postman.local\",\n    \"request_id\": \"req-{{$randomUUID}}\",\n    \"request_timestamp\": \"2026-11-03T10:00:00Z\"\n  },\n  \"request_body\": {\n    \"pagination_request\": {\n      \"current_page\": 1,\n      \"page_size\": 20\n    },\n    \"request_payload\": {\n      \"household_id\": \"sample_household_id\",\n      \"geo_pcode\": \"sample_geo_pcode\",\n      \"country\": \"sample_country\"\n    }\n  }\n}"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

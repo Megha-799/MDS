@@ -9,3 +9,5 @@ __pycache__/
 *.docx
 *Playbook.md
 .~lock.*
+diff_118/
+diff_121/
